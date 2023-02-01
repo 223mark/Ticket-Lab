@@ -10,6 +10,12 @@ class TicketcodeList extends Model
     use HasFactory;
     protected $fillable = [
         'ticket_code',
-        'operator_id'
+        'operator_id',
+        'from_where',
+        'to_where',
+        'price',
+        'class',
+        'departure_time',
+        'arrive_time'
     ];
 }
