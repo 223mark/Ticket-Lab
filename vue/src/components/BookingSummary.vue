@@ -1,0 +1,63 @@
+<template>
+    <div class="border rounded-lg shadow-lg bg-white">
+        <div class="border py-4 text-center">
+            <h6 class="text-xl text-indigo-400 font-bold ">Booking Summary</h6>
+        </div>
+        <div class="flex flex-col px-4 py-2 space-y-4 ">
+            <div class="flex">
+                <div class="w-1/2  ">
+                    <p class="text-md ">Bus Operator</p>
+                </div>
+                <div class="w-1/2 ">
+                    <p class=" fw-semibold">Something Something</p>
+                </div>
+            </div>
+           <div class="flex">
+            <div class="w-1/2  ">
+                <p class=" fw-light">Route</p>
+            </div>
+            <div class="w-1/2 ">
+                <p class=" fw-semibold">Yangon - Mandalay </p>
+            </div>
+           </div>
+           <div class="flex">
+                <div class="w-1/2  ">
+                    <p class=" fw-light">Departure Time</p>
+                </div>
+                <div class="w-1/2 ">
+                    <p class=" fw-semibold">28 Jan 2022</p>
+                </div>
+            </div>
+            <div class="flex">
+                <div class="w-1/2  ">
+                    <p class=" fw-light">Arrive Time</p>
+                </div>
+                <div class="w-1/2 ">
+                    <p class=" fw-semibold">29 Jam 2024</p>
+                </div>
+            </div>
+            <div class="flex">
+                <div class="w-1/2  ">
+                    <p class=" font-semibold">Subtotal</p>
+                </div>
+                <div class="">
+                    <p class="font-bold text-green-500">30000 Ks</p>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+    <div class="border mt-4 bg-white shadow-lg">
+            <div class="py-4">
+                <p class="text-lg font-semibold text-center">Please Select Seat</p>
+                <div class="py-4 my-4 text-center bg-gray-600">
+                    <h4 class="text-white text-2xl font-bold ">15</h4>
+                </div>
+                <div class="mt-2 flex justify-center items-center">
+                    <button class="bg-green-500 text-white px-8 py-2 rounded-lg hover:bg-green-400 ">Continue to Traveler Info</button>
+                </div>
+            </div>
+    </div>
+</template>
+<script>
+</script>
