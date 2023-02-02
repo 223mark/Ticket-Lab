@@ -9,7 +9,7 @@ class Routes extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'ticket_code',
+        // 'ticket_code',
         'operator_id',
         'from_where',
         'to_where',

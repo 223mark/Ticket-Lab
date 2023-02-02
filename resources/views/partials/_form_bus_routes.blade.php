@@ -1,5 +1,5 @@
  <x-add-modal-layout>
-     <form class="px-8 pt-6 pb-8 mb-4  rounded" action="{{ route('ticketCode#store') }}" enctype="multipart/form-data"
+     <form class="px-8 pt-6 pb-8 mb-4  rounded" action="{{ route('busRoutes#store') }}" enctype="multipart/form-data"
          method="POST">
          @csrf
          <div class=" flex flex-wrap justify-between gap-2 ">

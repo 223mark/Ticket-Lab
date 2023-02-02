@@ -18,7 +18,7 @@ class RouteController extends Controller
         $data = Routes::select('routes.*', 'operators.*')
             ->leftJoin('operators', 'operators.id', 'routes.operator_id')
             ->paginate('6');
-        return view('ticketsCode.index', [
+        return view('busRoutes.index', [
             'data' => $data,
             'locations' => Location::get(),
             'operators' => Operator::get(),
@@ -31,19 +31,19 @@ class RouteController extends Controller
         $data = $this->requestedData($request);
 
         Routes::create($data);
-        return redirect()->route('ticketCode#index');
+        return redirect()->route('busRoutes#index');
     }
 
 
     //
-    public function filterbyTicketcode($ticketCode)
-    {
+    // public function filterbyTicketcode($ticketCode)
+    // {
 
-        $data = BusTicket::where('ticket_code', $ticketCode)->paginate('6');
-        return view('tickets.ticket', [
-            'data' => $data
-        ]);
-    }
+    //     $data = BusTicket::where('ticket_code', $ticketCode)->paginate('6');
+    //     return view('tickets.ticket', [
+    //         'data' => $data
+    //     ]);
+    // }
 
     //PRIVATE FUNCTIONS
 
@@ -69,7 +69,7 @@ class RouteController extends Controller
             'departure_time' => $request->departureTime,
             'arrive_time' => $request->arriveTime,
             'class' => $request->class,
-            'ticket_code' => $ticketCode
+            'ticket_code' => 'R' . $ticketCode
         ]);
     }
 }

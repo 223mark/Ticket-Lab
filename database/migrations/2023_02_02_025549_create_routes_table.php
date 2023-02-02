@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('routes', function (Blueprint $table) {
             $table->id();
-            $table->char('ticket_code');
+            // $table->char('ticket_code');
             $table->integer('operator_id');
             $table->string('from_where');
             $table->string('to_where');

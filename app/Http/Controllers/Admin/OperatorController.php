@@ -6,6 +6,7 @@ use App\Models\Operator;
 use Illuminate\Http\Request;
 use PhpParser\Node\Expr\FuncCall;
 use App\Http\Controllers\Controller;
+use App\Models\Routes;
 use App\Models\TicketcodeList;
 use Illuminate\Support\Facades\File;
 
@@ -83,8 +84,8 @@ class OperatorController extends Controller
     public function ticketCode($id)
     {
 
-        $data = TicketcodeList::select('operators.*', 'ticketcode_lists.*')
-            ->leftJoin('operators', 'ticketcode_lists.operator_id', 'operators.id')
+        $data = Routes::select('operators.*', 'routes.*')
+            ->leftJoin('operators', 'routes.operator_id', 'operators.id')
             ->where('operator_id', $id)
             ->paginate('6');
         return view('operators.tickets.ticketCodeTable', [

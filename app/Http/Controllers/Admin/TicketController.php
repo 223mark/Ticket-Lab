@@ -15,10 +15,10 @@ class TicketController extends Controller
     public function index()
     {
 
-        $tickets = BusTicket::select('ticketcode_lists.*', 'bus_tickets.*')
-            ->leftJoin('ticketcode_lists', 'ticketcode_lists.ticket_code', 'bus_tickets.ticket_code')
+        $tickets = BusTicket::select('routes.*', 'bus_tickets.*')
+            ->leftJoin('routes', 'routes.ticket_code', 'bus_tickets.ticket_code')
             ->paginate('6');
-
+        dd($tickets->toArray());
         return view('tickets.index', [
             'tickets' => $tickets,
 
@@ -27,6 +27,7 @@ class TicketController extends Controller
 
     public function create($code)
     {
+
 
         return view('tickets.create', [
             'ticketCode' => $code

@@ -67,10 +67,10 @@ Route::middleware([
         Route::get('/destory/{ticket}', [TicketController::class, 'destory'])->name('tickets#destory');
 
 
-        Route::group(['prefix' => 'codes'], function () {
-            Route::get('/index', [RouteController::class, 'index'])->name('ticketCode#index');
+        Route::group(['prefix' => 'routes'], function () {
+            Route::get('/index', [RouteController::class, 'index'])->name('busRoutes#index');
             // Route::get('/{ticketCode}/filter', [RouteController::class, 'filterbyTicketcode'])->name('tickets#filterbycode');
-            Route::post('/store', [RouteController::class, 'store'])->name('ticketCode#store');
+            Route::post('/store', [RouteController::class, 'store'])->name('busRoutes#store');
         });
     });
 

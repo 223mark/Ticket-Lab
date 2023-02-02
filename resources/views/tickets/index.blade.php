@@ -1,7 +1,7 @@
 <x-main-layout title="Tickets">
     <div class="mx-2 mt-10 md:mt-10 md:mx-4 space-y-2">
 
-        <a href="{{ route('ticketCode#index') }}" class="my-2">
+        <a href="{{ route('busRoutes#index') }}" class="my-2">
             <x-button name="Back" />
         </a>
 
@@ -10,6 +10,7 @@
                 <tr>
                     <th scope="col" class="px-6 py-4 font-medium text-gray-900">Seat Number </th>
                     <th scope="col" class="px-6 py-4 font-medium text-gray-900"> Status </th>
+                    <th scope="col" class="px-6 py-4 font-medium text-gray-900"> TicketCode </th>
                     {{-- <th scope="col" class="px-6 py-4 font-medium text-gray-900">From </th>
                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Price</th>
                         <th scope="col" class="px-6 py-4 font-medium text-gray-900">Class </th>
@@ -28,6 +29,9 @@
                         <td class="px-6 py-4">{{ $data->seat_number }}</td>
                         <td class="px-6 py-4">
                             {{ $data->status }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ $data->ticket_code }}
                         </td>
                         {{-- <td class="px-6 py-4">{{ $data->from_where }}</td>
                         <td class="px-6 py-4">{{ $data->to_where }}</td>

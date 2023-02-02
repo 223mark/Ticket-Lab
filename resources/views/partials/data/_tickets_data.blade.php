@@ -36,7 +36,7 @@
 
     </td>
     <td class="px-6 py-4 text-blue-500 font-semibold cursor-pointer underline hover:text-blue-600">
-        <a href="{{ route('tickets#create', $data->ticket_code) }}">Export</a>
+        <a href="{{ route('tickets#create', $data->ticket_code) }}">Export Tickets</a>
     </td>
     <td class="px-6 py-4">
         <div class="flex justify-end gap-4">
