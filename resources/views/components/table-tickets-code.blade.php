@@ -2,12 +2,13 @@
 <table class="w-full  border-collapse bg-white text-left text-sm text-gray-500 border shadow-lg ">
     <thead class="bg-gray-50">
         <tr>
-            {{-- <th scope="col" class="px-6 py-4 font-medium text-gray-900">From </th> --}}
             <th scope="col" class="px-6 py-4 font-medium text-gray-900">Related Operator</th>
-            <th scope="col" class="px-6 py-4 font-medium text-gray-900">Tickets</th>
-            <th scope="col" class="px-6 py-4 font-medium text-gray-900">Phone1</th>
-            <th scope="col" class="px-6 py-4 font-medium text-gray-900">Phone2 </th>
-            <th scope="col" class="px-6 py-4 font-medium text-gray-900">Address </th>
+            <th scope="col" class="px-6 py-4 font-medium text-gray-900">From</th>
+            <th scope="col" class="px-6 py-4 font-medium text-gray-900">To </th>
+            <th scope="col" class="px-6 py-4 font-medium text-gray-900">Price</th>
+            <th scope="col" class="px-6 py-4 font-medium text-gray-900">Class </th>
+            <th scope="col" class="px-6 py-4 font-medium text-gray-900">Departure Time </th>
+            <th scope="col" class="px-6 py-4 font-medium text-gray-900">Export Ticket</th>
             <th scope="col" class="px-6 py-4 font-medium text-gray-900"></th>
         </tr>
     </thead>

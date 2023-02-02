@@ -14,28 +14,31 @@ class TicketController extends Controller
     //
     public function index()
     {
-        // $ticketData = $this->getRelationData();
 
-        // return view('tickets.index', [
-        //     'locations' => Location::get(),
-        //     'operators' => Operator::get(),
-        //     'data' => $ticketData
-        // ]);
-        $data = TicketcodeList::select('ticketcode_lists.*', 'operators.*')
-            ->leftJoin('operators', 'operators.id', 'ticketcode_lists.operator_id')
+        $tickets = BusTicket::select('ticketcode_lists.*', 'bus_tickets.*')
+            ->leftJoin('ticketcode_lists', 'ticketcode_lists.ticket_code', 'bus_tickets.ticket_code')
             ->paginate('6');
+
         return view('tickets.index', [
-            'data' => $data,
-            'locations' => Location::get(),
-            'operators' => Operator::get(),
+            'tickets' => $tickets,
+
+        ]);
+    }
+
+    public function create($code)
+    {
+
+        return view('tickets.create', [
+            'ticketCode' => $code
         ]);
     }
 
     public function store(Request $request)
     {
+
         $this->validationCheck($request);
         $this->ticketExport($request->totalTicket, $request);
-        $this->requestData($request);
+
         return redirect()->route('tickets#index');
     }
 
@@ -61,28 +64,18 @@ class TicketController extends Controller
     private function validationCheck($request)
     {
         $request->validate([
-            'toWhere' => 'required',
-            'fromWhere' => 'required',
-            'operatorId' => 'required',
             'totalTicket' => 'required',
-            'price' => 'required',
-            'departureTime' => 'required',
             'date' => 'required',
-            'class' => 'required'
+
         ]);
     }
 
     private function requestData($request)
     {
         return ([
-            'from_where' => $request->toWhere,
-            'to_where'  => $request->fromWhere,
-            'operator_id' => $request->operatorId,
-            'price' => $request->price . 'Kyats',
             'date' => $request->date,
-            'departure_time' => $request->departureTime,
-            'arrive_time' => $request->arriveTime,
-            'class' => $request->class,
+            'ticket_code' => $request->ticketCode
+
         ]);
     }
 
@@ -96,21 +89,11 @@ class TicketController extends Controller
     }
     private function ticketExport($amount, $request)
     {
-        $operator = Operator::where('id', $request->operatorId)->first();
-        $operatorName = $operator->operator_name;
-        $ticketCode = rand(1000, 10000);
-
-        //making relation control between tickets and operators
-        TicketcodeList::create([
-            'ticket_code' => $ticketCode,
-            'operator_id' => $request->operatorId
-        ]);
 
         $ticketName = 0;
         for ($i = 0; $i < $amount; $i++) {
             $data = $this->requestData($request);
             $data['seat_number'] = 'S-' . $ticketName += 1;
-            $data['ticket_code'] = $ticketCode;
             BusTicket::create($data);
         }
     }

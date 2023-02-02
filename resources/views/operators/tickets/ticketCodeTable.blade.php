@@ -22,10 +22,10 @@
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-100 border-t border-gray-100">
-                @if (count($data) == 0)
+                @if (count($ticketCode) == 0)
                     <x-no-data-status item="ticket codes" />
                 @endif
-                @foreach ($data as $data)
+                @foreach ($ticketCode as $data)
                     <tr class="hover:bg-gray-200">
 
                         <td class="px-6 py-4 text-red-500 font-bold">{{ $data->ticket_code }}</td>
@@ -43,7 +43,7 @@
                             </div>
                         </th>
                         <td class="px-6 py-4">
-                            <a href="{{ route('tickets#filterbycode', $data->ticket_code) }}">
+                            <a href="#">
                                 <span class="text-blue-500 underline font-bold text-md">Tickets</span>
                             </a>
 
@@ -76,9 +76,9 @@
             </tbody>
 
         </table>
-        {{-- <div class="my-4 md:my-6">
-            {{ $data->links() }}
-        </div> --}}
+        <div class="my-4 md:my-6">
+            {{ $ticketCode->links() }}
+        </div>
 
     </div>
 </x-main-layout>

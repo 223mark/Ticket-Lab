@@ -12,7 +12,7 @@
         </div>
     </th>
     <td class="px-6 py-4">
-        <a href="{{ route('ticketCode#index', $data->id) }}">
+        <a href="{{ route('operators#ticketCode', $data->id) }}">
             <span class="font-bold text-blue-500 underline">
                 Tickets Codes
             </span></a>

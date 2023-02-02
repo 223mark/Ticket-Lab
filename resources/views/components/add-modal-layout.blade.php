@@ -34,6 +34,3 @@
         </div>
     </div>
 </div>
-
-
-{{-- <script src="{{ asset('js/model.js') }}"></script> --}}

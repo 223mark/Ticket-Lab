@@ -11,22 +11,32 @@
         </div>
         <div class="text-sm">
             <div class="font-medium text-gray-700">{{ $data->operator_name }}</div>
-            <div class="text-gray-400">{{ $data->phone }}</div>
+            <div class="text-red-400 font-semibold">{{ $data->ticket_code }}</div>
         </div>
     </td>
+    <td class="px-6 py-4">
+        {{ $data->from_where }}
+    </td>
+    <td class="px-6 py-4">
+        {{ $data->to_where }}
+    </td>
+    <td class="px-6 py-4">
+
+        {{ $data->price }}
+
+    </td>
+    <td class="px-6 py-4">
+
+        {{ $data->class }}
+
+    </td>
+    <td class="px-6 py-4">
+
+        {{ $data->departure_time }}
+
+    </td>
     <td class="px-6 py-4 text-blue-500 font-semibold cursor-pointer underline hover:text-blue-600">
-        <a href="{{ route('tickets#filterbycode', $data->ticket_code) }}">Tickets</a>
-    </td>
-    <td class="px-6 py-4">
-        {{ $data->phone1 }}
-    </td>
-    <td class="px-6 py-4">
-        {{ $data->phone2 }}
-    </td>
-    <td class="px-6 py-4">
-
-        {{ $data->address }}
-
+        <a href="{{ route('tickets#create', $data->ticket_code) }}">Export</a>
     </td>
     <td class="px-6 py-4">
         <div class="flex justify-end gap-4">

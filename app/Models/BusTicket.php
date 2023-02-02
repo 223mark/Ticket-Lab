@@ -9,9 +9,7 @@ class BusTicket extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'operator_id',
         'date',
-
         'status',
         'seat_number',
         'ticket_code',

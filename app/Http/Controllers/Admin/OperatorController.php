@@ -21,7 +21,6 @@ class OperatorController extends Controller
     }
 
 
-
     public function store(Request $request)
     {
         $this->validationCheck($request);
@@ -80,6 +79,18 @@ class OperatorController extends Controller
         ]);
     }
 
+    //about ticket
+    public function ticketCode($id)
+    {
+
+        $data = TicketcodeList::select('operators.*', 'ticketcode_lists.*')
+            ->leftJoin('operators', 'ticketcode_lists.operator_id', 'operators.id')
+            ->where('operator_id', $id)
+            ->paginate('6');
+        return view('operators.tickets.ticketCodeTable', [
+            'ticketCode' => $data
+        ]);
+    }
     //PRIVATE FUNCTIONS
     private function validationCheck($request)
     {

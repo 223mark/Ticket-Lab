@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\OperatorController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\TicketCodeController;
 use App\Http\Controllers\Admin\TicketController;
+use App\Models\TicketcodeList;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,9 +42,10 @@ Route::middleware([
         Route::get('destory/{operator}', [OperatorController::class, 'destory'])->name('operators#destory');
 
         //tickets
-        Route::group(['prefix' => 'tickets'], function () {
-            Route::get('codes-table/{id}', [TicketCodeController::class, 'ticketCode'])->name('ticketCode#index');
-        });
+        Route::get('/{id}/code/table/', [OperatorController::class, 'ticketCode'])->name('operators#ticketCode');
+        // Route::group(['prefix' => 'tickets'], function () {
+
+        // });
         // Route::group(['prefix' => 'tickets'], function () {
         //     Route::get('/codes/{id}', [TicketController::class, 'ticketCode'])->name('tickets#ticketcodes');
         // });
@@ -59,12 +61,17 @@ Route::middleware([
     // //tickets
     Route::group(['prefix' => 'tickets'], function () {
         Route::get('/index', [TicketController::class, 'index'])->name('tickets#index');
+        Route::get('{code}/create/', [TicketController::class, 'create'])->name('tickets#create');
         Route::post('/store', [TicketController::class, 'store'])->name('tickets#store');
         Route::get('/edit/{ticket}', [TicketController::class, 'edit'])->name('tickets#edit');
         Route::get('/destory/{ticket}', [TicketController::class, 'destory'])->name('tickets#destory');
 
 
-        Route::get('/{ticketCode}/filter', [TicketCodeController::class, 'filterbyTicketcode'])->name('tickets#filterbycode');
+        Route::group(['prefix' => 'codes'], function () {
+            Route::get('/index', [TicketCodeController::class, 'index'])->name('ticketCode#index');
+            // Route::get('/{ticketCode}/filter', [TicketCodeController::class, 'filterbyTicketcode'])->name('tickets#filterbycode');
+            Route::post('/store', [TicketCodeController::class, 'store'])->name('ticketCode#store');
+        });
     });
 
     Route::group(['prefix' => 'auth'], function () {
