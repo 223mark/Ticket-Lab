@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ticketcode_lists', function (Blueprint $table) {
+        Schema::create('routes', function (Blueprint $table) {
             $table->id();
             $table->char('ticket_code');
             $table->integer('operator_id');
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ticketcode_lists');
+        Schema::dropIfExists('routes');
     }
 };

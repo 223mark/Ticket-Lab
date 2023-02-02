@@ -6,7 +6,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\OperatorController;
 use App\Http\Controllers\Admin\ProfileController;
-use App\Http\Controllers\Admin\TicketCodeController;
+use App\Http\Controllers\Admin\RouteController;
 use App\Http\Controllers\Admin\TicketController;
 use App\Models\TicketcodeList;
 use Illuminate\Support\Facades\Route;
@@ -68,9 +68,9 @@ Route::middleware([
 
 
         Route::group(['prefix' => 'codes'], function () {
-            Route::get('/index', [TicketCodeController::class, 'index'])->name('ticketCode#index');
-            // Route::get('/{ticketCode}/filter', [TicketCodeController::class, 'filterbyTicketcode'])->name('tickets#filterbycode');
-            Route::post('/store', [TicketCodeController::class, 'store'])->name('ticketCode#store');
+            Route::get('/index', [RouteController::class, 'index'])->name('ticketCode#index');
+            // Route::get('/{ticketCode}/filter', [RouteController::class, 'filterbyTicketcode'])->name('tickets#filterbycode');
+            Route::post('/store', [RouteController::class, 'store'])->name('ticketCode#store');
         });
     });
 

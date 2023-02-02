@@ -2,29 +2,27 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Routes;
 use App\Models\Location;
 use App\Models\Operator;
 use App\Models\BusTicket;
 use Illuminate\Http\Request;
-use App\Models\TicketcodeList;
 use App\Http\Controllers\Controller;
 
-class TicketCodeController extends Controller
+class RouteController extends Controller
 {
-
-    //ticketcodes
+    //
     public function index()
-    { {
+    {
 
-            $data = TicketcodeList::select('ticketcode_lists.*', 'operators.*')
-                ->leftJoin('operators', 'operators.id', 'ticketcode_lists.operator_id')
-                ->paginate('6');
-            return view('ticketsCode.index', [
-                'data' => $data,
-                'locations' => Location::get(),
-                'operators' => Operator::get(),
-            ]);
-        }
+        $data = Routes::select('routes.*', 'operators.*')
+            ->leftJoin('operators', 'operators.id', 'routes.operator_id')
+            ->paginate('6');
+        return view('ticketsCode.index', [
+            'data' => $data,
+            'locations' => Location::get(),
+            'operators' => Operator::get(),
+        ]);
     }
 
     public function store(Request $request)
@@ -32,7 +30,7 @@ class TicketCodeController extends Controller
         $this->validationCheck($request);
         $data = $this->requestedData($request);
 
-        TicketcodeList::create($data);
+        Routes::create($data);
         return redirect()->route('ticketCode#index');
     }
 
