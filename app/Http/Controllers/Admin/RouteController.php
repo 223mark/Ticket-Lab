@@ -15,11 +15,11 @@ class RouteController extends Controller
     public function index()
     {
 
-        $data = Routes::select('routes.*', 'operators.*')
-            ->leftJoin('operators', 'operators.id', 'routes.operator_id')
-            ->paginate('6');
+        // $data = Routes::select('routes.*', 'operators.*')
+        //     ->leftJoin('operators', 'operators.id', 'routes.operator_id')
+        //     ->paginate('6');
         return view('busRoutes.index', [
-            'data' => $data,
+            'busRoutes' => Routes::paginate('6'),
             'locations' => Location::get(),
             'operators' => Operator::get(),
         ]);
@@ -34,17 +34,29 @@ class RouteController extends Controller
         return redirect()->route('busRoutes#index');
     }
 
+    public function edit(Routes $route)
+    {
+        $location = Location::get();
 
-    //
-    // public function filterbyTicketcode($ticketCode)
-    // {
+        return view('busRoutes.edit', compact('route', 'location'));
+    }
 
-    //     $data = BusTicket::where('ticket_code', $ticketCode)->paginate('6');
-    //     return view('tickets.ticket', [
-    //         'data' => $data
-    //     ]);
-    // }
 
+    public function update(Request $request, Routes $route)
+    {
+
+        $data = $this->requestedData($request);
+
+        $route->update($data);
+
+        return back();
+    }
+
+    public function destory(Routes $route)
+    {
+        $route->delete();
+        return back();
+    }
     //PRIVATE FUNCTIONS
 
     private function validationCheck($request)
@@ -52,7 +64,6 @@ class RouteController extends Controller
         $request->validate([
             'toWhere' => 'required',
             'fromWhere' => 'required',
-            'operatorId' => 'required',
             'price' => 'required',
             'departureTime' => 'required',
             'class' => 'required'
@@ -60,16 +71,16 @@ class RouteController extends Controller
     }
     private function requestedData($request)
     {
-        $ticketCode = rand(1000, 10000);
+
         return ([
             'to_where' => $request->toWhere,
             'from_where' => $request->fromWhere,
-            'operator_id' => $request->operatorId,
-            'price' => $request->price . 'ks',
+            //'operator_id' => $request->operatorId,
+            'price' => $request->price . 'Ks',
             'departure_time' => $request->departureTime,
             'arrive_time' => $request->arriveTime,
             'class' => $request->class,
-            'ticket_code' => 'R' . $ticketCode
+
         ]);
     }
 }

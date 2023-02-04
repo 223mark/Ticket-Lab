@@ -6,6 +6,7 @@ use App\Models\Operator;
 use Illuminate\Http\Request;
 use PhpParser\Node\Expr\FuncCall;
 use App\Http\Controllers\Controller;
+use App\Models\BusTicket;
 use App\Models\Routes;
 use App\Models\TicketcodeList;
 use Illuminate\Support\Facades\File;
@@ -26,6 +27,7 @@ class OperatorController extends Controller
     {
         $this->validationCheck($request);
 
+
         if ($request->hasFile('img')) {
 
             $data = $this->requestDataWithImage($request);
@@ -40,14 +42,13 @@ class OperatorController extends Controller
 
     public function edit(Operator $operator)
     {
-        return view('operators.edit', [
-            'data' => $operator,
-        ]);
+        return view('operators.edit', compact('operator'));
     }
 
     public function update(Operator $operator, Request $request)
     {
-        $this->validationCheck($request);
+
+        //$this->validationCheck($request);
 
         if ($request->img != null) {
             //delet img from local
@@ -74,6 +75,7 @@ class OperatorController extends Controller
                 'success' => 'deleted successfully'
             ]);
         }
+
         $operator->delete();
         return redirect()->route('operators#index', [
             'success' => 'deleted successfully'
@@ -84,10 +86,13 @@ class OperatorController extends Controller
     public function ticketCode($id)
     {
 
-        $data = Routes::select('operators.*', 'routes.*')
-            ->leftJoin('operators', 'routes.operator_id', 'operators.id')
-            ->where('operator_id', $id)
-            ->paginate('6');
+        $data = BusTicket::select('bus_tickets.*', 'operators.id as operatorId', 'operators.operator_name as operatorName', 'operators.img as operator_img', 'routes.from_where as from', 'routes.to_where as to')
+            ->leftJoin('operators', 'operators.id', 'bus_tickets.operator_id')
+            ->leftJoin('routes', 'routes.id', 'bus_tickets.route_id')
+            ->groupBy('ticket_code')
+            ->having('bus_tickets.operator_id', $id)
+            ->paginate('5');
+
         return view('operators.tickets.ticketCodeTable', [
             'ticketCode' => $data
         ]);

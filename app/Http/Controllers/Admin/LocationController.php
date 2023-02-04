@@ -26,7 +26,12 @@ class LocationController extends Controller
         return redirect()->route('locations#index');
     }
 
-
+    public function destory(Location $location)
+    {
+        $location->delete();
+        return back();
+    }
+    //PRIVATE FUNCTION
     private function validationCheck($request)
     {
         $request->validate([

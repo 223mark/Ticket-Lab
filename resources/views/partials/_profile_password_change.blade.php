@@ -1,21 +1,16 @@
 <form class="px-4 md:px-0 py-8 pt-6  mb-4  rounded" action="" enctype="multipart/form-data" method="POST">
     @csrf
     <div class=" flex flex-wrap justify-between gap-2 ">
+
         <div class="w-full md:w-2/5 ">
-            <label class="block mb-2 text-md font-semibold text-indigo-500" for="currentPassword">
-                Current Password
-            </label>
-            <input
-                class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:border focus:border-indigo-700"
-                id="currentPassword" type="password"name="currentPassword" value="" />
+            <x-input-label labelName="Current Password" />
+            <x-input-tag type="password" name="currentPassword" />
+
         </div>
         <div class="w-full md:w-2/5 ">
-            <label class="block mb-2 text-md font-semibold text-indigo-500" for="newPassword">
-                New Password
-            </label>
-            <input
-                class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:border focus:border-indigo-700"
-                id="newPassword" type="password"name="newPassword" value="" />
+            <x-input-label labelName="New Password" />
+            <x-input-tag type="password" name="newPassword" />
+
         </div>
 
 

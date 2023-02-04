@@ -13,6 +13,8 @@ class BusTicket extends Model
         'status',
         'seat_number',
         'ticket_code',
+        'route_id',
+        'operator_id'
 
     ];
 }

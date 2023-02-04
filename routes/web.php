@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AjaxController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\BusController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\Admin\OperatorController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\RouteController;
 use App\Http\Controllers\Admin\TicketController;
+use App\Models\Location;
 use App\Models\TicketcodeList;
 use Illuminate\Support\Facades\Route;
 
@@ -42,13 +44,7 @@ Route::middleware([
         Route::get('destory/{operator}', [OperatorController::class, 'destory'])->name('operators#destory');
 
         //tickets
-        Route::get('/{id}/code/table/', [OperatorController::class, 'ticketCode'])->name('operators#ticketCode');
-        // Route::group(['prefix' => 'tickets'], function () {
-
-        // });
-        // Route::group(['prefix' => 'tickets'], function () {
-        //     Route::get('/codes/{id}', [TicketController::class, 'ticketCode'])->name('tickets#ticketcodes');
-        // });
+        Route::get('/{id}/table/', [OperatorController::class, 'ticketCode'])->name('operators#ticketCode');
     });
 
 
@@ -56,22 +52,24 @@ Route::middleware([
     Route::group(['prefix' => 'locations'], function () {
         Route::get('/index', [LocationController::class, 'index'])->name('locations#index');
         Route::post('/store', [LocationController::class, 'store'])->name('locations#store');
+        Route::post('/destory/{location}', [LocationController::class, 'destory'])->name('locations#destory');
     });
 
     // //tickets
     Route::group(['prefix' => 'tickets'], function () {
         Route::get('/index', [TicketController::class, 'index'])->name('tickets#index');
-        Route::get('{code}/create/', [TicketController::class, 'create'])->name('tickets#create');
+        Route::get('/show/{code}', [TicketController::class, 'show'])->name('tickets#show');
+        Route::get('/create/{id}', [TicketController::class, 'create'])->name('tickets#create');
         Route::post('/store', [TicketController::class, 'store'])->name('tickets#store');
         Route::get('/edit/{ticket}', [TicketController::class, 'edit'])->name('tickets#edit');
         Route::get('/destory/{ticket}', [TicketController::class, 'destory'])->name('tickets#destory');
-
-
-        Route::group(['prefix' => 'routes'], function () {
-            Route::get('/index', [RouteController::class, 'index'])->name('busRoutes#index');
-            // Route::get('/{ticketCode}/filter', [RouteController::class, 'filterbyTicketcode'])->name('tickets#filterbycode');
-            Route::post('/store', [RouteController::class, 'store'])->name('busRoutes#store');
-        });
+    });
+    Route::group(['prefix' => 'routes'], function () {
+        Route::get('/index', [RouteController::class, 'index'])->name('busRoutes#index');
+        Route::post('/store', [RouteController::class, 'store'])->name('busRoutes#store');
+        Route::get('/edit/{route}', [RouteController::class, 'edit'])->name('busRoute#edit');
+        Route::post('/update/{route}', [RouteController::class, 'update'])->name('busRoutes#update');
+        Route::get('/destory/{route}', [RouteController::class, 'destory'])->name('busRoutes#destory');
     });
 
     Route::group(['prefix' => 'auth'], function () {
@@ -82,6 +80,17 @@ Route::middleware([
 
     Route::group(['prefix' => 'profile'], function () {
         Route::get('/', [ProfileController::class, 'profile'])->name('profile#index');
+        Route::post('/update', [ProfileController::class, 'update'])->name('profile#update');
         Route::get('/password/change/page', [ProfileController::class, 'passwordChagePage'])->name('profile#passwordChangePage');
+    });
+
+    Route::get('/location', function () {
+        $data = Location::get();
+        return response()->json([
+            'data' => $data
+        ]);
+    });
+    Route::group(['prefix' => 'ajax'], function () {
+        Route::get('operators/filter', [AjaxController::class, 'operatorFilter']);
     });
 });

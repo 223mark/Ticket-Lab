@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\BusTicket;
 use App\Models\Location;
 use App\Models\Operator;
-use App\Models\TicketcodeList;
+use App\Models\Routes;
 use Illuminate\Http\Request;
 
 class TicketController extends Controller
@@ -15,22 +15,43 @@ class TicketController extends Controller
     public function index()
     {
 
-        $tickets = BusTicket::select('routes.*', 'bus_tickets.*')
-            ->leftJoin('routes', 'routes.ticket_code', 'bus_tickets.ticket_code')
+        $ticketCode = BusTicket::select(
+            'routes.*',
+            'bus_tickets.id as busticketId',
+            'bus_tickets.ticket_code as ticket_code',
+            'bus_tickets.date as date',
+            'operators.id as operatorId',
+            'operators.operator_name as operatorName',
+            'operators.email as email',
+            'operators.img as operatorImage'
+        )
+            ->leftJoin('routes', 'routes.id', 'bus_tickets.route_id')
+            ->leftJoin('operators', 'operators.id', 'bus_tickets.operator_id')
+            ->groupBy('bus_tickets.ticket_code')
             ->paginate('6');
-        dd($tickets->toArray());
-        return view('tickets.index', [
-            'tickets' => $tickets,
-
-        ]);
+        $operators = Operator::get();
+        $routes = Routes::get();
+        return view('tickets.index', compact('ticketCode', 'operators', 'routes'));
     }
 
-    public function create($code)
+    public function show($code)
     {
 
+        $tickets = BusTicket::select('bus_tickets.*', 'routes.*')
+            ->leftJoin('routes', 'routes.id', 'bus_tickets.route_id')
+            ->where('bus_tickets.ticket_code', $code)
+            ->paginate('6');
+        // dd($tickets->toArray());
+        return view('tickets.show', compact('tickets'));
+    }
+
+
+    public function create($id)
+    {
 
         return view('tickets.create', [
-            'ticketCode' => $code
+            'routeId' => $id,
+            'operators' => Operator::get()
         ]);
     }
 
@@ -45,6 +66,7 @@ class TicketController extends Controller
 
     public function edit(BusTicket $ticket)
     {
+        // dd($ticket->toArray());
         return view('tickets.edit', [
             'locations' => Location::get(),
             'operators' => Operator::get(),
@@ -66,6 +88,7 @@ class TicketController extends Controller
     {
         $request->validate([
             'totalTicket' => 'required',
+            'operatorId' => 'required',
             'date' => 'required',
 
         ]);
@@ -73,28 +96,32 @@ class TicketController extends Controller
 
     private function requestData($request)
     {
+
         return ([
             'date' => $request->date,
-            'ticket_code' => $request->ticketCode
+            'route_id' => $request->routeId,
+            'operator_id' => $request->operatorId,
 
         ]);
     }
 
-    private function getRelationData()
-    {
-        $data = BusTicket::select('bus_tickets.*', 'operators.img', 'operators.operator_name', 'operators.phone1')
-            ->leftJoin('operators', 'operators.id', 'bus_tickets.operator_id')
-            ->paginate(4);
+    // private function getRelationData()
+    // {
+    //     $data = BusTicket::select('bus_tickets.*', 'operators.img', 'operators.operator_name', 'operators.phone1')
+    //         ->leftJoin('operators', 'operators.id', 'bus_tickets.operator_id')
+    //         ->paginate(4);
 
-        return $data;
-    }
+    //     return $data;
+    // }
     private function ticketExport($amount, $request)
     {
 
+        $ticketCode = rand(1000, 10000);
         $ticketName = 0;
         for ($i = 0; $i < $amount; $i++) {
             $data = $this->requestData($request);
             $data['seat_number'] = 'S-' . $ticketName += 1;
+            $data['ticket_code'] =  $ticketCode;
             BusTicket::create($data);
         }
     }

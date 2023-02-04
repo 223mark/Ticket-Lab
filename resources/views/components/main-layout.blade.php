@@ -38,7 +38,7 @@
                             </svg>
                         </button>
                         <a href="#" class="text-xl font-bold flex items-center lg:ml-2.5">
-                            <img src="{{ asset('img/codelab.png') }}" class="h-8 mr-2" alt="Windster Logo">
+                            <img src="{{ asset('img/codelab.png') }}" class="h-8 mr-2" alt=" Logo">
                             {{-- self-center whitespace-nowrap --}}
                             <div class=""> <span class="text-green-500">Ticket</span>
                                 <span class="text-black"> Lab</span>
@@ -47,7 +47,7 @@
 
                     </div>
                     <div class="flex items-center">
-                        <button id="toggleSidebarMobileSearch" type="button"
+                        {{-- <button id="toggleSidebarMobileSearch" type="button"
                             class="lg:hidden text-gray-500 hover:text-gray-900 hover:bg-gray-100 p-2 rounded-lg">
                             <span class="sr-only">Search</span>
                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
@@ -56,24 +56,13 @@
                                     d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
                                     clip-rule="evenodd"></path>
                             </svg>
-                        </button>
-                        {{-- <div class="hidden lg:flex items-center">
-                            <span class="text-base font-normal text-gray-500 mr-5">Open source ❤️</span>
-                            <div class="-mb-1">
-                                <a class="github-button" href="#"
-                                    data-color-scheme="no-preference: dark; light: light; dark: light;"
-                                    data-icon="octicon-star" data-size="large" data-show-count="true"
-                                    aria-label="Star themesberg/windster-tailwind-css-dashboard on GitHub">Star</a>
-                            </div>
-                        </div> --}}
+                        </button> --}}
+                        <a href="{{ route('profile#index') }}">
+                            <x-button name="{{ auth()->user()->name }}" />
+
+                        </a>
 
 
-                        <x-dropdown-profile />
-                        <form action="{{ route('logout') }}" method="POST">
-                            @csrf
-                            <button
-                                class="ml-4 px-6 py-1 border-1 border-red-500 text-white font-medium rounded-lg bg-red-500 ">Logout</button>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -128,11 +117,10 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('busRoutes#index') }}" target="_blank"
+                                    <a href="{{ route('tickets#index') }}" target="_blank"
                                         class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
                                         <svg class="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
-                                            fill="currentColor" viewBox="0 0 20 20"
-                                            xmlns="http://www.w3.org/2000/svg">
+                                            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                             <path
                                                 d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z">
                                             </path>
@@ -162,6 +150,23 @@
                                     </a>
                                 </li>
                                 <li>
+                                    <a href="{{ route('busRoutes#index') }}" target="_blank"
+                                        class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
+                                        <svg class="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
+                                            fill="currentColor" viewBox="0 0 20 20"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M8.707 7.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l2-2a1 1 0 00-1.414-1.414L11 7.586V3a1 1 0 10-2 0v4.586l-.293-.293z">
+                                            </path>
+                                            <path
+                                                d="M3 5a2 2 0 012-2h1a1 1 0 010 2H5v7h2l1 2h4l1-2h2V5h-1a1 1 0 110-2h1a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V5z">
+                                            </path>
+                                        </svg>
+                                        <span class="ml-3 flex-1 whitespace-nowrap">Routes</span>
+
+                                    </a>
+                                </li>
+                                <li>
                                     <a href="#"
                                         class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
                                         <svg class="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
@@ -188,17 +193,12 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#"
-                                        class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
-                                        <svg class="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
-                                            fill="currentColor" viewBox="0 0 20 20"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd"
-                                                d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z"
-                                                clip-rule="evenodd"></path>
-                                        </svg>
-                                        <span class="ml-3 flex-1 whitespace-nowrap">Logout</span>
-                                    </a>
+                                    <form action="{{ route('logout') }}" method="POST" class="mt-5">
+                                        @csrf
+                                        <button
+                                            class="ml-4 px-6 py-1 border-1 border-red-500 text-white font-medium rounded-lg bg-red-500 ">Logout</button>
+                                    </form>
+
                                 </li>
 
                             </ul>
@@ -209,7 +209,7 @@
             <div class=" opacity-50 hidden fixed inset-0 z-10" id="sidebarBackdrop">
             </div>
             <div id="main-content" class="h-full w-full bg-gray-50 relative overflow-y-auto lg:ml-56">
-                <main class="mt-10 ">
+                <main class="mt-5 ">
                     {{ $slot }}
                 </main>
                 <footer
@@ -286,6 +286,8 @@
 
 
         <script src="{{ asset('js/model.js') }}"></script>
+        {{-- <script src="{{ asset('js/jquery.js') }}"></script> --}}
+
 
 </body>
 

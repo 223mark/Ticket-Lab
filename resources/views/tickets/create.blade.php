@@ -15,12 +15,19 @@
                 </select>
             </div>
             <div class="w-full md:w-2/5 hidden ">
-                <x-input-label labelName="Ticket Code" />
-                <x-input-tag name="ticketCode" value="{{ $ticketCode }}" />
+                <x-input-label labelName="Route Id" />
+                <x-input-tag name="routeId" value="{{ $routeId }}" />
+
+            </div>
+            <div class="w-full md:w-2/5 ">
+
+                <x-input-label labelName="Related Operator" />
+
+                <x-select-tag :data=$operators filterText="operator" />
 
             </div>
 
-            <div class="w-full md:w-2/5 ">
+            <div class="w-full ">
                 <x-input-label labelName="Pick Date" />
 
                 <x-input-tag type="date" name="date" value="{{ old('date') }}" />
@@ -31,9 +38,11 @@
                 <button
                     class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm"
                     type="submit">Add</button>
-                <button
-                    class="focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm modalHandler"
-                    onclick="modalHandler()" type="button">Cancel</button>
+                <a href="{{ route('busRoutes#index') }}">
+                    <button
+                        class="focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm"
+                        type="button">Cancel</button>
+                </a>
             </div>
 
         </div>

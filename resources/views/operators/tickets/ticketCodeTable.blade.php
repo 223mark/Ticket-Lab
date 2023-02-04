@@ -17,7 +17,7 @@
                 <tr>
                     <th scope="col" class="px-6 py-4 font-medium text-gray-900">TicketCode </th>
                     <th scope="col" class="px-6 py-4 font-medium text-gray-900"> Related Operator </th>
-                    <th scope="col" class="px-6 py-4 font-medium text-gray-900">Tickets</th>
+                    <th scope="col" class="px-6 py-4 font-medium text-gray-900">Routes</th>
                     <th scope="col" class="px-6 py-4 font-medium text-gray-900"></th>
                 </tr>
             </thead>
@@ -32,18 +32,21 @@
                         <th class="flex gap-3 px-6 py-4 font-normal text-gray-900">
                             <div class="relative h-10 w-10">
                                 <img class="h-full w-full rounded-lg object-cover object-center"
-                                    src="{{ $data->img ? asset('img/OperatorImage/' . $data->img) : asset('img/codelab.png') }}"
+                                    src="{{ $data->img ? asset('img/OperatorImage/' . $data->operator_img) : asset('img/codelab.png') }}"
                                     alt="" />
                                 <span
                                     class="absolute right-0 bottom-0 h-2 w-2 rounded-full bg-green-400 ring ring-white"></span>
                             </div>
                             <div class="text-sm">
-                                <div class="font-medium text-gray-700">{{ $data->operator_name }}</div>
-                                <div class="text-gray-400">{{ $data->email }}</div>
+                                <div class="font-medium text-gray-700">{{ $data->operatorName }}</div>
                             </div>
                         </th>
                         <td class="px-6 py-4">
-                            <a href="#">
+                            <span class="text-indigo-500  font-semibold text-md">{{ $data->from }}-
+                                {{ $data->to }}</span>
+                        </td>
+                        <td class="px-6 py-4">
+                            <a href="{{ route('tickets#show', $data->ticket_code) }}">
                                 <span class="text-blue-500 underline font-bold text-md">Tickets</span>
                             </a>
 

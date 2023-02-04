@@ -1,15 +1,61 @@
 <x-main-layout title="Operators Edit">
-    <div class="sm:flex items-center shadow-md mt-5 md:mt-10 ">
-        <div>
-            <img class="bg-cover"
-                src="{{ $data->img ? asset('img/OperatorImage/' . $data->img) : asset('img/codelab.png') }}"
-                alt="operator image" />
-        </div>
-        <div class="md:px-10 sm:px-5">
-            <h1 class="text-gray-800 font-bold text-lg pl-4 md:pl-0 md:text-2xl my-2">Edit Operator</h1>
 
-            @include('partials._editform_operator')
-        </div>
+    <div class="md:px-10 sm:px-5    shadow-md border">
+        <h1 class="text-gray-800 font-bold text-lg pl-4 md:pl-0 md:text-2xl my-2">Edit Operator</h1>
 
+
+        <form class="px-8 pt-6 pb-8 mb-4  rounded" action="{{ route('operators#update', $operator->id) }}"
+            enctype="multipart/form-data" method="POST">
+            @csrf
+            <div class=" flex flex-wrap justify-between gap-2 ">
+                <div class="w-full md:w-2/5 ">
+
+                    <x-input-label labelName="Operator Name" />
+                    <x-input-tag type="text" name="operatorName" value="{{ $operator->operator_name }}" />
+
+                </div>
+                <div class="w-full md:w-2/5 ">
+
+                    <x-input-label labelName="Phone1" />
+                    <x-input-tag type="number" name="phoneOne" value="{{ $operator->phone1 }}" />
+
+                </div>
+                <div class="w-full md:w-2/5 ">
+
+                    <x-input-label labelName="Phone2" />
+                    <x-input-tag type="number" name="phoneTwo" value="{{ $operator->phone2 }}" />
+
+                </div>
+                <div class="w-full md:w-2/5 ">
+
+                    <x-input-label labelName="Email" />
+                    <x-input-tag type="email" name="email" value="{{ $operator->email }}" />
+
+                </div>
+                <div class="w-full md:w-2/5 ">
+
+                    <x-input-label labelName="Operator Image" />
+                    <x-input-tag type="file" name="img" value="{{ $operator->img }}" />
+
+                </div>
+                <div class=" w-full ">
+
+                    <x-input-label labelName="Description" />
+                    <textarea name="description" id="" cols="30" rows="5"
+                        class="w-full px-4 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:border focus:border-indigo-700"> {{ $operator->description }}
+            </textarea>
+                </div>
+                <div class="flex items-center justify-start w-full">
+
+                    <x-button name="Update" type="submit" />
+                    <a href="{{ route('operators#index') }}">
+                        <x-button name="Cancel" />
+                    </a>
+                </div>
+
+            </div>
+        </form>
     </div>
+
+
 </x-main-layout>
