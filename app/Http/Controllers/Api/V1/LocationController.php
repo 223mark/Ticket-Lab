@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\V1\OperatorCollection;
-use App\Http\Resources\V1\OperatorResource;
-use App\Models\Operator;
+use App\Http\Resources\V1\LocationCollection;
+use App\Http\Resources\V1\LocationResource;
+use App\Models\Location;
 use Illuminate\Http\Request;
 
-class OperatorController extends Controller
+class LocationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +17,17 @@ class OperatorController extends Controller
      */
     public function index()
     {
-        return new OperatorCollection(Operator::paginate('5'));
+        //
+        return new LocationCollection(Location::all());
+    }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
         //
     }
 
@@ -39,10 +48,21 @@ class OperatorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Operator $operator)
+    public function show(Location $location)
     {
-        //  return $operator;
-        return new OperatorResource($operator);
+        //
+        return new LocationResource($location);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
     }
 
     /**

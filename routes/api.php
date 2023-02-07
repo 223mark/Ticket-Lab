@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Api\ApiController;
+use App\Http\Controllers\Api\V1\LocationController;
 use App\Http\Controllers\Api\V1\OperatorController;
+use App\Http\Controllers\Api\V1\TicketController;
 use App\Http\Controllers\TestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,8 +23,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/locations', [ApiController::class, 'getAllLocation']);
 
-Route::get('/operators', [ApiController::class, 'getAllOperator']);
 
-Route::get('/tickets', [ApiController::class, 'getAllTickets']);
+
+
+Route::group(['prefix' => 'v1',], function () {
+
+    Route::apiResource('operators', OperatorController::class);
+    Route::apiResource('tickets', TicketController::class);
+    Route::apiResource('locations', LocationController::class);
+});
