@@ -1,5 +1,5 @@
 <template>
-    <div class="border rounded-lg shadow-lg bg-white">
+    <div class="border rounded-lg shadow-lg bg-white py-6">
         <div class="border py-4 text-center">
             <h6 class="text-xl text-indigo-400 font-bold ">Booking Summary</h6>
         </div>
@@ -45,19 +45,14 @@
                 </div>
             </div>
         </div>
+        <div class="mt-5 flex justify-center items-center">
+            <button class="bg-green-500 text-white px-8 py-2 rounded-lg hover:bg-green-400 ">Continue to Traveler
+                Info</button>
+        </div>
     
     </div>
-    <div class="border mt-4 bg-white shadow-lg">
-            <div class="py-4">
-                <p class="text-lg font-semibold text-center">Please Select Seat</p>
-                <div class="py-4 my-4 text-center bg-gray-600">
-                    <h4 class="text-white text-2xl font-bold ">15</h4>
-                </div>
-                <div class="mt-2 flex justify-center items-center">
-                    <button class="bg-green-500 text-white px-8 py-2 rounded-lg hover:bg-green-400 ">Continue to Traveler Info</button>
-                </div>
-            </div>
-    </div>
+    
+
 </template>
 <script>
 </script>

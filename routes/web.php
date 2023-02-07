@@ -45,15 +45,13 @@ Route::middleware([
 
         //tickets
         Route::get('/{id}/table/', [OperatorController::class, 'ticketCode'])->name('operators#ticketCode');
+
+        //filter
+        Route::get('/filter', [AjaxController::class, 'operatorFilterbySearch']);
     });
 
 
-    //loacations
-    Route::group(['prefix' => 'locations'], function () {
-        Route::get('/index', [LocationController::class, 'index'])->name('locations#index');
-        Route::post('/store', [LocationController::class, 'store'])->name('locations#store');
-        Route::post('/destory/{location}', [LocationController::class, 'destory'])->name('locations#destory');
-    });
+
 
     // //tickets
     Route::group(['prefix' => 'tickets'], function () {
@@ -70,6 +68,8 @@ Route::middleware([
         Route::get('/edit/{route}', [RouteController::class, 'edit'])->name('busRoute#edit');
         Route::post('/update/{route}', [RouteController::class, 'update'])->name('busRoutes#update');
         Route::get('/destory/{route}', [RouteController::class, 'destory'])->name('busRoutes#destory');
+
+        Route::get('/filter', [RouteController::class, 'filter'])->name('busRoutes#filter');
     });
 
     Route::group(['prefix' => 'auth'], function () {
@@ -84,13 +84,17 @@ Route::middleware([
         Route::get('/password/change/page', [ProfileController::class, 'passwordChagePage'])->name('profile#passwordChangePage');
     });
 
-    Route::get('/location', function () {
-        $data = Location::get();
-        return response()->json([
-            'data' => $data
-        ]);
+    //loacations
+    Route::group(['prefix' => 'locations'], function () {
+        Route::get('/index', [LocationController::class, 'index'])->name('locations#index');
+        Route::post('/store', [LocationController::class, 'store'])->name('locations#store');
+        Route::post('/destory/{location}', [LocationController::class, 'destory'])->name('locations#destory');
+        //filter
+        Route::post('filter', [LocationController::class, 'filter'])->name('locations#filter');
     });
+
+
     Route::group(['prefix' => 'ajax'], function () {
-        Route::get('operators/filter', [AjaxController::class, 'operatorFilter']);
+        Route::get('operators/filter', [AjaxController::class, 'operatorFilterbySelect']);
     });
 });

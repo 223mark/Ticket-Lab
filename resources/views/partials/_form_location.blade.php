@@ -6,12 +6,14 @@
              <div class=" w-full ">
                  <x-input-label labelName="Location" />
                  <x-input-tag type="text" name="location" value="{{ old('location') }}" placeholder="Location Name" />
+                 <x-jet-input-error for="location" />
+
 
              </div>
-             <div class="flex items-center justify-start w-full">
+             <div class=" w-full">
 
-                 <x-button name="Add" type="submit" />
-                 <x-button name="Cancel" onclick="modalHandler()" type="button" />
+                 <x-button name="Add" type="submit" class="w-full" />
+
 
              </div>
 

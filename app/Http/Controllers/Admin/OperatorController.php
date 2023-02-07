@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Operator;
 use Illuminate\Http\Request;
-use PhpParser\Node\Expr\FuncCall;
 use App\Http\Controllers\Controller;
 use App\Models\BusTicket;
 use App\Models\Routes;
@@ -18,7 +17,7 @@ class OperatorController extends Controller
     public function index()
     {
         return view('operators.index', [
-            'data' => Operator::paginate('6'),
+            'operators' => Operator::latest()->paginate('5'),
         ]);
     }
 
@@ -48,7 +47,7 @@ class OperatorController extends Controller
     public function update(Operator $operator, Request $request)
     {
 
-        //$this->validationCheck($request);
+        $this->validationCheck($request);
 
         if ($request->img != null) {
             //delet img from local
@@ -66,6 +65,7 @@ class OperatorController extends Controller
 
     public function destory(Operator $operator)
     {
+        //delete img form local
         $dbImg = $operator->img;
         if ($dbImg != null) {
 
@@ -91,6 +91,7 @@ class OperatorController extends Controller
             ->leftJoin('routes', 'routes.id', 'bus_tickets.route_id')
             ->groupBy('ticket_code')
             ->having('bus_tickets.operator_id', $id)
+            ->latest()
             ->paginate('5');
 
         return view('operators.tickets.ticketCodeTable', [

@@ -4,17 +4,23 @@
         <div class="flex justify-between pb-2">
             <x-add-button btn_name="Add Location"></x-add-button>
 
-            <form action="#" method="GET" class="">
+            <form action="{{ route('locations#filter') }}" method="Post">
+                @csrf
                 <x-search-input></x-search-input>
             </form>
         </div>
+
 
         @include('partials._form_location')
 
 
         {{-- data table --}}
 
-        <x-table-locations :data=$data></x-table-locations>
+        <x-table-locations :data=$locations></x-table-locations>
+
+        <div class="mt-2">
+            {{ $locations->links() }}
+        </div>
 
     </div>
 </x-main-layout>

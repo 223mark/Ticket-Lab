@@ -16,7 +16,7 @@ import Login from '../views/auth/Login.vue'
 
 
 //frontend
-import AppMaster from '../components/MasterLayout/AppMaster.vue'
+import AppMaster from '../components/AppMaster.vue'
 import HomePage from '../views/MainPage.vue'
 import Operators from '../views/operators/Operators.vue'
 import Ticket from '../views/tickets/Tickets.vue'

@@ -49,7 +49,7 @@
 
                 </a>
                 <a href="">
-                    <x-button name="Delete" onclick="modalHandler()" type="button" />
+                    <x-button name="Delete" onclick="confirm()" type="button" />
 
                 </a>
 

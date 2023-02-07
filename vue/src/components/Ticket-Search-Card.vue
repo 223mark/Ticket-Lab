@@ -1,14 +1,19 @@
 <template>
 <div class=" space-y-4 px-4 py-6 mx-auto bg-white  shadow-lg rounded-lg w-4/5  ">
     <div class="w-full">
-        <Listbox as="div" v-model="selected">
+        <h1>hello</h1>
+        <ul v-for="l in location" :key="l.id">
+            <li>{{ l.location }}</li>
+           
+        </ul> 
+        <!-- <Listbox as="div" v-model="selected">
             <ListboxLabel class="block text-md font-medium text-gray-700 pb-1">From Where</ListboxLabel>
             <div class="relative mt-1">
                 <ListboxButton
                     class="relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
                     <span class="flex items-center">
-                        <img :src="selected.avatar" alt="" class="h-6 w-6 flex-shrink-0 rounded-full" />
-                        <span class="ml-3 block truncate">{{ selected.name }}</span>
+                        <img src="" alt="" class="h-6 w-6 flex-shrink-0 rounded-full" />
+                        <span class="ml-3 block truncate"></span>
                     </span>
                     <span class="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
                         <ChevronUpDownIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
@@ -43,10 +48,10 @@
                     </ListboxOptions>
                 </transition>
             </div>
-        </Listbox>
+        </Listbox> -->
     </div>
     <div class="w-full ">
-        <Listbox as="div" v-model="selected">
+        <!-- <Listbox as="div" v-model="selected">
             <ListboxLabel class="block text-md font-medium text-gray-700 pb-1">To Where</ListboxLabel>
             <div class="relative mt-1">
                 <ListboxButton
@@ -88,10 +93,10 @@
                     </ListboxOptions>
                 </transition>
             </div>
-        </Listbox>
+        </Listbox> -->
     </div>
     <div class="w-full ">
-        <input type="date" name="" id="" class="border w-full px-4 py-2">
+        <input type="date"  id="" class="border w-full px-4 py-2">
     </div>
     <div class="w-full flex justify-center">
         <button class="px-8 py-1 rounded shadow text-white  bg-green-500 hover:bg-green-400  ">Search</button>
@@ -99,74 +104,26 @@
 </div>
 </template>
 <script setup>
-import { ref } from 'vue'
-import { Listbox, ListboxButton, ListboxLabel, ListboxOption, ListboxOptions } from '@headlessui/vue'
-import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/20/solid'
+import { computed } from '@vue/runtime-core';
+import { ref } from 'vue';
+import axios from 'axios';
+import getLocations from '../composables/getLocations.js'
+// import { Listbox, ListboxButton, ListboxLabel, ListboxOption, ListboxOptions } from '@headlessui/vue'
+// import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/20/solid'
+//const { locations, getData } = getLocations();
+//getData();
 
-const people = [
-    {
-        id: 1,
-        name: 'Wade Cooper',
-        avatar:
-            'https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        id: 2,
-        name: 'Arlene Mccoy',
-        avatar:
-            'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        id: 3,
-        name: 'Devon Webb',
-        avatar:
-            'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.25&w=256&h=256&q=80',
-    },
-    {
-        id: 4,
-        name: 'Tom Cook',
-        avatar:
-            'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        id: 5,
-        name: 'Tanya Fox',
-        avatar:
-            'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        id: 6,
-        name: 'Hellen Schmidt',
-        avatar:
-            'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        id: 7,
-        name: 'Caroline Schultz',
-        avatar:
-            'https://images.unsplash.com/photo-1568409938619-12e139227838?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        id: 8,
-        name: 'Mason Heaney',
-        avatar:
-            'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        id: 9,
-        name: 'Claudie Smitham',
-        avatar:
-            'https://images.unsplash.com/photo-1584486520270-19eca1efcce5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        id: 10,
-        name: 'Emil Schaefer',
-        avatar:
-            'https://images.unsplash.com/photo-1561505457-3bcad021f8ee?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-]
 
-const selected = ref(people[3])
+
+
+const getData = async () => {
+
+    const locationData = ref([await axios.get('http://127.0.0.1:8000/api/locations')]);
+    
+ 
+    
+}
+    getData();
 </script>
 
 

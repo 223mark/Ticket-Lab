@@ -1,11 +1,13 @@
 <form class="px-8 pt-6 pb-8 mb-4  rounded" action="{{ route('profile#update') }}" enctype="multipart/form-data"
     method="POST">
     @csrf
-    <div class=" flex flex-wrap justify-between gap-2 ">
-        <div class="w-full md:w-2/5 ">
+    <div class=" flex flex-wrap justify-between gap-2  space-y-4">
+        <div class="w-full md:w-2/5  ">
 
             <x-input-label labelName="Name" />
             <x-input-tag type="text" name="name" value="{{ $data->name }}" />
+            <x-jet-input-error for="name" />
+
 
         </div>
         <div class="w-full md:w-2/5 ">

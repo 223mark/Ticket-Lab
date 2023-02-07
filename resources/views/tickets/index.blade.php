@@ -92,14 +92,14 @@
 </x-main-layout>
 <script>
     $(document).ready(function() {
-        $.ajax({
-            type: 'get',
-            url: 'http://127.0.0.1:8000/location',
-            dataType: 'json',
-            success: function(response) {
-                console.log(response);
-            }
-        })
+        // $.ajax({
+        //     type: 'get',
+        //     url: 'http://127.0.0.1:8000/location',
+        //     dataType: 'json',
+        //     success: function(response) {
+        //         console.log(response);
+        //     }
+        // })
         $('#sortingByOperator').change(function() {
             $result = $('#sortingByOperator').val();
             $.ajax({
@@ -110,31 +110,35 @@
                 },
                 dataType: 'json',
                 success: function(response) {
-                    console.log(response.data.data);
-                    $list = '';
-                    for ($i = 0; $i < response.length; $i++) {
-                        $list +=
+                    let data = response.data.data;
+                    $tbData = '';
+                    if (data.length != 0) {
+                        for ($i = 0; $i < response.data.data.length; $i++) {
+                            $tbData += `
+                         <tr class="hover:bg-gray-200">
 
-
-                            `
-                    <tr class="hover:bg-gray-200">
-
-                        <td class="px-6 py-4 text-red-500 font-bold">${response[$i].ticket_code}</td>
+                        <td class="px-6 py-4 text-red-500 font-bold">${data[$i].ticket_code}</td>
                         <th class="flex gap-3 px-6 py-4 font-normal text-gray-900">
                             <div class="relative h-10 w-10">
-                                <img class="h-full w-full rounded-lg object-cover object-center"
-                                    src="{{ $data->operatorImage ? asset('img/OperatorImage/' . $data->operatorImage) : asset('img/codelab.png') }}"
-                                    alt="" />
+                                <img src="{{ asset('img/OperatorImage/${data[$i].operatorImage}') }}" class="h-full w-full rounded-lg object-cover object-center" >
+                                
+                                  
                                 <span
                                     class="absolute right-0 bottom-0 h-2 w-2 rounded-full bg-green-400 ring ring-white"></span>
                             </div>
                             <div class="text-sm">
-                                <div class="font-medium text-gray-700">${response[$i].operatorName}</div>
+                                <div class="font-medium text-gray-700">${data[$i].operatorName}</div>
+                                <div class="font-light text-gray-500">${data[$i].email}</div>
                             </div>
                         </th>
                         <td class="px-6 py-4">
-                            <span class="text-indigo-500  font-semibold text-md">${response[$i].from_where}-
-                               ${response[$i].to_where} </span>
+                            <span class="text-indigo-500  font-semibold text-md">${data[$i].from_where}-
+                               ${data[$i].to_where}</span>
+
+                        </td>
+                        <td class="px-6 py-4">
+                            <span class="text-green-500  font-semibold text-md">${data[$i].date}
+                            </span>
 
                         </td>
                         <td class="px-6 py-4">
@@ -157,16 +161,37 @@
 
 
                     </tr>
-                        `;
-                    }
-                    console.log($list);
-                    $('#dataList').html($list);
 
+                        `
+                        }
+
+                        $('#dataList').html($tbData)
+
+                    } else {
+                        $tbData =
+                            `
+                        <tr class="hover:bg-gray-200">
+                           <td class="px-6 py-4 text-center" colspan="7">
+                               
+                                    <span class="font-semibold text-red-500 ">
+                                        There is related data !
+
+                                    </span>
+                                    <a href="{{ route('tickets#index') }}" class="font-bold text-blue-500 underline">
+                                         Wanna Go Back ?
+                                    </a>
+                            </td>
+                        </tr>
+
+                        `
+                        $('#dataList').html($tbData)
+                    }
 
 
 
 
                 }
+
 
             })
 

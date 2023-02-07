@@ -117,7 +117,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('tickets#index') }}" target="_blank"
+                                    <a href="{{ route('tickets#index') }}"
                                         class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
                                         <svg class="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
                                             fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -126,31 +126,10 @@
                                             </path>
                                         </svg>
                                         <span class="ml-3 flex-1 whitespace-nowrap">Tickets</span>
-                                        <span
-                                            class="bg-gray-200 text-gray-800 ml-3 text-sm font-medium inline-flex items-center justify-center px-2 rounded-full">Pro</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="{{ route('operators#index') }}" target="_blank"
-                                        class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
-                                        <svg class="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
-                                            fill="currentColor" viewBox="0 0 20 20"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M8.707 7.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l2-2a1 1 0 00-1.414-1.414L11 7.586V3a1 1 0 10-2 0v4.586l-.293-.293z">
-                                            </path>
-                                            <path
-                                                d="M3 5a2 2 0 012-2h1a1 1 0 010 2H5v7h2l1 2h4l1-2h2V5h-1a1 1 0 110-2h1a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V5z">
-                                            </path>
-                                        </svg>
-                                        <span class="ml-3 flex-1 whitespace-nowrap">Operators</span>
-                                        <span
-                                            class="bg-gray-200 text-gray-800 ml-3 text-sm font-medium inline-flex items-center justify-center px-2 rounded-full">Pro</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('busRoutes#index') }}" target="_blank"
+                                    <a href="{{ route('busRoutes#index') }}"
                                         class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
                                         <svg class="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
                                             fill="currentColor" viewBox="0 0 20 20"
@@ -166,6 +145,24 @@
 
                                     </a>
                                 </li>
+                                <li>
+                                    <a href="{{ route('operators#index') }}"
+                                        class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
+                                        <svg class="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
+                                            fill="currentColor" viewBox="0 0 20 20"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M8.707 7.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l2-2a1 1 0 00-1.414-1.414L11 7.586V3a1 1 0 10-2 0v4.586l-.293-.293z">
+                                            </path>
+                                            <path
+                                                d="M3 5a2 2 0 012-2h1a1 1 0 010 2H5v7h2l1 2h4l1-2h2V5h-1a1 1 0 110-2h1a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V5z">
+                                            </path>
+                                        </svg>
+                                        <span class="ml-3 flex-1 whitespace-nowrap">Operators</span>
+
+                                    </a>
+                                </li>
+
                                 <li>
                                     <a href="#"
                                         class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
@@ -208,7 +205,7 @@
             </aside>
             <div class=" opacity-50 hidden fixed inset-0 z-10" id="sidebarBackdrop">
             </div>
-            <div id="main-content" class="h-full w-full bg-gray-50 relative overflow-y-auto lg:ml-56">
+            <div id="main-content" class="h-full w-full bg-gray-50 relative overflow-y-auto lg:ml-44">
                 <main class="mt-5 ">
                     {{ $slot }}
                 </main>
@@ -284,9 +281,11 @@
             integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-
+        {{-- alphine js --}}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.3.0/alpine-ie11.js"
+            integrity="sha512-6m6AtgVSg7JzStQBuIpqoVuGPVSAK5Sp/ti6ySu6AjRDa1pX8mIl1TwP9QmKXU+4Mhq/73SzOk6mbNvyj9MPzQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="{{ asset('js/model.js') }}"></script>
-        {{-- <script src="{{ asset('js/jquery.js') }}"></script> --}}
 
 
 </body>

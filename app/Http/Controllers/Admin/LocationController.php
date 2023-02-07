@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Location;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 
 class LocationController extends Controller
 {
@@ -13,7 +14,7 @@ class LocationController extends Controller
     {
 
         return view('locations.index', [
-            'data' => Location::get()
+            'locations' => Location::latest()->paginate('6'),
         ]);
     }
 
@@ -31,6 +32,21 @@ class LocationController extends Controller
         $location->delete();
         return back();
     }
+
+    public function filter(Request $request)
+    {
+
+        $filterData = Location::when(request('searchText'), function ($query) {
+            $query->where('location', 'like', '%' . request('searchText') . '%');
+        })
+            ->paginate('6');
+        $filterData->appends($request->all());
+        Session::put('searchText', $request->searchText);
+        return view('locations.index')->with([
+            'locations' => $filterData,
+        ]);
+    }
+
     //PRIVATE FUNCTION
     private function validationCheck($request)
     {

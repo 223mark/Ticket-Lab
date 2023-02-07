@@ -10,7 +10,7 @@
             <th scope="col" class="px-6 py-4 font-medium text-gray-900"></th>
         </tr>
     </thead>
-    <tbody class="divide-y divide-gray-100 border-t border-gray-100">
+    <tbody class="divide-y divide-gray-100 border-t border-gray-100" id="table-id">
         @if (count($data) == 0)
             <tr class="hover:bg-gray-200">
                 <x-no-data-status item="Operator" />

@@ -90,3 +90,15 @@
     </div>
 
 </x-main-layout>
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            type: 'get',
+            url: '',
+            dataType: 'json',
+            success: function(response) {
+                console.log(response);
+            }
+        })
+    })
+</script>

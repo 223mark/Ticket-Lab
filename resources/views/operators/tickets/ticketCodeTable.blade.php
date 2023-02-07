@@ -7,7 +7,9 @@
             </a>
 
             <form action="#" method="GET" class="">
-                <x-search-input></x-search-input>
+                <select name="date" id="">
+                    <option value="">Choose Date</option>
+                </select>
             </form>
         </div>
 
@@ -18,6 +20,7 @@
                     <th scope="col" class="px-6 py-4 font-medium text-gray-900">TicketCode </th>
                     <th scope="col" class="px-6 py-4 font-medium text-gray-900"> Related Operator </th>
                     <th scope="col" class="px-6 py-4 font-medium text-gray-900">Routes</th>
+                    <th scope="col" class="px-6 py-4 font-medium text-gray-900">Date</th>
                     <th scope="col" class="px-6 py-4 font-medium text-gray-900"></th>
                 </tr>
             </thead>
@@ -44,6 +47,9 @@
                         <td class="px-6 py-4">
                             <span class="text-indigo-500  font-semibold text-md">{{ $data->from }}-
                                 {{ $data->to }}</span>
+                        </td>
+                        <td class="px-6 py-4">
+                            <span class="text-green-500  font-semibold text-md"> {{ $data->date }}</span>
                         </td>
                         <td class="px-6 py-4">
                             <a href="{{ route('tickets#show', $data->ticket_code) }}">

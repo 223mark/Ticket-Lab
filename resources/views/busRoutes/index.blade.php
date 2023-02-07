@@ -3,7 +3,7 @@
         <div class="flex justify-between pb-2">
             <x-add-button btn_name="Add Routes" id="addBtn"></x-add-button>
 
-            <form action="#" method="GET" class="">
+            <form action="" method="GET">
                 <x-search-input></x-search-input>
             </form>
         </div>

@@ -44,6 +44,13 @@
                         type="button">Cancel</button>
                 </a>
             </div>
+            <div class="mt-5">
+                <span class="text-gray-600 font-medium font-sm">Need to create new operator?</span>
+                <a href="{{ route('operators#index') }}" class="text-indigo-600 font-semibold font-xs
+                ">
+                    click here
+                </a>
+            </div>
 
         </div>
     </form>

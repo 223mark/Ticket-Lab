@@ -15,11 +15,8 @@ class RouteController extends Controller
     public function index()
     {
 
-        // $data = Routes::select('routes.*', 'operators.*')
-        //     ->leftJoin('operators', 'operators.id', 'routes.operator_id')
-        //     ->paginate('6');
         return view('busRoutes.index', [
-            'busRoutes' => Routes::paginate('6'),
+            'busRoutes' => Routes::latest()->paginate('6'),
             'locations' => Location::get(),
             'operators' => Operator::get(),
         ]);
@@ -57,6 +54,20 @@ class RouteController extends Controller
         $route->delete();
         return back();
     }
+
+    public function filter(Request $request)
+    {
+
+        // $filterData = Routes::when(request('searchItem'), function ($query) {
+        //     $query->where('from_where', 'like', '%' . request('searchItem') . '%')
+        //         ->orWhere('to_where', 'like', '%' . request('searchItem') . '%');
+        // })
+        //     ->orderBy('id', 'desc')->paginate(5);
+        // $filterData->appends(request()->all());
+        // dd($filterData->toArray());
+    }
+
+
     //PRIVATE FUNCTIONS
 
     private function validationCheck($request)

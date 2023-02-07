@@ -17,6 +17,28 @@
                             </router-link>
                         </div>
                     </div>
+                    <!-- Dropdown menu -->
+                    <div class="hidden absolute right-0 z-10 mt-2 w-56 origin-top-right dark:shadow-blue-500 rounded-md bg-white dark:bg-slate-800 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                        role="menu " aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1" id="dropdownMenu">
+                        <div class="py-1" role="none">
+                            <a href="#" class="text-slate-500 dark:text-white block px-4 py-2 text-sm font-semibold" role="menuitem"
+                                tabindex="-1" id="menu-item-0 ">All</a>
+                            <a href="#" class="text-slate-500 dark:text-white block px-4 py-2 text-sm font-semibold" role="menuitem"
+                                tabindex="-1" id="menu-item-1 ">Announcements</a>
+                            <a href="#" class="text-slate-500 dark:text-white block px-4 py-2 text-sm font-semibold" role="menuitem"
+                                tabindex="-1" id="menu-item-2">Business</a>
+                            <a href="#" class="text-slate-500 dark:text-white block px-4 py-2 text-sm font-semibold" role="menuitem"
+                                tabindex="-1" id="menu-item-0 ">Engineering</a>
+                            <a href="#" class="text-slate-500 dark:text-white block px-4 py-2 text-sm font-semibold" role="menuitem"
+                                tabindex="-1" id="menu-item-1 ">Perspectives</a>
+                            <a href="#" class="text-slate-500 dark:text-white block px-4 py-2 text-sm font-semibold" role="menuitem"
+                                tabindex="-1" id="menu-item-2">Product</a>
+                            <a href="#" class="text-slate-500 dark:text-white block px-4 py-2 text-sm font-semibold" role="menuitem"
+                                tabindex="-1" id="menu-item-0 ">Stencil</a>
+                            <a href="#" class="text-slate-500 dark:text-white block px-4 py-2 text-sm font-semibold" role="menuitem"
+                                tabindex="-1" id="menu-item-1 ">Tutorials</a>
+                        </div>
+                    </div>
                    
                     
                 </div>

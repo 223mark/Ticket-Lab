@@ -1,4 +1,4 @@
-<x-main-layout title="Operators Edit">
+<x-main-layout title="Operators/Edit">
 
     <div class="md:px-10 sm:px-5    shadow-md border">
         <h1 class="text-gray-800 font-bold text-lg pl-4 md:pl-0 md:text-2xl my-2">Edit Operator</h1>
@@ -12,24 +12,32 @@
 
                     <x-input-label labelName="Operator Name" />
                     <x-input-tag type="text" name="operatorName" value="{{ $operator->operator_name }}" />
+                    <x-jet-input-error for="operatorName" />
+
 
                 </div>
                 <div class="w-full md:w-2/5 ">
 
                     <x-input-label labelName="Phone1" />
                     <x-input-tag type="number" name="phoneOne" value="{{ $operator->phone1 }}" />
+                    <x-jet-input-error for="phoneOne" />
+
 
                 </div>
                 <div class="w-full md:w-2/5 ">
 
                     <x-input-label labelName="Phone2" />
                     <x-input-tag type="number" name="phoneTwo" value="{{ $operator->phone2 }}" />
+                    <x-jet-input-error for="phoneTwo" />
+
 
                 </div>
                 <div class="w-full md:w-2/5 ">
 
                     <x-input-label labelName="Email" />
                     <x-input-tag type="email" name="email" value="{{ $operator->email }}" />
+                    <x-jet-input-error for="email" />
+
 
                 </div>
                 <div class="w-full md:w-2/5 ">
