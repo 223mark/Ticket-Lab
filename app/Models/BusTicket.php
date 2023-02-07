@@ -17,4 +17,9 @@ class BusTicket extends Model
         'operator_id'
 
     ];
+
+    public function routes()
+    {
+        return $this->belongsTo(Routes::class);
+    }
 }

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\ApiController;
+use App\Http\Controllers\Api\V1\OperatorController;
+use App\Http\Controllers\TestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/locations', [ApiController::class, 'getAllLocation']);
+
+Route::get('/operators', [ApiController::class, 'getAllOperator']);
+
+Route::get('/tickets', [ApiController::class, 'getAllTickets']);

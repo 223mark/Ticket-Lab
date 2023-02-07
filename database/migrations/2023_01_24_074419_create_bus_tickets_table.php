@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('bus_tickets', function (Blueprint $table) {
             $table->id();
             $table->string('ticket_code');
-            $table->integer('route_id');
-            $table->integer('operator_id');
+            $table->foreignId('route_id');
+            $table->foreignId('operator_id');
             $table->string('status')->nullable();
             $table->string('seat_number')->nullable();
             $table->dateTime('date');

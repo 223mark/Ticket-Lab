@@ -18,4 +18,9 @@ class Routes extends Model
         'departure_time',
         'arrive_time'
     ];
+
+    public function tickets()
+    {
+        return $this->hasMany(BusTicket::class);
+    }
 }
