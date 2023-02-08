@@ -19,11 +19,12 @@ import Login from '../views/auth/Login.vue'
 import AppMaster from '../components/AppMaster.vue'
 import HomePage from '../views/MainPage.vue'
 import Operators from '../views/operators/Operators.vue'
+import OperatorDetail from '../views/operators/Detail.vue'
 import Ticket from '../views/tickets/Tickets.vue'
 import Process from '../views/order/Process.vue'
 import ProcessTwo from '../views/ProcessTwo.vue'
 import Blog from '../views/blog/Blog.vue'
-import Services from '../views/services/Services.vue'
+import AboutUs from '../views/aboutus/AboutUs.vue'
 const routes = [{
         path: '/',
         name: 'app',
@@ -33,24 +34,29 @@ const routes = [{
         },
         children: [{
                 path: '/',
-                name: 'Home',
+                name: 'app.home',
                 component: HomePage
             },
 
             {
                 path: '/operators',
-                name: 'Operators',
+                name: 'app.operators',
                 component: Operators
             },
             {
+                path: '/operators/:operator',
+                name: 'app.operators.detail',
+                component: OperatorDetail
+            },
+            {
                 path: '/blog',
-                name: 'Blog',
+                name: 'app.blog',
                 component: Blog
             },
             {
-                path: '/services',
-                name: 'Services',
-                component: Services
+                path: '/about-us',
+                name: 'app.about-us',
+                component: AboutUs
             },
             {
                 path: '/tickets/search',

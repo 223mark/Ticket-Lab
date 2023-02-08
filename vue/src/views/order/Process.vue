@@ -104,6 +104,16 @@
 
 <script setup>
 import BookingSummary from '../../components/BookingSummary.vue'
+import { onMounted } from "@vue/runtime-core";
+import axiosClient from "../../axiosClient";
+
+
+
+onMounted(() => {
+    axiosClient.get('tickets').then((response) => {
+        console.log(response);
+    })
+})
 </script>
 
 <style lang="stylus" scoped>

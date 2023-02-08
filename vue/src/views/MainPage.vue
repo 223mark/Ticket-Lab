@@ -1,37 +1,31 @@
 <template>
     <!-- hero section start -->
-     <section class="" id="main-hero">
-     </section>
-    <!-- hero end -->
-    <!-- selection section start -->
-     <section class="" id="selection-section">
-       <div class="flex flex-col-reverse md:flex md:flex-row  md:justify-evenly ">
-        <div class="px-5 sm:text-center md:w-1/2 ">
-            <h2 class="text-lg font-semibold leading-8 text-green-600">Online Ticket Website</h2>
-            <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Easily get your ticket
-            </p>
-            <p class="mx-auto mt-6 max-w-2xl text-lg leading-8 text-gray-600">Lorem ipsum dolor sit amet consect
-                adipisicing elit. Possimus magnam voluptatum cupiditate veritatis in accusamus quisquam.</p>
-            <div class="flex justify-around mt-10">
-                <a href="#" class="px-4 py-2 bg-green-500 text-black">Operators</a>
-                <a href="#" class="px-4 py-2 bg-indigo-500 text-black">Tickets</a>
-            </div>
-        </div>
-        <div class="flex justify-center     md:justify-end md:w-1/2  ">
-            <TicketSearchCard/>
-        </div>
-       </div>
-     </section>
-     <!-- selection end -->
-   
+      <section class="flex flex-col mt-10 md:flex-row md:items-center md:justify-around" id="main-hero">
+                <div class="px-5 sm:text-center md:w-1/2 ">
+                    <h2 class="text-lg font-semibold leading-8 text-white">Online Ticket Website</h2>
+                    <p class="mt-2 text-3xl font-bold tracking-tight text-indigo-700 sm:text-4xl">Easily get your ticket
+                    </p>
+                    <p class="mx-auto mt-6 max-w-2xl text-lg leading-8 text-gray-400">Lorem ipsum dolor sit amet consect
+                        adipisicing elit. Possimus magnam voluptatum cupiditate veritatis in accusamus quisquam.</p>
+                    <div class="flex justify-around mt-10">
+                        <a href="#" class="px-4 py-2 bg-green-500 text-black">Operators</a>
+                        <a href="#" class="px-4 py-2 bg-indigo-500 text-black">Tickets</a>
+                    </div>
+                </div>
+                <div class="flex justify-center  mt-4    md:justify-end md:w-1/2  ">
+                    <TicketSearchCard />
+                </div>
+     </section> 
+    <!-- hero end -->  
     <!-- features section start  -->
-    <Feacture class="">
-
-    </Feacture>
+    <Feacture class=""/>
     <!-- features section end -->
     <!-- newsletter banner start -->
-    <section id="newsletter" class="mt-2">
-    
+    <section id="newsletter" class="mt-2  ">
+      <div class="mx-auto max-w-lg flex items-center justify-center  ">
+        <input type="text" class="w-3/4 px-4 py-1 rounded-lg shadow-lg border text-gray-700 placeholder-indigo-300 focus:text-blue-500 focus:bg-blue-100">
+        <button class="px-4 py-1 bg-green-500 text-white w-1/4">Get</button>
+      </div>
     </section>
     <!-- newsletter banner end -->
     <!-- frequent questions start -->
@@ -61,6 +55,7 @@
 <script setup>
 import Feacture from './Feactures.vue'
 import TicketSearchCard from '../components/Ticket-Search-Card.vue'
+
 
 </script>
 

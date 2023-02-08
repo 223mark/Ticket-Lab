@@ -1,14 +1,6 @@
 <template>
-    <!-- hero start -->
-    <section id="blog-hero">
-        <div class="flex flex-col items-start justify-center h-full ">
-            <div class="px-4">
-                <h4 class="text-xl font-medium  text-green-500 md:font-semibold md:text-4xl">Read the Blogs...</h4>
-            </div>
-        </div>
-    </section>
-    <!-- hero end -->
-    <main class="py-12 md:px-20 sm:px-14 px-6">
+    
+    <main class="py-12 md:px-20 sm:px-14 px-6 mt-10">
         <div class="sm:flex items-center shadow-md">
             <div class="md:px-10 sm:px-5">
                 <h1 class="text-gray-800 font-bold text-2xl my-2">long established</h1>
