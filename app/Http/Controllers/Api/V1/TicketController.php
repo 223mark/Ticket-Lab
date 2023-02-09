@@ -30,10 +30,11 @@ class TicketController extends Controller
             return new TicketCollection($ticket);
         } else {
             $ticket = Routes::select('bus_tickets.*', 'routes.*', 'operators.*', 'bus_tickets.id as ticket_id')
-                ->leftJoin('bus_tickets', 'routes.id', 'bus_tickets.route_id')
-                ->leftJoin('operators', 'operators.id', 'bus_tickets.operator_id')
+                ->rightJoin('bus_tickets', 'routes.id', 'bus_tickets.route_id')
+                ->rightJoin('operators', 'operators.id', 'bus_tickets.operator_id')
                 ->where($queryItems)
                 ->get();
+            return new TicketCollection($ticket);
         }
     }
 

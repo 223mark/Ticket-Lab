@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Controllers\Controller;
-use App\Http\Resources\V1\OperatorCollection;
-use App\Http\Resources\V1\OperatorResource;
 use App\Models\Operator;
 use Illuminate\Http\Request;
+use App\Filter\V1\OperatorFilter;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\V1\OperatorResource;
+use App\Http\Resources\V1\OperatorCollection;
 
 class OperatorController extends Controller
 {
@@ -15,9 +16,20 @@ class OperatorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return new OperatorCollection(Operator::paginate('5'));
+
+
+        $filter = new OperatorFilter();
+        $queryItems = $filter->transform($request);
+
+        if (count($queryItems) == 0) {
+            return new OperatorCollection(Operator::paginate('5'));
+        } else {
+            //for pagination
+            $operator = Operator::where($queryItems)->paginate('1');
+            return new OperatorCollection($operator->appends($request->query()));
+        }
 
         //
     }
