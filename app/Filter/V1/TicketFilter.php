@@ -13,6 +13,7 @@ class TicketFilter extends ApiFilter
         'date' => ['eq'],
         'ticketClass' => ['eq'],
         'seatNumber' => ['eq'],
+        'ticketCode' => ['eq'],
         'id' => ['eq']
 
     ];
@@ -21,7 +22,8 @@ class TicketFilter extends ApiFilter
         'fromWhere' => 'from_where',
         'toWhere' => 'to_where',
         'ticketClass' => 'class',
-        'seatNumber' => 'seat_number'
+        'seatNumber' => 'seat_number',
+        'ticketCode' => 'ticket_code'
 
     ];
 
@@ -31,23 +33,23 @@ class TicketFilter extends ApiFilter
         'and' => '&'
     ];
 
-    public function transform(Request $request)
-    {
-        $eloQuery = [];
-        //$operators?
-        foreach ($this->safeParams as $parm => $operators) {
-            $query = $request->query($parm);
-            if (!isset($query)) {
-                continue;
-            }
-            $column = $this->columnMap[$parm] ?? $parm;
-            //filter operator
-            foreach ($operators as $operator) {
-                if (isset($query[$operator])) {
-                    $eloQuery[] = [$column, $this->operatorMap[$operator], $query[$operator]];
-                }
-            }
-        }
-        return $eloQuery;
-    }
+    // public function transform(Request $request)
+    // {
+    //     $eloQuery = [];
+    //     //$operators?
+    //     foreach ($this->safeParams as $parm => $operators) {
+    //         $query = $request->query($parm);
+    //         if (!isset($query)) {
+    //             continue;
+    //         }
+    //         $column = $this->columnMap[$parm] ?? $parm;
+    //         //filter operator
+    //         foreach ($operators as $operator) {
+    //             if (isset($query[$operator])) {
+    //                 $eloQuery[] = [$column, $this->operatorMap[$operator], $query[$operator]];
+    //             }
+    //         }
+    //     }
+    //     return $eloQuery;
+    // }
 }

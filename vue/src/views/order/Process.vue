@@ -3,7 +3,7 @@
             
             <div class=" w-full md:w-3/5 rounded-lg bg-white pb-4">
                 <!-- seat section -->
-                    <div class="text-center py-2 ">
+                    <div class="text-center  ">
                         <h5 class="text-xl  font-semibold text-white bg-green-500 py-2 mb-2">Please Select Seat</h5>
                         <h4 class="text-indigo-500 font-medium">Seat Number - <span class="text-green-500 font-semibold">S-15</span></h4>
                         
@@ -16,39 +16,7 @@
                             <div class="flex justify-center items-center bg-gray-400 w-full md:w-1/3 h-12">
                                 <span><i class="fa-solid fa-lock text-light"></i></span>
                             </div>
-                            <div class="flex justify-center items-center bg-gray-400 w-full md:w-1/3 h-12">
-                                <span><i class="fa-solid fa-lock text-light"></i></span>
-                            </div>
-                            <div class="flex justify-center items-center bg-gray-400 w-full md:w-1/3 h-12">
-                                <span><i class="fa-solid fa-lock text-light"></i></span>
-                            </div>
-                            <div class="flex justify-center items-center bg-gray-400 w-full md:w-1/3 h-12">
-                                <span><i class="fa-solid fa-lock text-light"></i></span>
-                            </div>
-                            <div class="flex justify-center items-center bg-gray-400 w-full md:w-1/3 h-12">
-                                <span><i class="fa-solid fa-lock text-light"></i></span>
-                            </div>
-                            <div class="flex justify-center items-center bg-gray-400 w-full md:w-1/3 h-12">
-                                <span><i class="fa-solid fa-lock text-light"></i></span>
-                            </div>
-                            <div class="flex justify-center items-center bg-gray-400 w-full md:w-1/3 h-12">
-                                <span><i class="fa-solid fa-lock text-light"></i></span>
-                            </div>
-                            <div class="flex justify-center items-center bg-gray-400 w-full md:w-1/3 h-12">
-                                <span><i class="fa-solid fa-lock text-light"></i></span>
-                            </div>
-                            <div class="flex justify-center items-center bg-gray-400 w-full md:w-1/3 h-12">
-                                <span><i class="fa-solid fa-lock text-light"></i></span>
-                            </div>
-                            <div class="flex justify-center items-center bg-gray-400 w-full md:w-1/3 h-12">
-                                <span><i class="fa-solid fa-lock text-light"></i></span>
-                            </div>
-                            <div class="flex justify-center items-center bg-gray-400 w-full md:w-1/3 h-12">
-                                <span><i class="fa-solid fa-lock text-light"></i></span>
-                            </div>
-                            <div class="flex justify-center items-center bg-gray-400 w-full md:w-1/3 h-12">
-                                <span><i class="fa-solid fa-lock text-light"></i></span>
-                            </div>
+                            
                     </div>
                     <!-- right position -->
                     <div class="flex justify-between  gap-2 flex-wrap mr-2 md:mr-8 md:w-1/2 md:ml-4">
@@ -110,8 +78,8 @@ import axiosClient from "../../axiosClient";
 
 
 onMounted(() => {
-    axiosClient.get('tickets').then((response) => {
-        console.log(response);
+    axiosClient.get(`tickets?ticketCode[eq]=4442`).then((response) => {
+        console.log(response.data.data);
     })
 })
 </script>

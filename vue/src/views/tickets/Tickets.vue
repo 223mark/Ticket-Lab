@@ -5,86 +5,43 @@
             
         </div>
         
-        <section class="flex flex-row-reverse md:flex-row mx-4 md:mx-8" id="operator-date">
+        <section class="flex flex-col  md:flex-row mx-0 md:mx-8" id="operator-date">
             
-           <div class="w-1/6">
+           <div class="w-full mb-4 md:w-1/6">
             <!-- operator and date time section -->
-            
-                <div class="flex  justify-between ">
-                    <div class="">
-                        <div class="border bg-gray-200 ">
-                            <div class="py-4 border border-gray-400 ">
-                                <h1 class="text-xl font-semibold text-gray-500 text-center">Departure Time</h1>
-                            </div>
-                            <div class=" p-4 flex flex-col ">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Any Time
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                                    <label class="form-check-label" for="flexCheckChecked">
-                                        Day Bus
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                                    <label class="form-check-label" for="flexCheckChecked">
-                                        Afternoon Bus
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                                    <label class="form-check-label" for="flexCheckChecked">
-                                        Night Bus
-                                    </label>
-                                </div>
-                            </div>
+               
+                <div class="">
+                    <div class="border bg-white mx-4 md:mx-2 ">
+                        <div class="pt-4 pb-2 w-full border-b border-gray-700 ">
+                            <h1 class="text-xl font-semibold text-gray-500 text-center">Departure Time</h1>
                         </div>
-                    </div>
-                    <div class="">
-                        <div class="border bg-gray-200 ">
-                            <div class="py-4 border border-gray-400 ">
-                                <h1 class="text-xl font-semibold text-gray-500 text-center">Departure Time</h1>
+                        <div class=" p-4 flex flex-col ">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Any Time
+                                </label>
                             </div>
-                            <div class=" p-4 flex flex-col ">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Any Time
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                                    <label class="form-check-label" for="flexCheckChecked">
-                                        Day Bus
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                                    <label class="form-check-label" for="flexCheckChecked">
-                                        Afternoon Bus
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                                    <label class="form-check-label" for="flexCheckChecked">
-                                        Night Bus
-                                    </label>
-                                </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                <label class="form-check-label" for="flexCheckChecked">
+                                    Day Bus
+                                </label>
                             </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                <label class="form-check-label" for="flexCheckChecked">
+                                    Night Bus
+                                </label>
+                            </div>
+                            
                         </div>
                     </div>
                 </div>
-          
-            
-                <!-- <TicketSearch></TicketSearch> -->
-           
+                
            </div>
             <div class="w-5/6 ">
-                <Ticket class="ml-8"></Ticket>
+                <Ticket class="mx-4"></Ticket>
             </div>
         </section>
         <!-- operator and date time section end-->

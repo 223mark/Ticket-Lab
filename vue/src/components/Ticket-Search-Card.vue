@@ -7,16 +7,16 @@
         </ul>  -->
       <div class="space-y-4">
         <label for="from" class="text-green-500  font-medium">From Where</label>
-        <select v-model="fromWhere" id="from" class="w-full px-4 py-2 focus:border-indigo-500 ">
-            <option value="">Please choose Location</option>
-            <option value="" v-for="l in location" :key="l.id">{{ l.location }}</option>
+        <select v-model="fromWhere"   id="from" class="w-full px-4 py-2 focus:border-indigo-500 ">
+            <option value=""  >Please choose Location</option>
+            <option :value=" l.location " v-for="l in location" :key="l.id">{{ l.location }}</option>
         </select>
       </div>
         <div class="space-y-4">
             <label for="to" class="text-green-500  font-medium">To Where</label>
             <select v-model="toWhere" id="to" class="w-full">
                 <option value="">Please choose Location</option>
-                <option value="" v-for="l in location" :key="l.id">{{ l.location }}</option>
+                <option :value=" l.location " v-for="l in location" :key="l.id">{{ l.location }}</option>
             </select>
         </div>
         <!-- <Listbox as="div" v-model="selected">
@@ -62,10 +62,10 @@
         </Listbox>  -->
     </div>
     <div class="w-full ">
-        <input type="date"  class="border w-full px-4 py-2">
+        <input type="date" v-model="date"  class="border w-full px-4 py-2">
     </div>
     <div class="w-full flex justify-center">
-        <button class="px-8 py-1 rounded shadow text-white  bg-green-500 hover:bg-green-400  ">Search</button>
+        <button class="px-8 py-1 rounded shadow text-white  bg-green-500 hover:bg-green-400" @click="searchTicket">Search</button>
     </div>
     <div class="w-full space-y-4 ">
        
@@ -125,13 +125,25 @@ import { ref } from 'vue';
 import { onMounted } from '@vue/runtime-core'
 import axiosClient from '../axiosClient';
 const location = ref([]);
-const fromWhere = reactive('');
-const toWhere = reactive('');
+const date = ref(null);
+const fromWhere = ref(null);
+const toWhere = ref(null);
+
+// const computedLocation = computed(() => {
+
+//     return
+// })
 // const Date = ref({
 //     minDate: new Date('2/8/2023'),
- 
+
 
 // })
+
+const searchTicket = () => {
+    axiosClient.get(`gb-tickets/?fromWhere[eq]=${fromWhere.value}&toWhere[eq]=${toWhere.value}`).then((response) => {
+        console.log(response.data.data);
+    })
+}
 
 onMounted(() => {
     axiosClient.get('/locations').then((response) => {

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-
+use App\Filter\V1\GroupByTicketFilter;
 use App\Models\Routes;
 use App\Models\BusTicket;
 use Illuminate\Http\Request;
@@ -10,8 +10,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\TicketResource;
 use App\Http\Resources\V1\TicketCollection;
 use App\Filter\V1\TicketFilter;
+use App\Http\Resources\V1\GroupByTicketCollection;
 
-class TicketController extends Controller
+class GroupByTicketController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,18 +24,19 @@ class TicketController extends Controller
         //
         $ticket = $this->busTicket();
         //filtering
-        $filter = new TicketFilter();
+        $filter = new GroupByTicketFilter();
         $queryItems = $filter->transform($request);
 
         if (count($queryItems) == 0) {
-            return new TicketCollection($ticket);
+            return new GroupByTicketCollection($ticket);
         } else {
             $ticket = Routes::select('bus_tickets.*', 'routes.*', 'operators.*', 'bus_tickets.id as ticket_id')
                 ->rightJoin('bus_tickets', 'routes.id', 'bus_tickets.route_id')
                 ->rightJoin('operators', 'operators.id', 'bus_tickets.operator_id')
+                ->groupBy('bus_tickets.ticket_code')
                 ->where($queryItems)
                 ->get();
-            return new TicketCollection($ticket);
+            return new GroupByTicketCollection($ticket);
         }
     }
 
@@ -43,6 +45,7 @@ class TicketController extends Controller
         $ticket = Routes::select('bus_tickets.*', 'routes.*', 'operators.*', 'bus_tickets.id as ticket_id')
             ->leftJoin('bus_tickets', 'routes.id', 'bus_tickets.route_id')
             ->leftJoin('operators', 'operators.id', 'bus_tickets.operator_id')
+            ->groupBy('routes.id')
             ->get();
         return $ticket;
     }
