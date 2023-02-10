@@ -8,14 +8,8 @@
     <div role="alert" class=" container mx-auto  h-full  w-full max-w-lg md:max-w-2xl ">
         <div class=" relative md:px-5 bg-white shadow-md rounded border border-gray-400">
             <div class="w-full flex justify-start text-gray-600 mb-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-wallet" width="52"
-                    height="52" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" />
-                    <path
-                        d="M17 8v-3a1 1 0 0 0 -1 -1h-10a2 2 0 0 0 0 4h12a1 1 0 0 1 1 1v3m0 4v3a1 1 0 0 1 -1 1h-12a2 2 0 0 1 -2 -2v-12" />
-                    <path d="M20 12v4h-4a2 2 0 0 1 0 -4h4" />
-                </svg>
+                <img src="{{ asset('img/codelab.png') }}" alt="logo" class="h-14">
+
             </div>
             <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Adding Data
             </h1>

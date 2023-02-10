@@ -12,14 +12,15 @@
                 <!-- seat position  -->
                 <div class="flex justify-between pt-5 md:pt-10 gap-1">
                     <!-- left position -->
-                    <div class="flex justify-between  gap-2 flex-wrap ml-2 md:ml-8 md:w-1/2 ">
-                            <div class="flex justify-center items-center bg-gray-400 w-full md:w-1/3 h-12">
-                                <span><i class="fa-solid fa-lock text-light"></i></span>
+                    <div 
+                     class="flex justify-between  gap-2 flex-wrap ml-2 w-full mx-2 ">
+                            <div class="flex justify-center items-center bg-gray-400 w-full md:w-1/5 h-12" v-for="t in tickets" :key="t.id">
+                                <span><i class="fa-solid fa-lock text-light"></i>{{ t.seatNumber }}</span>
                             </div>
                             
                     </div>
                     <!-- right position -->
-                    <div class="flex justify-between  gap-2 flex-wrap mr-2 md:mr-8 md:w-1/2 md:ml-4">
+                    <!-- <div class="flex justify-between  gap-2 flex-wrap mr-2 md:mr-8 md:w-1/2 md:ml-4">
                         <div class="flex justify-center items-center bg-gray-400 w-full md:w-1/3 h-12">
                             <span><i class="fa-solid fa-lock text-light"></i></span>
                         </div>
@@ -56,7 +57,7 @@
                         <div class="flex justify-center items-center bg-gray-400 w-full md:w-1/3 h-12">
                             <span><i class="fa-solid fa-lock text-light"></i></span>
                         </div>
-                    </div>
+                    </div> -->
                     
                 </div>
                 <!-- seat position end -->
@@ -74,12 +75,15 @@
 import BookingSummary from '../../components/BookingSummary.vue'
 import { onMounted } from "@vue/runtime-core";
 import axiosClient from "../../axiosClient";
+import { ref } from '@vue/runtime-core';
 
+const tickets = ref([]);
 
 
 onMounted(() => {
     axiosClient.get(`tickets?ticketCode[eq]=4442`).then((response) => {
         console.log(response.data.data);
+        tickets.value = response.data.data;
     })
 })
 </script>

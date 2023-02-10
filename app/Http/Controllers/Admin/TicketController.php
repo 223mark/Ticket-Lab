@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\BusTicket;
+use Carbon\Carbon;
+use App\Models\Routes;
 use App\Models\Location;
 use App\Models\Operator;
-use App\Models\Routes;
+use App\Models\BusTicket;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class TicketController extends Controller
 {
@@ -19,7 +20,7 @@ class TicketController extends Controller
             'routes.*',
             'bus_tickets.id as busticketId',
             'bus_tickets.ticket_code as ticket_code',
-            'bus_tickets.date as date',
+            'bus_tickets.departure_date  as departure_date',
             'operators.id as operatorId',
             'operators.operator_name as operatorName',
             'operators.email as email',
@@ -29,6 +30,7 @@ class TicketController extends Controller
             ->leftJoin('operators', 'operators.id', 'bus_tickets.operator_id')
             ->groupBy('bus_tickets.ticket_code')
             ->paginate('6');
+
         $operators = Operator::get();
         $routes = Routes::get();
         return view('tickets.index', compact('ticketCode', 'operators', 'routes'));
@@ -42,7 +44,7 @@ class TicketController extends Controller
             ->where('bus_tickets.ticket_code', $code)
             ->paginate('6');
         // dd($tickets->toArray());
-        return view('tickets.show', compact('tickets'));
+        return view('tickets.showAllTickets', compact('tickets'));
     }
 
 
@@ -90,17 +92,22 @@ class TicketController extends Controller
             'totalTicket' => 'required',
             'operatorId' => 'required',
             'date' => 'required',
+            'price' => 'required'
 
         ]);
     }
 
     private function requestData($request)
     {
+        // $date = Carbon::createFromformat('Y-m-d', $request->date)->format('d/m/Y');
+        // dd($date);
 
         return ([
-            'date' => $request->date,
+
+            'departure_date' => $request->date,
             'route_id' => $request->routeId,
             'operator_id' => $request->operatorId,
+            'price' => $request->price . 'Ks'
 
         ]);
     }
@@ -116,7 +123,7 @@ class TicketController extends Controller
     private function ticketExport($amount, $request)
     {
 
-        $ticketCode = rand(1000, 10000);
+        $ticketCode = rand(100, 1000);
         $ticketName = 0;
         for ($i = 0; $i < $amount; $i++) {
             $data = $this->requestData($request);

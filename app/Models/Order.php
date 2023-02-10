@@ -10,8 +10,10 @@ class Order extends Model
     use HasFactory;
     protected $fillable = [
         'user_id',
-        'userinfo_id',
         'ticket_id',
         'cancel_status',
+        'customer_name',
+        'customer_nrc_number',
+        'payment_method'
     ];
 }

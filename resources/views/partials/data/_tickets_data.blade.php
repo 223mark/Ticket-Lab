@@ -20,11 +20,7 @@
     <td class="px-6 py-4">
         <span class="text-indigo-600">{{ $data->to_where }}</span>
     </td>
-    <td class="px-6 py-4">
 
-        {{ $data->price }}
-
-    </td>
     <td class="px-6 py-4">
 
         {{ $data->class }}
@@ -35,12 +31,17 @@
         {{ $data->departure_time }}
 
     </td>
+    <td class="px-6 py-4">
+
+        {{ $data->arrive_time }}
+
+    </td>
     <td class="px-6 py-4 text-blue-700 font-semibold cursor-pointer underline hover:text-blue-600">
         <a href="{{ route('tickets#create', $data->id) }}">Export Tickets</a>
     </td>
     <td class="px-6 py-4">
         <div class="flex justify-end gap-4">
-            <a x-data="{ tooltip: 'Delete' }" href="">
+            <a x-data="{ tooltip: 'Delete' }" href="{{ route('operators#destory', $data->id) }}">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="h-6 w-6 text-red-500" x-tooltip="tooltip">
                     <path stroke-linecap="round" stroke-linejoin="round"

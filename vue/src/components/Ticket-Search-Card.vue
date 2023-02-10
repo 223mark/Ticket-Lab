@@ -8,8 +8,9 @@
       <div class="space-y-4">
         <label for="from" class="text-green-500  font-medium">From Where</label>
         <select v-model="fromWhere"   id="from" class="w-full px-4 py-2 focus:border-indigo-500 ">
-            <option value=""  >Please choose Location</option>
+            <option value="">Please choose Location</option>
             <option :value=" l.location " v-for="l in location" :key="l.id">{{ l.location }}</option>
+            
         </select>
       </div>
         <div class="space-y-4">

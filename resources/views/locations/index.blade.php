@@ -4,7 +4,7 @@
         <div class="flex justify-between pb-2">
             <x-add-button btn_name="Add Location"></x-add-button>
 
-            <form action="{{ route('locations#filter') }}" method="Post">
+            <form action="{{ route('locations#filter') }}" method="POST">
                 @csrf
                 <x-search-input></x-search-input>
             </form>

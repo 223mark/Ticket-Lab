@@ -9,12 +9,13 @@ class BusTicket extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'date',
+        'departure_date',
         'status',
         'seat_number',
         'ticket_code',
         'route_id',
-        'operator_id'
+        'operator_id',
+        'price'
 
     ];
 

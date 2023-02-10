@@ -19,7 +19,8 @@
     </td>
     <td class="px-6 py-4">{{ $data->phone1 }}</td>
     <td class="px-6 py-4">{{ $data->phone2 }}</td>
-    <td class="px-6 py-4">{{ $data->description }}</td>
+    <td class="px-6 py-4">{{ Str::substr($data->description, 0, 40) }} <span class="text-gray-500 text-xl">....</span>
+    </td>
     <td class="px-6 py-4">
         <div class="flex justify-end gap-4">
             <a x-data="{ tooltip: 'Delete' }" href="#">

@@ -12,7 +12,7 @@ class TicketFilter extends ApiFilter
         'toWhere' => ['eq'],
         'date' => ['eq'],
         'ticketClass' => ['eq'],
-        'seatNumber' => ['eq'],
+        'operatorName' => ['eq'],
         'ticketCode' => ['eq'],
         'id' => ['eq']
 
@@ -22,7 +22,7 @@ class TicketFilter extends ApiFilter
         'fromWhere' => 'from_where',
         'toWhere' => 'to_where',
         'ticketClass' => 'class',
-        'seatNumber' => 'seat_number',
+        'operatorName' => 'operator_name',
         'ticketCode' => 'ticket_code'
 
     ];

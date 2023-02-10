@@ -6,15 +6,22 @@
 
             <x-search-input />
         </div>
+
+        {{-- add form --}}
         @include('partials._form_operator')
 
+        {{-- table --}}
         <x-table-operators :data=$operators />
+
+
         <div class="mt-2" id="paginator-id">
             {{ $operators->links() }}
         </div>
 
     </div>
 </x-main-layout>
+
+{{-- jquery --}}
 <script>
     $(document).ready(function() {
         $('#searchBtn').click(function() {

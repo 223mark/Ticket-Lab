@@ -22,7 +22,7 @@ import Operators from '../views/operators/Operators.vue'
 import OperatorDetail from '../views/operators/Detail.vue'
 import Ticket from '../views/tickets/Tickets.vue'
 import Process from '../views/order/Process.vue'
-import ProcessTwo from '../views/ProcessTwo.vue'
+import Checkout from '../views/order/OrderCheckout.vue'
 import Blog from '../views/blog/Blog.vue'
 import AboutUs from '../views/aboutus/AboutUs.vue'
 const routes = [{
@@ -69,9 +69,9 @@ const routes = [{
                 component: Process
             },
             {
-                path: '/process/two',
-                name: 'Processing2',
-                component: ProcessTwo
+                path: '/checkout',
+                name: 'app.chckout',
+                component: Checkout
             },
 
 

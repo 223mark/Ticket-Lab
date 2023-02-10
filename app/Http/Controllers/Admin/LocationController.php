@@ -40,7 +40,7 @@ class LocationController extends Controller
             $query->where('location', 'like', '%' . request('searchText') . '%');
         })
             ->paginate('6');
-        $filterData->appends($request->all());
+        // $filterData->appends($request->all());
         Session::put('searchText', $request->searchText);
         return view('locations.index')->with([
             'locations' => $filterData,

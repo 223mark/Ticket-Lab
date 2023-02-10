@@ -7,10 +7,10 @@
                 <x-search-input></x-search-input>
             </form>
         </div>
-
+        {{-- route add --}}
         @include('partials._form_bus_routes')
 
-
+        {{-- route table --}}
         <x-table-bus-routes :busRoutes=$busRoutes />
 
     </div>

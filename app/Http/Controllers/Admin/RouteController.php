@@ -24,11 +24,23 @@ class RouteController extends Controller
 
     public function store(Request $request)
     {
-        $this->validationCheck($request);
-        $data = $this->requestedData($request);
 
-        Routes::create($data);
-        return redirect()->route('busRoutes#index');
+        if ($request->toWhere != $request->fromWhere) {
+
+            $this->validationCheck($request);
+            $data = $this->requestedData($request);
+            Routes::create($data);
+
+            //reverse
+            if ($request->has('reverse')) {
+                $reverseData = $this->createReverseRoute($request);
+                Routes::create($reverseData);
+            }
+
+            return redirect()->route('busRoutes#index');
+        } else {
+            return redirect()->route('busRoutes#index')->with('message', 'From Where and To Where must not be same');
+        }
     }
 
     public function edit(Routes $route)
@@ -41,18 +53,18 @@ class RouteController extends Controller
 
     public function update(Request $request, Routes $route)
     {
-
+        $this->validationCheck($request);
         $data = $this->requestedData($request);
 
         $route->update($data);
 
-        return back();
+        return redirect()->route('busRoutes#index');
     }
 
     public function destory(Routes $route)
     {
         $route->delete();
-        return back();
+        return redirect()->route('busRoutes#index');
     }
 
     public function filter(Request $request)
@@ -75,9 +87,9 @@ class RouteController extends Controller
         $request->validate([
             'toWhere' => 'required',
             'fromWhere' => 'required',
-            'price' => 'required',
             'departureTime' => 'required',
-            'class' => 'required'
+            'arriveTime' => 'required',
+            'class' => 'required',
         ]);
     }
     private function requestedData($request)
@@ -86,12 +98,22 @@ class RouteController extends Controller
         return ([
             'to_where' => $request->toWhere,
             'from_where' => $request->fromWhere,
-            //'operator_id' => $request->operatorId,
-            'price' => $request->price . 'Ks',
             'departure_time' => $request->departureTime,
             'arrive_time' => $request->arriveTime,
             'class' => $request->class,
 
         ]);
+    }
+
+    //create reverse route
+    private function createReverseRoute($request)
+    {
+        return  [
+            'from_where' => $request->toWhere,
+            'to_where' => $request->fromWhere,
+            'departure_time' => $request->departureTime,
+            'arrive_time' => $request->arriveTime,
+            'class' => $request->class,
+        ];
     }
 }

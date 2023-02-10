@@ -14,7 +14,11 @@
 </head>
 
 <body>
-    <div class="min-h-screen flex flex-col items-center justify-center bg-gray-100">
+    <div class="min-h-screen flex pt-5 flex-col items-center justify-center bg-gray-100">
+        <div class="flex justify-center items-center -m-4 z-10  ">
+            <img src="{{ asset('img/codelab.png') }}" alt="logo"
+                class=" h-28 w-28 border-1 border-gray-500 rounded-full shadow-lg ">
+        </div>
         <div
             class="
           flex flex-col
@@ -29,10 +33,11 @@
           w-50
           max-w-md
         ">
-            <div class="font-medium self-center text-xl sm:text-3xl text-indigo-800">
+
+            <div class="font-medium self-center text-xl sm:text-3xl text-green-500">
                 {{ $formTitle }}
             </div>
-            <div class="mt-4 self-center text-xl text-sm text-gray-800 md:text-lg">
+            <div class="mt-4 self-center text-xl text-sm text-indigo-400 md:text-lg">
                 Enter your credentials to get access account
             </div>
 

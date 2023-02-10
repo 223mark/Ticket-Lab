@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\BusController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\OperatorController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\RouteController;
 use App\Http\Controllers\Admin\TicketController;
@@ -33,9 +34,24 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
+    //authorization
+    Route::group(['prefix' => 'auth'], function () {
+        Route::get('register', [AuthController::class, 'registerPage'])->name('auth#register');
+        Route::get('login', [AuthController::class, 'loginPage'])->name('auth#login');
+        Route::get('password/reset/page', [AuthController::class, 'passwordResetPage'])->name('auth#passwordResetPage');
+    });
+
+    //order 
+    Route::group(['prefix' => 'order'], function () {
+        Route::get('/index', [OrderController::class, 'index'])->name('orders#index');
+    });
+
+    //dashboard
     Route::group(['prefix' => 'dashboard'], function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard#index');
     });
+
+    //operators
     Route::group(['prefix' => 'operators'], function () {
         Route::get('/index', [OperatorController::class, 'index'])->name('operators#index');
         Route::post('/store', [OperatorController::class, 'store'])->name('operators#store');
@@ -50,9 +66,6 @@ Route::middleware([
         Route::get('/filter', [AjaxController::class, 'operatorFilterbySearch']);
     });
 
-
-
-
     // //tickets
     Route::group(['prefix' => 'tickets'], function () {
         Route::get('/index', [TicketController::class, 'index'])->name('tickets#index');
@@ -65,18 +78,13 @@ Route::middleware([
     Route::group(['prefix' => 'routes'], function () {
         Route::get('/index', [RouteController::class, 'index'])->name('busRoutes#index');
         Route::post('/store', [RouteController::class, 'store'])->name('busRoutes#store');
-        Route::get('/edit/{route}', [RouteController::class, 'edit'])->name('busRoute#edit');
+        Route::get('/edit/{route}', [RouteController::class, 'edit'])->name('busRoutes#edit');
         Route::post('/update/{route}', [RouteController::class, 'update'])->name('busRoutes#update');
         Route::get('/destory/{route}', [RouteController::class, 'destory'])->name('busRoutes#destory');
 
         Route::get('/filter', [RouteController::class, 'filter'])->name('busRoutes#filter');
     });
 
-    Route::group(['prefix' => 'auth'], function () {
-        Route::get('register', [AuthController::class, 'registerPage'])->name('auth#register');
-        Route::get('login', [AuthController::class, 'loginPage'])->name('auth#login');
-        Route::get('password/reset/page', [AuthController::class, 'passwordResetPage'])->name('auth#passwordResetPage');
-    });
 
     Route::group(['prefix' => 'profile'], function () {
         Route::get('/', [ProfileController::class, 'profile'])->name('profile#index');
@@ -90,7 +98,7 @@ Route::middleware([
         Route::post('/store', [LocationController::class, 'store'])->name('locations#store');
         Route::post('/destory/{location}', [LocationController::class, 'destory'])->name('locations#destory');
         //filter
-        Route::post('filter', [LocationController::class, 'filter'])->name('locations#filter');
+        Route::post('/index', [LocationController::class, 'filter'])->name('locations#filter');
     });
 
 

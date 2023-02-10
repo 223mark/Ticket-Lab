@@ -12,7 +12,7 @@
         </div>
         <div class="w-full md:w-2/5 ">
             <x-input-label labelName="Phone" />
-            <x-input-tag type="number" name="phone" value="{{ $data->phone }}" />
+            <x-input-tag type="number" name="phone" value="{{ $data->phone }}" placeholder="Enter Phone Number" />
 
         </div>
         <div class="w-full md:w-2/5 ">

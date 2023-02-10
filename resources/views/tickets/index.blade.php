@@ -1,4 +1,5 @@
 <x-main-layout title="Tickets">
+    <x-toast-message>Added Success fully</x-toast-message>
     <div class="mx-2 mt-10 md:mt-10 md:mx-4 ">
         <div class="flex justify-between pb-2">
 
@@ -14,21 +15,13 @@
 
 
         <table class="w-full  border-collapse bg-white text-left text-sm text-gray-500 border shadow-lg ">
-            <thead class="bg-gray-50">
-                <tr>
-                    <th scope="col" class="px-6 py-4 font-medium text-gray-900">TicketCode </th>
-                    <th scope="col" class="px-6 py-4 font-medium text-gray-900"> Related Operator </th>
-                    <th scope="col" class="px-6 py-4 font-medium text-gray-900"> Route </th>
-                    <th scope="col" class="px-6 py-4 font-medium text-gray-900"> Date </th>
-                    <th scope="col" class="px-6 py-4 font-medium text-gray-900">Tickets</th>
-                    <th scope="col" class="px-6 py-4 font-medium text-gray-900"></th>
-                </tr>
-            </thead>
+            {{-- table header --}}
+
+            <x-table-header>ticket</x-table-header>
+
             <tbody class="divide-y divide-gray-100 border-t border-gray-100" id="dataList">
-                @if (count($ticketCode) == 0)
-                    <x-no-data-status item="ticket codes" />
-                @endif
-                @foreach ($ticketCode as $data)
+
+                @forelse ($ticketCode as $data)
                     <tr class="hover:bg-gray-200">
 
                         <td class="px-6 py-4 text-red-500 font-bold">{{ $data->ticket_code }}</td>
@@ -51,7 +44,12 @@
 
                         </td>
                         <td class="px-6 py-4">
-                            <span class="text-green-500  font-semibold text-md">{{ $data->date }}
+                            {{-- <span
+                                class="text-green-500  font-semibold text-md">{{ $data->departure_date->format('D-M-Y') }}
+
+                            </span> --}}
+                            <span class="text-green-500  font-semibold text-md">{{ $data->departure_date }}
+
                             </span>
 
                         </td>
@@ -75,7 +73,10 @@
 
 
                     </tr>
-                @endforeach
+                @empty
+                    <x-no-data-status item="ticket codes" />
+
+                @endif
 
 
             </tbody>
@@ -86,6 +87,7 @@
         </div>
 
     </div>
+
 
 
 
@@ -142,14 +144,14 @@
 
                         </td>
                         <td class="px-6 py-4">
-                            <a href="{{ route('tickets#show', $data->ticket_code) }}">
+                            <a href="#">
                                 <span class="text-blue-500 underline font-bold text-md">See Tickets</span>
                             </a>
 
                         </td>
                         <td class="px-6 py-4">
                             <div class="flex justify-end gap-4">
-                                <a x-data="{ tooltip: 'Delete' }" href="{{ route('operators#destory', $data->id) }}">
+                                <a x-data="{ tooltip: 'Delete' }" href="#">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" class="h-6 w-6" x-tooltip="tooltip">
                                         <path stroke-linecap="round" stroke-linejoin="round"

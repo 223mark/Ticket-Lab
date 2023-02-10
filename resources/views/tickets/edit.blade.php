@@ -9,24 +9,7 @@
                 method="POST">
                 @csrf
                 <div class=" flex flex-wrap justify-between gap-2 ">
-                    {{-- <div class="w-full md:w-2/5 ">
-                        <x-input-label labelName="From Where" />
-                        <x-select-tag :data=$locations filterText="location" :fromWhere="$data->from_where" name="fromWhere" />
 
-                    </div>
-                    <div class="w-full md:w-2/5 ">
-                        <x-input-label labelName="To Where" />
-                        <x-select-tag :data=$locations filterText="location" name="toWhere" />
-
-
-
-                    </div>
-                    <div class=" w-full md:w-2/5 ">
-                        <x-input-label labelName="Price" />
-                        <x-input-tag type="number" name="price" value="{{ $data->price }}" />
-
-
-                    </div> --}}
                     <div class="w-full md:w-2/5 ">
 
                         <x-input-label labelName="Date" />

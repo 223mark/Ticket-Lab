@@ -19,8 +19,9 @@ return new class extends Migration
             $table->foreignId('route_id');
             $table->foreignId('operator_id');
             $table->string('status')->nullable();
+            $table->string('price');
             $table->string('seat_number')->nullable();
-            $table->dateTime('date');
+            $table->timestamp('departure_date');
             $table->timestamps();
         });
     }

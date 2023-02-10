@@ -16,9 +16,11 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable();
-            $table->integer('userinfo_id')->nullable();
             $table->integer('ticket_id');
             $table->string('cancel_status')->nullable();
+            $table->string('customer_name')->nullable();
+            $table->string('customer_nrc_number')->nullable();
+            $table->string('payment_method')->nullable();
             $table->timestamps();
         });
     }

@@ -16,28 +16,13 @@
                  <x-jet-input-error for="toWhere" />
 
              </div>
+             @if (Session::has('message'))
+                 <div class="w-full text-center ">
+                     <p class="text-red-500 font-medium py-2 text-xs">{{ Session::get('message') }}</p>
 
-             <div class="w-full md:w-2/5 ">
-                 <x-input-label labelName="Class Of Ticket" />
-                 <select name="class" id=""
-                     class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:border focus:border-indigo-700">
-                     <option value="">Choose Ticket Class</option>
-                     <option value="normal">Normal Ticket</option>
-                     <option value="vip">VIP Ticket</option>
-                     <option value="vvip">VVIP Ticket</option>
-                 </select>
-                 <x-jet-input-error for="class" />
+                 </div>
+             @endif
 
-             </div>
-
-             <div class=" w-full md:w-2/5 ">
-                 <x-input-label labelName="Price" />
-
-                 <x-input-tag type="number" name="price" value="{{ old('price') }}" placeholder="Enter Price" />
-                 <x-jet-input-error for="price" />
-
-
-             </div>
              <div class=" w-full md:w-2/5 ">
                  <x-input-label labelName="Departure Time" />
 
@@ -52,15 +37,30 @@
 
                  <x-input-tag type="text" name="arriveTime" value="{{ old('arriveTime') }}"
                      placeholder="Enter Arrival Time" />
+                 <x-jet-input-error for="arriveTime" />
 
-
+             </div>
+             <div class="w-full  ">
+                 <x-input-label labelName="Class Of Ticket" />
+                 <select name="class" id=""
+                     class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:border focus:border-indigo-700">
+                     <option value="">Choose Ticket Class</option>
+                     <option value="normal">Normal Ticket</option>
+                     <option value="vip">VIP Ticket</option>
+                     <option value="vvip">VVIP Ticket</option>
+                 </select>
+                 <x-jet-input-error for="class" />
 
              </div>
 
-
-
              <div class="flex items-center justify-start w-full mt-2">
-                 <x-button name="Add" type="submit" class="w-full" />
+                 <div class="w-1/3 flex flex-row items-center">
+                     <label for="revers" class="text-green-400 font-medium text-sm">Reverse Route</label>
+                     <input type="checkbox" name="reverse" class="ml-4" id="reverse">
+                 </div>
+                 <div class="w-2/3 ">
+                     <x-button name="Add" type="submit" class="w-full" />
+                 </div>
 
 
              </div>

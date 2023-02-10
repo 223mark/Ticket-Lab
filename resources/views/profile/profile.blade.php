@@ -1,6 +1,6 @@
 <x-main-layout title="Admin/Profile">
     <div class="flex items-center shadow-md mt-5 md:mt-10 bg-gray-100 flex-col md:flex-row ">
-        <div class="w-full md:w-1/3">
+        <div class="w-full ml-4 md:w-1/3">
             <img class="w-full" src="{{ $data->img ? asset('img/adminImage/' . $data->img) : asset('img/codelab.png') }}"
                 alt="operator image" />
 

@@ -5,15 +5,18 @@
         <div class=" flex flex-wrap justify-between gap-2 ">
 
             <div class="w-full md:w-2/5 ">
-                <x-input-label labelName="Total Ticket" />
 
+                <x-input-label labelName="Total Ticket" />
                 <select name="totalTicket" id=""
                     class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:border focus:border-indigo-700">
                     <option value="">Choose Amount</option>
                     <option value="24">24 / TwentyFour</option>
                     <option value="30">30 / TwentyFour</option>
                 </select>
+                <x-jet-input-error for="totalTicket" />
+
             </div>
+
             <div class="w-full md:w-2/5 hidden ">
                 <x-input-label labelName="Route Id" />
                 <x-input-tag name="routeId" value="{{ $routeId }}" />
@@ -22,15 +25,25 @@
             <div class="w-full md:w-2/5 ">
 
                 <x-input-label labelName="Related Operator" />
-
                 <x-select-tag :data=$operators filterText="operator" />
+                <x-jet-input-error for="operatorId" />
+
 
             </div>
 
-            <div class="w-full ">
-                <x-input-label labelName="Pick Date" />
+            <div class=" w-full md:w-2/5 ">
 
+                <x-input-label labelName="Price" />
+                <x-input-tag type="text" name="price" value="{{ old('price') }}" placeholder="Enter Price" />
+                <x-jet-input-error for="price" />
+
+            </div>
+
+            <div class="w-full md:w-2/5 ">
+
+                <x-input-label labelName="Pick Date" />
                 <x-input-tag type="date" name="date" value="{{ old('date') }}" />
+                <x-jet-input-error for="date" />
 
             </div>
 
