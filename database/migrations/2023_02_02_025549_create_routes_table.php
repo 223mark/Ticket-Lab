@@ -22,7 +22,7 @@ return new class extends Migration
             //$table->string('price');
             $table->string('class');
             $table->string('departure_time');
-            $table->string('arrive_time')->nullable();
+            $table->string('arrive_time');
             $table->timestamps();
         });
     }

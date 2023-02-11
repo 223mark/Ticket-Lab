@@ -6,14 +6,6 @@ import Register from '../views/auth/Register.vue'
 import Login from '../views/auth/Login.vue'
 
 
-// //admin
-// import Admin from '../components/MasterLayout/AdminMaster.vue'
-// import Dashboard from '../views/admin/Dashboard.vue'
-// import Tickets from '../views/admin/Tickets.vue'
-// import AdminOperators from '../views/admin/Operators.vue'
-// import Trip from '../views/admin/Trip.vue'
-
-
 
 //frontend
 import AppMaster from '../components/AppMaster.vue'
@@ -29,14 +21,38 @@ const routes = [{
         path: '/',
         name: 'app',
         component: AppMaster,
-        meta: {
-            requiresAuth: true
-        },
         children: [{
-                path: '/',
+                path: '/home',
                 name: 'app.home',
-                component: HomePage
+                component: HomePage,
+                // BeforeEach: ((to, from, next) => {
+                //     console.log(from);
+                //     console.log(to);
+                //     if (from.name == 'app.home') {
+                //         next({ name: 'Ticket' })
+                //     } else {
+                //         next({ name: 'app.home' })
+                //     }
+
+                // })
+
             },
+            {
+                path: '/tickets/:f/:t/:d',
+                name: 'app.tickets',
+                component: Ticket
+            },
+            {
+                path: '/seats/:ticketCode',
+                name: 'app.seats',
+                component: Process
+            },
+            {
+                path: '/checkout/:ticketId',
+                name: 'app.checkout',
+                component: Checkout
+            },
+
 
             {
                 path: '/operators',
@@ -57,21 +73,6 @@ const routes = [{
                 path: '/about-us',
                 name: 'app.about-us',
                 component: AboutUs
-            },
-            {
-                path: '/tickets/search',
-                name: 'Ticket',
-                component: Ticket
-            },
-            {
-                path: '/process',
-                name: 'Processing',
-                component: Process
-            },
-            {
-                path: '/checkout',
-                name: 'app.chckout',
-                component: Checkout
             },
 
 
@@ -99,14 +100,30 @@ const routes = [{
             // }
         ]
     },
+    {
+        path: '/:pathMatch(.*)',
+        name: 'notfound',
+        component: HomePage,
+    }
 
 
 
 ];
 
+
 const router = createRouter({
     history: createWebHistory(),
     routes
 });
+
+// router.beforeEach((to, from, next) => {
+//     if (to.name == 'app.home') {
+//         next({ name: 'Ticket' })
+//     } else {
+//         next({ name: 'app.home' })
+//     }
+
+// });
+
 
 export default router;

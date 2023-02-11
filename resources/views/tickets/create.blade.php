@@ -39,13 +39,13 @@
 
             </div>
 
-            <div class="w-full md:w-2/5 ">
+            {{-- <div class="w-full md:w-2/5 ">
 
                 <x-input-label labelName="Pick Date" />
                 <x-input-tag type="date" name="date" value="{{ old('date') }}" />
                 <x-jet-input-error for="date" />
 
-            </div>
+            </div> --}}
 
             <div class="flex items-center justify-start w-full">
                 <button

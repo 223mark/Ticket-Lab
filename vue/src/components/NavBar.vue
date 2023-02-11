@@ -22,8 +22,9 @@
             </div>
             <div class="">
                 <!-- button -->
-                <a href="#"
-                    class="hidden md:block  px-6 py-1 border border-gray-700 text-black font-sm  rounded-lg hover:bg-green-500 hover:text-white hover:border-green-500 focus:outline-none">Login</a>
+                <router-link to="/login"
+                    class="hidden md:block  px-6 py-1 border border-gray-700 text-black font-sm  rounded-lg hover:bg-green-500 hover:text-white hover:border-green-500 focus:outline-none">Login
+                </router-link>
             </div>
             <!-- hambuger icon -->
             <button id="btn-menu" class=" block hamburger md:hidden focus:outline-none">

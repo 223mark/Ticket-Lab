@@ -41,6 +41,7 @@
                 
            </div>
             <div class="w-5/6 ">
+                <div class=""></div>
                 <Ticket class="mx-4"></Ticket>
             </div>
         </section>
@@ -60,7 +61,7 @@ import TicketSearch from '../../components/Ticket-Search-Card.vue'
 <style scoped>
 #trip-section {
     height: 50vh;
-    background-image: url('../../public/img/banner/innlaybanner.jpg');
+    background-image: url('../../../public/img/banner/innlaybanner.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top 45% right 0;

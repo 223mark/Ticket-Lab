@@ -3,45 +3,50 @@
         <div class="w-full md:w-2/3 px-4 py-6 mb-4 bg-white shadow-lg rounded">
             <div class="mb-2">
                 <a href="#">
-                    <span class="text-indigo-300 font-light hover:text-indigo-600 hover:font-semibold transition-color">Back</span>
+                    <span class="text-indigo-600  font-semibold transition-color hover:text-indigo-500">Back</span>
                 </a>
             </div>
             <h2 class="text-xl font-semibold mb-4 ">Customer Information</h2>
             <div class="space-y-2 mb-4">
                 <label for="name" class="text-md text-green-500 font-medium ">Name</label>
-                <input type="text"  id="name" class="w-full px-4 py-2 rounded focus:border-indigo-700 placeholder-gray-600 border-2 rounded border-gray-500 font-semibold" placeholder="Please Enter Your Name">
+                <input type="text" v-model="customerName"  id="name" class="w-full px-4 py-2 rounded focus:border-indigo-700 placeholder-gray-600 border-2 rounded border-gray-500 font-semibold" placeholder="Please Enter Your Name">
             </div>         
             <div class=" space-y-4 mb-4">
                 <label for="name" class="text-md text-green-500 font-medium ">NRC Number</label>
                 <div class="flex flex-col space-y-2 md:space-y-0 md:flex-row md:gap-2">
                     <div class=" md:w-1/4">
-                        <select name="nrcTNo" id="" class="w-full px-4 py-2 border-2 rounded border-gray-500">
-                            <option :value="n" v-for="(n,index) in nrc.nrcNo" :key="index" >{{ n }}</option>
+                        <select  id="" v-model="nrcType" class="w-full px-4 py-2 border-2 rounded border-gray-500">
+                            <option :value="n" v-for="(n,index) in nrc.nrcType" :key="index" >{{ n }}</option>
                         </select>
                     </div>
                     <div class=" md:w-1/4">
-                        <select name="payment" id="payment" class="w-full px-4  py-2 border-2 rounded border-gray-500">
-                            <option :value="n" v-for="(n,index) in nrc.nrctype" :key="index">{{ n }}</option>
+                        <select name="payment" v-model="nrcTownship" id="payment" class="w-full px-4  py-2 border-2 rounded border-gray-500">
+                            <option :value="n" v-for="(n,index) in nrc.nrcTownship" :key="index">{{ n }}</option>
                         </select>
                     </div>
                     <div class=" md:w-1/4">
-                        <select name="nrcCtz" class=" px-4 py-2 w-full border-2 rounded border-gray-500">
+                        <select name="nrcCtz" v-model="nrcCtz" class=" px-4 py-2 w-full border-2 rounded border-gray-500">
                             <option value="(Naing)">Naing</option>
                             <option value="(Eait)">Eait</option>
                         </select>
                     </div>
                     <div class=" md:w-1/4">
-                        <input type="number" name="nrcNo" id="" class="px-4 py-2 w-full border-2 rounded border-gray-500" placeholder="******">
+                        <input type="number" name="nrcNo" v-model="nrcNo" id="" class="px-4 py-2 w-full border-2 rounded border-gray-500" placeholder="******">
                     </div>
                 </div>
             
             </div>
             <div class="space-y-4">
                 <label for="payment" class="text-md text-green-500 font-medium ">Please Choose Payment</label>
-                <select name="payment" id="payment" class="w-full px-4  py-2 border-2 rounded border-gray-500">
+                <select name="payment" v-model="paymentMethod" id="payment" class="w-full px-4  py-2 border-2 rounded border-gray-500">
                     <option :value="p" v-for="(p,index) in payment" :key="index">{{ p }}</option>
                 </select>
               
+            </div>
+            <div class="mt-8">
+               
+                    <button class="px-8 py-1 text-white font-medium bg-green-500" @click="addOrder">Order</button>
+                
             </div>
             
         </div>
@@ -52,10 +57,28 @@
 </template>
 <script setup>
 import BookingSummary from '../../components/BookingSummary.vue'
+import { computed, ref } from 'vue';
 const nrc = {
-    nrctype: ['KhaPhaNa', 'KaTaNa', 'KaMaYwut'],
-    nrcNo: ['1/', '2/', '3/', '4/', '5/', '6/', '7/', '8/', '9/', '10/', '11/', '12/', '13/', '14/']
-    
+    nrcTownship: ['KhaPhaNa', 'KaTaNa', 'KaMaYwut'],
+    nrcType: ['1/', '2/', '3/', '4/', '5/', '6/', '7/', '8/', '9/', '10/', '11/', '12/', '13/', '14/'],
 }
-const payment = ['Kpay','CBPay','WavePay','KBZ Banking','CB Banking'];
+const payment = ['Kpay', 'CBPay', 'WavePay', 'KBZ Banking', 'CB Banking'];
+
+const nrcType = ref(null);
+const nrcTownship = ref(null);
+const nrcCtz = ref(null);
+const nrcNo = ref(null);
+const customerName = ref(null);
+const paymentMethod = ref(null);
+const ticketId = ref(null);
+
+const customerNrc = computed(() => {
+    return nrcType.value + nrcTownship.value + nrcCtz.value + nrcNo.value;
+
+});
+
+const addOrder = () => {
+    console.log(customerName.value, customerNrc, paymentMethod.value);
+}
+
 </script>

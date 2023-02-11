@@ -20,7 +20,6 @@ class TicketController extends Controller
             'routes.*',
             'bus_tickets.id as busticketId',
             'bus_tickets.ticket_code as ticket_code',
-            'bus_tickets.departure_date  as departure_date',
             'operators.id as operatorId',
             'operators.operator_name as operatorName',
             'operators.email as email',
@@ -91,7 +90,7 @@ class TicketController extends Controller
         $request->validate([
             'totalTicket' => 'required',
             'operatorId' => 'required',
-            'date' => 'required',
+            //  'date' => 'required',
             'price' => 'required'
 
         ]);
@@ -99,12 +98,11 @@ class TicketController extends Controller
 
     private function requestData($request)
     {
-        // $date = Carbon::createFromformat('Y-m-d', $request->date)->format('d/m/Y');
-        // dd($date);
+
 
         return ([
 
-            'departure_date' => $request->date,
+            //  'departure_date' => $request->date,
             'route_id' => $request->routeId,
             'operator_id' => $request->operatorId,
             'price' => $request->price . 'Ks'

@@ -63,12 +63,20 @@
     
         </div>
         <div class="mt-5 flex justify-center items-center">
-            <button class="bg-green-500 text-white px-8 py-2 rounded-lg hover:bg-green-400 ">Order</button>
+            <button class="bg-green-500 text-white px-8 py-2 rounded-lg hover:bg-green-400 ">Procced to Checkout</button>
         </div>
     
     </div>
     
 
 </template>
-<script>
+<script setup>
+import { computed, onMounted } from "@vue/runtime-core"
+
+
+// const { tickets } = defineProps({
+//     tickets: Object,
+// })
+
+  
 </script>

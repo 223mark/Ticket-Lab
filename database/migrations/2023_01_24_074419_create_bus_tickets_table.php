@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('status')->nullable();
             $table->string('price');
             $table->string('seat_number')->nullable();
-            $table->timestamp('departure_date');
+            // $table->timestamp('departure_date');
             $table->timestamps();
         });
     }

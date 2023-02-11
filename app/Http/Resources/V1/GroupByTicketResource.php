@@ -19,7 +19,7 @@ class GroupByTicketResource extends JsonResource
             'ticketCode' => $this->ticket_code,
             'fromWhere' => $this->from_where,
             'toWhere' => $this->to_where,
-            'date' => $this->date,
+            // 'date' => $this->date,
             'departureTime' => $this->departure_time,
             'arriveTime' => $this->arrive_time,
             'price' => $this->price,

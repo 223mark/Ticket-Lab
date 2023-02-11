@@ -1,6 +1,9 @@
 <template>
     <!-- component -->
-    <div class="p-6 mt-12  w-screen">
+    <div class="p-6 mt-12  w-screen space-y-8">
+        <a href="#" class="mt-4" >
+            <h4 class="text-indigo-500 font-semibold text-lg">Back</h4>
+        </a>
         <div class="flex  bg-white shadow-lg rounded-lg overflow-hidden">
            <div class="w-1/3">
             <img class=" bg-cover" :src="operator.img">

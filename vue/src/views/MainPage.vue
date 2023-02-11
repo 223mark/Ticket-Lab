@@ -57,6 +57,7 @@ import Feacture from './Feactures.vue'
 import TicketSearchCard from '../components/Ticket-Search-Card.vue'
 
 
+
 </script>
 
 <style scoped>

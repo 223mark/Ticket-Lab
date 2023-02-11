@@ -43,16 +43,7 @@
                                 {{ $data->to_where }}</span>
 
                         </td>
-                        <td class="px-6 py-4">
-                            {{-- <span
-                                class="text-green-500  font-semibold text-md">{{ $data->departure_date->format('D-M-Y') }}
 
-                            </span> --}}
-                            <span class="text-green-500  font-semibold text-md">{{ $data->departure_date }}
-
-                            </span>
-
-                        </td>
                         <td class="px-6 py-4">
                             <a href="{{ route('tickets#show', $data->ticket_code) }}">
                                 <span class="text-blue-500 underline font-bold text-md">See Tickets</span>
