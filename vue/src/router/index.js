@@ -18,11 +18,11 @@ import Checkout from '../views/order/OrderCheckout.vue'
 import Blog from '../views/blog/Blog.vue'
 import AboutUs from '../views/aboutus/AboutUs.vue'
 const routes = [{
-        path: '/',
+        path: '/home',
         name: 'app',
         component: AppMaster,
         children: [{
-                path: '/home',
+                path: '/',
                 name: 'app.home',
                 component: HomePage,
                 // BeforeEach: ((to, from, next) => {
@@ -74,6 +74,10 @@ const routes = [{
                 name: 'app.about-us',
                 component: AboutUs
             },
+            {
+                path: '/:pathMatch(.*)',
+                component: HomePage,
+            }
 
 
         ]
@@ -100,11 +104,7 @@ const routes = [{
             // }
         ]
     },
-    {
-        path: '/:pathMatch(.*)',
-        name: 'notfound',
-        component: HomePage,
-    }
+
 
 
 

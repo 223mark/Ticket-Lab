@@ -24,14 +24,3 @@
         @endforeach
     </select>
 @endif
-
-{{-- @if ($filterText == 'route')
-    <select {{ $attributes->merge(['class' => $class, 'name' => 'routeId']) }}>
-        <option value="">Choose Routes</option>
-        <option value="{{ $data->id }}" selected>{{ $data->from_where }}</option>
-
-        @foreach ($data as $r)
-            <option value="{{ $r->id }}">{{ $r->from_where }}</option>
-        @endforeach
-    </select>
-@endif --}}

@@ -16,7 +16,7 @@
                  <x-jet-input-error for="toWhere" />
 
              </div>
-             @if (Session::has('message'))
+             @if (Session::has('unvaild'))
                  <div class="w-full text-center ">
                      <p class="text-red-500 font-medium py-2 text-xs">{{ Session::get('message') }}</p>
 

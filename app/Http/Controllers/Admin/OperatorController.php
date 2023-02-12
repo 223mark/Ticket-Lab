@@ -17,7 +17,8 @@ class OperatorController extends Controller
     public function index()
     {
         return view('operators.index', [
-            'operators' => Operator::latest()->paginate('5'),
+            'operators' => Operator::latest()->filter(request(['searchText']))->paginate('5'),
+            'searchText' => request('searchText')
         ]);
     }
 
@@ -31,12 +32,12 @@ class OperatorController extends Controller
 
             $data = $this->requestDataWithImage($request);
             Operator::create($data);
-            return redirect()->route('operators#index');
+            return redirect()->route('operators#index')->with('addMessage', 'Operator Added Successfully');
         }
 
         $data = $this->requestDataWithoutImage($request);
         Operator::create($data);
-        return redirect()->route('operators#index');
+        return redirect()->route('operators#index')->with('addMessage', 'Operator Added Successfully');
     }
 
     public function edit(Operator $operator)
@@ -56,11 +57,11 @@ class OperatorController extends Controller
 
             $updateData = $this->requestDataWithImage($request);
             $operator->update($updateData);
-            return redirect()->route('operators#index');
+            return redirect()->route('operators#index')->with('updateMessage', 'Operator Updated Successfully');
         }
         $updateData = $this->requestDataWithoutImage($request);
         $operator->update($updateData);
-        return redirect()->route('operators#index');
+        return redirect()->route('operators#index')->with('updateMessage', 'Operator Updated Successfully');
     }
 
     public function destory(Operator $operator)
@@ -71,18 +72,16 @@ class OperatorController extends Controller
 
             File::delete(public_path() . '/img/OperatorImage/' . $dbImg);
             $operator->delete();
-            return redirect()->route('operators#index', [
-                'success' => 'deleted successfully'
-            ]);
+            return redirect()->route('operators#index')->with('deleteMessage', 'Operators Deleted Successfully');
         }
 
         $operator->delete();
-        return redirect()->route('operators#index', [
-            'success' => 'deleted successfully'
-        ]);
+        return redirect()->route('operators#index')->with('deleteMessage', 'Operators Deleted Successfully');
     }
 
-    //about ticket
+
+
+    //related ticket
     public function ticketCode($id)
     {
 

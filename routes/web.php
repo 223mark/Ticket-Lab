@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Admin\AjaxController;
 use App\Http\Controllers\Admin\AuthController;
-use App\Http\Controllers\Admin\BusController;
+use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\OperatorController;
@@ -73,7 +73,7 @@ Route::middleware([
         Route::get('/create/{id}', [TicketController::class, 'create'])->name('tickets#create');
         Route::post('/store', [TicketController::class, 'store'])->name('tickets#store');
         Route::get('/edit/{ticket}', [TicketController::class, 'edit'])->name('tickets#edit');
-        Route::get('/destory/{ticket}', [TicketController::class, 'destory'])->name('tickets#destory');
+        Route::get('/destory/{ticketCode}', [TicketController::class, 'destory'])->name('tickets#destory');
     });
     Route::group(['prefix' => 'routes'], function () {
         Route::get('/index', [RouteController::class, 'index'])->name('busRoutes#index');
@@ -81,8 +81,8 @@ Route::middleware([
         Route::get('/edit/{route}', [RouteController::class, 'edit'])->name('busRoutes#edit');
         Route::post('/update/{route}', [RouteController::class, 'update'])->name('busRoutes#update');
         Route::get('/destory/{route}', [RouteController::class, 'destory'])->name('busRoutes#destory');
-
-        Route::get('/filter', [RouteController::class, 'filter'])->name('busRoutes#filter');
+        //filter
+        // Route::get('/index', [RouteController::class, 'filter'])->name('busRoutes#filter');
     });
 
 
@@ -96,13 +96,18 @@ Route::middleware([
     Route::group(['prefix' => 'locations'], function () {
         Route::get('/index', [LocationController::class, 'index'])->name('locations#index');
         Route::post('/store', [LocationController::class, 'store'])->name('locations#store');
-        Route::post('/destory/{location}', [LocationController::class, 'destory'])->name('locations#destory');
+        Route::get('/destory/{location}', [LocationController::class, 'destory'])->name('locations#destory');
         //filter
-        Route::post('/index', [LocationController::class, 'filter'])->name('locations#filter');
+        //Route::post('/index', [LocationController::class, 'filter'])->name('locations#filter');
     });
 
 
     Route::group(['prefix' => 'ajax'], function () {
         Route::get('operators/filter', [AjaxController::class, 'operatorFilterbySelect']);
+    });
+
+    //customer
+    Route::group(['prefix' => 'customers'], function () {
+        Route::get('/index', [CustomerController::class, 'index'])->name('customers#index');
     });
 });

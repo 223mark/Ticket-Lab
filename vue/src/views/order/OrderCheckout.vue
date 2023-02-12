@@ -77,6 +77,7 @@ const customerNrc = computed(() => {
 
 });
 
+
 const addOrder = () => {
     console.log(customerName.value, customerNrc, paymentMethod.value);
 }

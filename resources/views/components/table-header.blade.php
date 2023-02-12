@@ -4,6 +4,8 @@
     $locationTableHeader = ['location'];
     $operatorTableHeader = ['Operator', 'TicketCodes', 'Phone1', 'Phone2', 'Description', ''];
     $routeTableHeader = ['From', 'To', 'Class', 'Departure Time', 'Arrive Time', 'Export Tickets', ''];
+    $orderTableHeader = ['Ticket Id', 'Customer Name', 'Customer NRC', 'Payment Method', 'Departuare Date', ''];
+    $customerTableHeader = ['Customer', 'NRC Number', 'Email', 'Phone'];
     
 @endphp
 
@@ -57,6 +59,28 @@
         <thead class="bg-gray-50">
             <tr>
                 @foreach ($routeTableHeader as $d)
+                    <th scope="col" class="px-6 py-4 font-medium text-gray-900">{{ $d }} </th>
+                @endforeach
+
+            </tr>
+        </thead>
+    @break
+
+    @case('customer')
+        <thead class="bg-gray-50">
+            <tr>
+                @foreach ($customerTableHeader as $d)
+                    <th scope="col" class="px-6 py-4 font-medium text-gray-900">{{ $d }} </th>
+                @endforeach
+
+            </tr>
+        </thead>
+    @break
+
+    @case('order')
+        <thead class="bg-gray-50">
+            <tr>
+                @foreach ($orderTableHeader as $d)
                     <th scope="col" class="px-6 py-4 font-medium text-gray-900">{{ $d }} </th>
                 @endforeach
 

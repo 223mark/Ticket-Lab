@@ -13,8 +13,10 @@ class LocationController extends Controller
     public function index()
     {
 
+
         return view('locations.index', [
-            'locations' => Location::latest()->paginate('6'),
+            'locations' => Location::latest()->filter(request(['searchText']))->paginate('6'),
+            'searchText' => request('searchText')
         ]);
     }
 
@@ -24,28 +26,15 @@ class LocationController extends Controller
         $this->validationCheck($request);
         $data = $this->requestData($request);
         Location::create($data);
-        return redirect()->route('locations#index');
+        return redirect()->route('locations#index')->with('addMessage', 'Location Added Successfully.');
     }
 
     public function destory(Location $location)
     {
         $location->delete();
-        return back();
+        return redirect()->route('locations#index')->with('deleteMessage', 'Location Deleted Successfully.');
     }
 
-    public function filter(Request $request)
-    {
-
-        $filterData = Location::when(request('searchText'), function ($query) {
-            $query->where('location', 'like', '%' . request('searchText') . '%');
-        })
-            ->paginate('6');
-        // $filterData->appends($request->all());
-        Session::put('searchText', $request->searchText);
-        return view('locations.index')->with([
-            'locations' => $filterData,
-        ]);
-    }
 
     //PRIVATE FUNCTION
     private function validationCheck($request)

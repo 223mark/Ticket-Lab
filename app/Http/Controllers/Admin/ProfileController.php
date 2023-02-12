@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 
 class ProfileController extends Controller
 {
@@ -20,14 +21,22 @@ class ProfileController extends Controller
     public function update(Request $request)
     {
         $this->validationCheck($request);
+
         if ($request->has('img')) {
+            //deleting local img
+            $dbImg = auth()->user()->img;
+            if ($dbImg != null) {
+
+                File::delete(public_path() . '/img/adminImage/' . $dbImg);
+            }
+
             $data = $this->requestedDataWithImage($request);
             User::where('id', auth()->user()->id)->update($data);
-            return back();
+            return back()->with('updateMessage', 'Profile Updated Successfully.');
         };
         $data = $this->requestedDataWithoutImage($request);
         User::where('id', auth()->user()->id)->update($data);
-        return back();
+        return back()->with('updateMessage', 'Profile Updated Successfully.');
     }
 
     public function passwordChagePage()

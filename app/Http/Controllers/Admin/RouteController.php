@@ -16,16 +16,17 @@ class RouteController extends Controller
     {
 
         return view('busRoutes.index', [
-            'busRoutes' => Routes::latest()->paginate('6'),
+            'busRoutes' => Routes::latest()->filter(request(['searchText']))->paginate('6'),
             'locations' => Location::get(),
             'operators' => Operator::get(),
+            'searchText' => request('searchText')
         ]);
     }
 
     public function store(Request $request)
     {
 
-        if ($request->toWhere != $request->fromWhere) {
+        if ($request->toWhere !== $request->fromWhere) {
 
             $this->validationCheck($request);
             $data = $this->requestedData($request);
@@ -37,9 +38,9 @@ class RouteController extends Controller
                 Routes::create($reverseData);
             }
 
-            return redirect()->route('busRoutes#index');
+            return redirect()->route('busRoutes#index')->with('addMessage', 'Routes Created Successfully');
         } else {
-            return redirect()->route('busRoutes#index')->with('message', 'From Where and To Where must not be same');
+            return redirect()->route('busRoutes#index')->with('unvalidMessage', 'from where and to where must not be same');
         }
     }
 
@@ -53,30 +54,27 @@ class RouteController extends Controller
 
     public function update(Request $request, Routes $route)
     {
-        $this->validationCheck($request);
-        $data = $this->requestedData($request);
+        // $this->validationCheck($request);
+        $request->validate([
+            'class' => 'required',
+            'departureTime' => 'required',
+            'arriveTime' => 'required',
+        ]);
 
+        $data = [
+            'class' => $request->class,
+            'departure_time' => $request->departureTime,
+            'arrive_time' => $request->arriveTime,
+        ];
         $route->update($data);
 
-        return redirect()->route('busRoutes#index');
+        return redirect()->route('busRoutes#index')->with('updateMessage', 'Route Update Successfully');
     }
 
     public function destory(Routes $route)
     {
         $route->delete();
-        return redirect()->route('busRoutes#index');
-    }
-
-    public function filter(Request $request)
-    {
-
-        // $filterData = Routes::when(request('searchItem'), function ($query) {
-        //     $query->where('from_where', 'like', '%' . request('searchItem') . '%')
-        //         ->orWhere('to_where', 'like', '%' . request('searchItem') . '%');
-        // })
-        //     ->orderBy('id', 'desc')->paginate(5);
-        // $filterData->appends(request()->all());
-        // dd($filterData->toArray());
+        return redirect()->route('busRoutes#index')->with('deleteMessage', 'Route Deleted Successfully');
     }
 
 

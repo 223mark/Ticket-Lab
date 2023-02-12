@@ -18,8 +18,12 @@ class BusTicket extends Model
         'price'
     ];
 
-    public function routes()
+    public function operator()
     {
-        return $this->belongsTo(Routes::class);
+        return $this->belongsTo(Operator::class, 'id');
+    }
+    public function route()
+    {
+        return $this->belongsTo(Routes::class, 'id');
     }
 }

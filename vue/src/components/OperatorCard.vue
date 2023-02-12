@@ -4,7 +4,10 @@
             <div
                 class="  shadow-md border border-gray-200 rounded-lg max-w-sm bg-gray-800">
                 <div class="bg-white">
-                    <img class="rounded-t-lg w-full h-32 " src="../../public/img/operators/operator.png" alt="" >
+                    
+                    <img class="rounded-t-lg w-full h-32 " v-if="operator.img == undefined" src="../../public/img/service.png" alt="">
+                    <img class="rounded-t-lg w-full h-32 " v-else :src="operator.img" alt="">
+
                 </div>
                 <div class="p-5">
                     <div class="space-y-2 ">
@@ -46,9 +49,14 @@ import { ref } from "@vue/runtime-core";
 
 const operators = ref([]);
 onMounted(() => {
-     axiosClient.get('/operators').then((response) => {
+    axiosClient.get('/operators').then((response) => {
+         for (let i = 0; i < response.data.data.length; i++) {
+           
+             response.data.data[i].img = "http://localhost:8000/img/OperatorImage/" + response.data.data[i].img;
+         }
+     
          operators.value = response.data.data;
-        console.log(operators.value);
+       // console.log(operators.value);
     }) 
 })
 </script>

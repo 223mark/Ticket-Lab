@@ -117,10 +117,23 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('tickets#index') }}"
+                                    <a href="{{ route('customers#index') }}"
                                         class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
                                         <svg class="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
                                             fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span class="ml-3 flex-1 whitespace-nowrap">Customers</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('tickets#index') }}"
+                                        class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
+                                        <svg class="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
+                                            fill="currentColor" viewBox="0 0 20 20"
+                                            xmlns="http://www.w3.org/2000/svg">
                                             <path
                                                 d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z">
                                             </path>
@@ -160,20 +173,6 @@
                                         </svg>
                                         <span class="ml-3 flex-1 whitespace-nowrap">Operators</span>
 
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#"
-                                        class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
-                                        <svg class="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
-                                            fill="currentColor" viewBox="0 0 20 20"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd"
-                                                d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                                                clip-rule="evenodd"></path>
-                                        </svg>
-                                        <span class="ml-3 flex-1 whitespace-nowrap">Customers</span>
                                     </a>
                                 </li>
                                 <li>
@@ -285,6 +284,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.3.0/alpine-ie11.js"
             integrity="sha512-6m6AtgVSg7JzStQBuIpqoVuGPVSAK5Sp/ti6ySu6AjRDa1pX8mIl1TwP9QmKXU+4Mhq/73SzOk6mbNvyj9MPzQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
         <script src="{{ asset('js/model.js') }}"></script>
 
 

@@ -3,7 +3,7 @@
     <form class="px-8 pt-6 pb-8 mb-4  rounded" action="{{ route('busRoutes#update', $route->id) }}" method="POST">
         @csrf
         <div class=" flex flex-wrap justify-between gap-2 ">
-            <div class="w-full md:w-2/5 ">
+            {{-- <div class="w-full md:w-2/5 ">
                 <x-input-label labelName="From Where" />
                 <x-select-tag :data=$location filterText="location" name="fromWhere" />
                 <x-jet-input-error for="fromWhere" />
@@ -15,22 +15,7 @@
                 <x-select-tag :data=$location filterText="location" name="toWhere" />
                 <x-jet-input-error for="toWhere" />
 
-            </div>
-
-            <div class="w-full md:w-2/5 ">
-
-                <x-input-label labelName="Class" />
-                <select name="class" id=""
-                    class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:border focus:border-indigo-700 capitalize">
-                    <option value="{{ $route->class }}" selected>{{ $route->class }}</option>
-                    <option value="normal">Normal Ticket</option>
-                    <option value="vip">VIP Ticket</option>
-                    <option value="vvip">VVIP Ticket</option>
-                </select>
-                <x-jet-input-error for="class" />
-
-
-            </div>
+            </div> --}}
             <div class="w-full md:w-2/5 ">
                 <x-input-label labelName="Departure Time" />
                 <x-input-tag type="text" name="departureTime" value="{{ $route->departure_time }}" />
@@ -43,6 +28,21 @@
                 <x-input-tag type="text" name="arriveTime" value="{{ $route->departure_time }}" />
                 <x-jet-input-error for="arriveTime" />
 
+
+            </div>
+
+
+            <div class="w-full ">
+
+                <x-input-label labelName="Class" />
+                <select name="class" id=""
+                    class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:border focus:border-indigo-700 capitalize">
+                    <option value="{{ $route->class }}" selected>{{ $route->class }}</option>
+                    <option value="normal">Normal Ticket</option>
+                    <option value="vip">VIP Ticket</option>
+                    <option value="vvip">VVIP Ticket</option>
+                </select>
+                <x-jet-input-error for="class" />
 
             </div>
 

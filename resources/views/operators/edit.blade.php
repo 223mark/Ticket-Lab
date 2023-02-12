@@ -56,8 +56,9 @@
                 <div class="flex items-center justify-start w-full">
 
                     <x-button name="Update" type="submit" />
+
                     <a href="{{ route('operators#index') }}">
-                        <x-button name="Cancel" />
+                        <x-button name="Cancel" type="button" />
                     </a>
                 </div>
 

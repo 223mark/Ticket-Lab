@@ -13,6 +13,7 @@
                     </div>
                 </div>
                 <div class="flex justify-center  mt-4    md:justify-end md:w-1/2  ">
+                    <!-- ticket search cart -->
                     <TicketSearchCard />
                 </div>
      </section> 

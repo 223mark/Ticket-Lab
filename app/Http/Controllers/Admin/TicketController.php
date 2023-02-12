@@ -28,6 +28,7 @@ class TicketController extends Controller
             ->leftJoin('routes', 'routes.id', 'bus_tickets.route_id')
             ->leftJoin('operators', 'operators.id', 'bus_tickets.operator_id')
             ->groupBy('bus_tickets.ticket_code')
+            ->latest()
             ->paginate('6');
 
         $operators = Operator::get();
@@ -42,7 +43,7 @@ class TicketController extends Controller
             ->leftJoin('routes', 'routes.id', 'bus_tickets.route_id')
             ->where('bus_tickets.ticket_code', $code)
             ->paginate('6');
-        // dd($tickets->toArray());
+
         return view('tickets.showAllTickets', compact('tickets'));
     }
 
@@ -62,7 +63,7 @@ class TicketController extends Controller
         $this->validationCheck($request);
         $this->ticketExport($request->totalTicket, $request);
 
-        return redirect()->route('tickets#index');
+        return redirect()->route('tickets#index')->with('addMessage', 'Ticket Added Successfully..');
     }
 
     public function edit(BusTicket $ticket)
@@ -75,10 +76,16 @@ class TicketController extends Controller
         ]);
     }
 
-    public function destory(BusTicket $ticket)
+    public function destory($ticketCode)
     {
-        $ticket->delete();
-        return redirect()->route('tickets#index');
+        $relatedTickets = BusTicket::where('ticket_code', $ticketCode)->get();
+
+        for ($i = 0; $i < count($relatedTickets); $i++) {
+            BusTicket::where('ticket_code', $ticketCode)->first()->delete();
+        }
+        // $relatedTickets->delete();
+
+        return redirect()->route('tickets#index')->with('deleteMessage', 'Tickets deleted successfully..');
     }
 
 
@@ -110,23 +117,16 @@ class TicketController extends Controller
         ]);
     }
 
-    // private function getRelationData()
-    // {
-    //     $data = BusTicket::select('bus_tickets.*', 'operators.img', 'operators.operator_name', 'operators.phone1')
-    //         ->leftJoin('operators', 'operators.id', 'bus_tickets.operator_id')
-    //         ->paginate(4);
 
-    //     return $data;
-    // }
     private function ticketExport($amount, $request)
     {
 
-        $ticketCode = rand(100, 1000);
+        $ticketCode = rand(10000, 100000);
         $ticketName = 0;
         for ($i = 0; $i < $amount; $i++) {
             $data = $this->requestData($request);
             $data['seat_number'] = 'S-' . $ticketName += 1;
-            $data['ticket_code'] =  $ticketCode;
+            $data['ticket_code'] =   $ticketCode;
             BusTicket::create($data);
         }
     }

@@ -18,12 +18,12 @@
        
    
     <div class="w-full ">
-        <input type="date" v-model="date"  class="border w-full px-4 py-2">
+        <input type="date" v-model="date"  class="border w-full px-4 py-2" >
     </div>
    
     <div class="w-full flex justify-center">
         <router-link :to="{ name: 'app.tickets', params: { f: fromWhere, t: toWhere, d: date }}">
-        <button class="px-8 py-1 rounded shadow text-white  bg-green-500 hover:bg-green-400">Search</button>
+        <button class="px-8 py-1 rounded shadow text-white  bg-green-500 hover:bg-green-400">Search{{ date }}</button>
        </router-link>
        
     </div>
@@ -44,13 +44,13 @@ import router from '../router';
 
 
 const location = ref([]);
-const date = ref(new Date());
 const fromWhere = ref('Yangon');
 const toWhere = ref('Mandalay');
 
-const computedLocation = computed(() => {
+const todayDate = new Date();
 
-    return fromWhere.value + toWhere.value;
+const date = computed(() => {
+  return   todayDate.value.getFullYear()
 })
 
 // const Date = ref({
@@ -59,13 +59,7 @@ const computedLocation = computed(() => {
 
 // })
 
-const searchTicket = () => {
-    axiosClient.get(`gb-tickets/?fromWhere[eq]=${fromWhere.value}&toWhere[eq]=${toWhere.value}`).then((response) => {
-       
-        console.log(response.data);
-        router.push('/tickets/search');
-    })
-}
+
 
 onMounted(() => {
     axiosClient.get('/locations').then((response) => {

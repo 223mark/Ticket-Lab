@@ -1,7 +1,9 @@
 <x-main-layout title="Tickets">
     <div class="flex justify-between px-4 mb-2">
 
-        <x-button name="Back" onclick="history.back()" />
+        <a href="{{ route('tickets#index') }}">
+            <x-button name="Back" />
+        </a>
         <select>
             <option value="">Ticket Status</option>
             <option value="">Yes</option>

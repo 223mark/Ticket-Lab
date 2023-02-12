@@ -1,12 +1,12 @@
 <template>
     <!-- component -->
     <div class="p-6 mt-12  w-screen space-y-8">
-        <a href="#" class="mt-4" >
-            <h4 class="text-indigo-500 font-semibold text-lg">Back</h4>
-        </a>
+        <router-link  :to="{name: 'app.operators'}" class="mt-4 md:mt-10" >
+            <button  class="px-8 py-1 bg-indigo-500 text-white rounded font-semibold text-lg ">Back</button>
+        </router-link>
         <div class="flex  bg-white shadow-lg rounded-lg overflow-hidden">
-           <div class="w-1/3">
-            <img class=" bg-cover" :src="operator.img">
+           <div class="w-1/3 h-48">
+            <img class="h-full" :src="operator.img">
            
            </div>
             <div class="w-2/3 p-4 space-y-4">
@@ -38,7 +38,11 @@ const route = useRoute()
 onMounted(() => {
     const operatorId = route.params.operator;
     axiosClient.get(`operators/${operatorId}`).then((response) => {
+        
+        response.data.data.img = "http://localhost:8000/img/OperatorImage/" + response.data.data.img;
+
         operator.value = response.data.data;
+        console.log(operator.value);
       
     })
 })

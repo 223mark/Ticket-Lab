@@ -11,4 +11,19 @@ class Location extends Model
     protected $fillable = [
         'location',
     ];
+
+    // public function route()
+    // {
+    //     return $this->belongsTo(Routes::class, 'location');
+    // }
+    public function scopeFilter($query, array $filters)
+    {
+        // if ($filters['tag'] ?? false) {
+        //     $query->where('tags', 'like', '%' . request('tag') . '%');
+        // }
+
+        if ($filters['searchText'] ?? false) {
+            $query->where('location', 'like', '%' . request('searchText') . '%');
+        }
+    }
 }

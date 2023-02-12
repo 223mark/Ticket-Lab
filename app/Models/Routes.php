@@ -20,6 +20,19 @@ class Routes extends Model
 
     public function tickets()
     {
-        return $this->hasMany(BusTicket::class);
+        return $this->hasMany(BusTicket::class, 'route_id');
+    }
+
+    public function scopeFilter($query, array $filters)
+    {
+        // if ($filters['tag'] ?? false) {
+        //     $query->where('tags', 'like', '%' . request('tag') . '%');
+        // }
+
+        if ($filters['searchText'] ?? false) {
+            $query->where('from_where', 'like', '%' . request('searchText') . '%')
+                ->orWhere('to_where', 'like', '%' . request('searchText') . '%')
+                ->orWhere('class', 'like', '%' . request('searchText') . '%');
+        }
     }
 }
