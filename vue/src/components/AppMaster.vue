@@ -1,7 +1,7 @@
 <template>
         <NavBar/>
 
-        <main class=" space-y-4">
+        <main class=" space-y-4 bg-white">
             <router-view></router-view>
         </main>
 

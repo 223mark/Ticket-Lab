@@ -5,8 +5,9 @@
                 class="  shadow-md border border-gray-200 rounded-lg max-w-sm bg-gray-800">
                 <div class="bg-white">
                     
-                    <img class="rounded-t-lg w-full h-32 " v-if="operator.img == undefined" src="../../public/img/service.png" alt="">
-                    <img class="rounded-t-lg w-full h-32 " v-else :src="operator.img" alt="">
+                    <img class="rounded-t-lg w-full h-32 " v-if="operator.img== 'http://localhost:8000/img/OperatorImage/null'"  src="../../public/img/brand/codelab.png" alt="">
+                   
+                    <img class="rounded-t-lg w-full h-32 " v-else :src="operator.img" alt=""> 
 
                 </div>
                 <div class="p-5">
@@ -56,7 +57,7 @@ onMounted(() => {
          }
      
          operators.value = response.data.data;
-       // console.log(operators.value);
+       console.log(operators.value);
     }) 
 })
 </script>

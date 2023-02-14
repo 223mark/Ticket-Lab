@@ -1,13 +1,34 @@
 import { createStore } from 'vuex'
-
+import axiosClient from '../axiosClient'
 
 const store = createStore({
     state: {
-        location: ''
+        selectedDate: null,
+        location: {},
+
+
+
+
     },
     getters: {},
-    mutations: {},
+    mutations: {
+        // setLocation(state, data) {
+        //     state.location = data;
+        // }
+        setSelectedDate(state, selectedDate) {
+            state.selectedDate = selectedDate
+        },
+    },
     actions: {
+
+        //get selected date
+        async getSelectedDate({ commit }, selectedDate) {
+            commit('setSelectedDate', selectedDate)
+        }
+
+
+
+
 
     }
 })

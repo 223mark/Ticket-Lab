@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('bus_tickets', function (Blueprint $table) {
-            $table->id();
+            $table->id('ticket_id');
             $table->string('ticket_code');
             //$table->foreignId('route_id')->constrained()->onDelete('cascade');
             $table->foreignId('route_id');

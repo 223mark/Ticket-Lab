@@ -30,7 +30,7 @@ class GroupByTicketController extends Controller
         if (count($queryItems) == 0) {
             return new GroupByTicketCollection($ticket);
         } else {
-            $ticket = Routes::select('bus_tickets.*', 'routes.*', 'operators.*', 'bus_tickets.id as ticket_id')
+            $ticket = Routes::select('bus_tickets.*', 'routes.*', 'operators.*',)
                 ->rightJoin('bus_tickets', 'routes.id', 'bus_tickets.route_id')
                 ->rightJoin('operators', 'operators.id', 'bus_tickets.operator_id')
                 ->groupBy('bus_tickets.ticket_code')
@@ -42,7 +42,7 @@ class GroupByTicketController extends Controller
 
     private function busTicket()
     {
-        $ticket = Routes::select('bus_tickets.*', 'routes.*', 'operators.*', 'bus_tickets.id as ticket_id')
+        $ticket = Routes::select('bus_tickets.*', 'routes.*', 'operators.*')
             ->leftJoin('bus_tickets', 'routes.id', 'bus_tickets.route_id')
             ->leftJoin('operators', 'operators.id', 'bus_tickets.operator_id')
             ->groupBy('routes.id')

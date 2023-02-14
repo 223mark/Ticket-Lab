@@ -14,7 +14,7 @@ class TicketFilter extends ApiFilter
         'ticketClass' => ['eq'],
         'operatorName' => ['eq'],
         'ticketCode' => ['eq'],
-        'id' => ['eq']
+        'ticketId' => ['eq']
 
     ];
 
@@ -23,8 +23,8 @@ class TicketFilter extends ApiFilter
         'toWhere' => 'to_where',
         'ticketClass' => 'class',
         'operatorName' => 'operator_name',
-        'ticketCode' => 'ticket_code'
-
+        'ticketCode' => 'ticket_code',
+        'ticketId' => 'ticket_id'
     ];
 
     protected $operatorMap = [

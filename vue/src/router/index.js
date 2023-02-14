@@ -43,12 +43,12 @@ const routes = [{
                 component: Ticket
             },
             {
-                path: '/seats/:ticketCode',
+                path: '/seats/:ticketCode/:date',
                 name: 'app.seats',
                 component: Process
             },
             {
-                path: '/checkout/:ticketId',
+                path: '/checkout/:ticketId/',
                 name: 'app.checkout',
                 component: Checkout
             },

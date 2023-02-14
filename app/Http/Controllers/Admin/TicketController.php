@@ -18,7 +18,7 @@ class TicketController extends Controller
 
         $ticketCode = BusTicket::select(
             'routes.*',
-            'bus_tickets.id as busticketId',
+            'bus_tickets.ticket_id as busticketId',
             'bus_tickets.ticket_code as ticket_code',
             'operators.id as operatorId',
             'operators.operator_name as operatorName',

@@ -5,14 +5,17 @@
                 <!-- seat section -->
                     <div class="text-center  ">
                         <h5 class="text-xl  font-semibold text-white bg-green-500 py-2 ">Please Select Seat</h5>
-                        <h4 class="text-gray-800 font-medium text-md md:text-lg  md:hidden">
-                            Seat Number - <input class="text-green-500 font-semibold uppercase text-lg ml-10" disabled v-model="selected"/>
+                       <div class="flex justify-center items-center py-2">
+                        <h4 class=" w-1/2 text-gray-800  font-medium text-md md:text-lg ">
+                            Seat Number -
                         </h4>
+                        <input class="w-1/2 text-green-500 font-semibold uppercase text-lg ml-10" disabled v-model="selected" />
+                       </div>
                         
                     </div>
                    
                 <!-- seat position  -->
-                <div class="flex justify-between pt-5 md:pt-10 gap-1">
+                <div class="flex justify-between pt-2 md:pt-4 gap-1">
                     <div 
                      class="flex justify-between  gap-2 flex-wrap ml-2 w-full mx-2 ">
                             <div class="flex justify-center items-center bg-gray-400 w-full md:w-1/5 h-12 cursor-pointer" v-for="t in tickets" :key="t.id" @click="chooseSeat(t)">
@@ -28,86 +31,7 @@
           
         <!-- booking summary  -->
             <div class="w-full md:w-2/5">
-                <div class="border rounded-lg shadow-lg bg-white pb-6">
-                    <div class="border py-4 text-center">
-                        <h6 class="text-xl text-green-400 font-bold ">Booking Summary</h6>
-                    </div>
-                    <div class="flex flex-col px-4 py-2 space-y-4 ">
-                        <div class=" hidden md:flex">
-                            <div class="w-1/2  ">
-                                <p class="text-md ">Seat Number</p>
-                            </div>
-                            <div class="w-1/2 ">
-                                <p class=" font-bold text-md text-green-500">{{ selectedTicket.seatNumber }}</p>
-                            </div>
-                        </div>
-                        <div class="flex">
-                            <div class="w-1/2  ">
-                                <p class="text-md ">Bus Operator</p>
-                            </div>
-                            <div class="w-1/2 ">
-                                <p class=" fw-semibold">{{ selectedTicket.operatorName }}</p>
-                            </div>
-                        </div>
-                        <div class="flex">
-                            <div class="w-1/2  ">
-                                <p class=" fw-light">Route</p>
-                            </div>
-                            <div class="w-1/2 ">
-                                <p class=" fw-semibold">{{ selectedTicket.fromWhere }} - {{ selectedTicket.toWhere }} </p>
-                            </div>
-                        </div>
-                        <div class="flex">
-                            <div class="w-1/2  ">
-                                <p class=" fw-light">Date</p>
-                            </div>
-                            <div class="w-1/2 ">
-                                <p class=" fw-semibold">12/5/2023 </p>
-                            </div>
-                        </div>
-                        <div class="flex">
-                            <div class="w-1/2  ">
-                                <p class=" fw-light">Departure Time</p>
-                            </div>
-                            <div class="w-1/2 ">
-                                <p class=" fw-semibold" >{{ selectedTicket.departureTime }}</p>
-                            </div>
-                        </div>
-                        <div class="flex">
-                            <div class="w-1/2  ">
-                                <p class=" fw-light">Arrive Time</p>
-                            </div>
-                            <div class="w-1/2 ">
-                                <p class=" fw-semibold">{{ selectedTicket.arriveTime }}</p>
-                            </div>
-                        </div>
-                        <div class="flex">
-                            <div class="w-1/2  ">
-                                <p class=" font-semibold">Ticket Total</p>
-                            </div>
-                            <div class="">
-                                <p class="font-bold text-green-500">* 1</p>
-                            </div>
-                        </div>
-                        <div class="flex">
-                            <div class="w-1/2  ">
-                                <p class=" font-semibold">Subtotal</p>
-                            </div>
-                            <div class="">
-                                <p class="font-bold text-green-500">{{ selectedTicket.price }}</p>
-                            </div>
-                        </div>
-                
-                    </div>
-                    <div class="mt-5 flex justify-center items-center">
-                   
-                       <router-link   :to="{ name: 'app.checkout', params: { ticketId: selectedTicket.ticketId } }">
-                        <button class="bg-green-500 text-white px-8 py-2 rounded-lg hover:bg-green-400 ">Procced to Checkout</button>
-                       </router-link>
-                       
-                    </div>
-                
-                </div>
+               <BookingSummary :selectedTicket="selectedTicket"/> 
             </div>
         <!-- booking summary end -->
     </div>
@@ -119,13 +43,16 @@ import { onMounted } from "@vue/runtime-core";
 import axiosClient from "../../axiosClient";
 import { ref } from '@vue/runtime-core';
 import { useRoute } from 'vue-router';
+import { reactive } from '@vue/runtime-core';
 
 
 const route = useRoute();
 
 const tickets = ref([]);
 const selected = ref('empty');
-const selectedTicket = ({
+
+//selectedTicket for user showing
+const selectedTicket = reactive({
     ticketId: 'null',
     operatorName: null,
     fromWhere: null,
@@ -143,7 +70,7 @@ const chooseSeat= (t) => {
 
     //setting selected ticket 
 
-    selectedTicket.ticketId = t.id;
+    selectedTicket.ticketId = t.ticketId;
     selectedTicket.operatorName = t.operatorName;
     selectedTicket.fromWhere = t.fromWhere;
     selectedTicket.toWhere = t.toWhere;
@@ -152,17 +79,17 @@ const chooseSeat= (t) => {
     selectedTicket.departureTime = t.departureTime
     selectedTicket.arriveTime = t.arriveTime
     selectedTicket.price = t.price
-
     
 }
 
 
 
 onMounted(() => {
-    axiosClient.get(`tickets?ticketCode[eq]=${route.params.ticketCode}`).then((response) => {
-        console.log(response.data.data);
-        tickets.value = response.data.data;
+    axiosClient.get(`tickets?ticketCode[eq]=${route.params.ticketCode}`).then(({data}) => {
+        //console.log(response.data.data);
+        tickets.value = data.data;
     })
+    console.log(selectedTicket);
 })
 </script>
 
