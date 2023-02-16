@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 //auth sectuin
-import AuthLayout from '../components/AuthLayout.vue'
+import AuthLayout from '../components/AuthMaster.vue'
 import Register from '../views/auth/Register.vue'
 //import ResetPassword from '../views/auth/ResetPassword.vue'
 import Login from '../views/auth/Login.vue'
@@ -15,7 +15,6 @@ import OperatorDetail from '../views/operators/Detail.vue'
 import Ticket from '../views/tickets/Tickets.vue'
 import Process from '../views/order/Process.vue'
 import Checkout from '../views/order/OrderCheckout.vue'
-import Blog from '../views/blog/Blog.vue'
 import AboutUs from '../views/aboutus/AboutUs.vue'
 const routes = [{
         path: '/home',
@@ -48,7 +47,7 @@ const routes = [{
                 component: Process
             },
             {
-                path: '/checkout/:ticketId/',
+                path: '/checkout/:ticketId/:date',
                 name: 'app.checkout',
                 component: Checkout
             },
@@ -65,15 +64,11 @@ const routes = [{
                 component: OperatorDetail
             },
             {
-                path: '/blog',
-                name: 'app.blog',
-                component: Blog
-            },
-            {
                 path: '/about-us',
                 name: 'app.about-us',
                 component: AboutUs
             },
+
             {
                 path: '/:pathMatch(.*)',
                 component: HomePage,

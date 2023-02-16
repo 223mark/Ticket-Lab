@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\OrderController;
 use App\Http\Controllers\Api\V1\LocationController;
 use App\Http\Controllers\Api\V1\OperatorController;
 use App\Http\Controllers\Api\V1\TicketController;
@@ -33,4 +34,6 @@ Route::group(['prefix' => 'v1',], function () {
     //ticket
     Route::apiResource('gb-tickets', GroupByTicketController::class);
     Route::apiResource('tickets', TicketController::class);
+    //order 
+    Route::apiResource('orders/', OrderController::class);
 });

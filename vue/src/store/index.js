@@ -21,10 +21,8 @@ const store = createStore({
     },
     actions: {
 
-        //get selected date
-        async getSelectedDate({ commit }, selectedDate) {
-            commit('setSelectedDate', selectedDate)
-        }
+
+
 
 
 

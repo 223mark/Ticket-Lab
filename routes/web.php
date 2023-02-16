@@ -105,9 +105,4 @@ Route::middleware([
     Route::group(['prefix' => 'ajax'], function () {
         Route::get('operators/filter', [AjaxController::class, 'operatorFilterbySelect']);
     });
-
-    //customer
-    Route::group(['prefix' => 'customers'], function () {
-        Route::get('/index', [CustomerController::class, 'index'])->name('customers#index');
-    });
 });

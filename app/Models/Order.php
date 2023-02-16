@@ -13,9 +13,15 @@ class Order extends Model
         'ticket_id',
         //'operator_id',
         'cancel_status',
+        'customer_email',
         'customer_name',
         'customer_nrc_number',
         'payment_method',
         'departure_date'
     ];
+
+    public function tickets()
+    {
+        return $this->belongsTo(BusTicket::class, 'id');
+    }
 }

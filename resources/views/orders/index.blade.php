@@ -12,10 +12,10 @@
 
             {{-- tabke-data --}}
             @forelse ($orders as $data)
-                @include('partials.data._operators_data')
+                @include('partials.data._orders_data')
             @empty
                 <tr class="hover:bg-gray-200">
-                    <x-no-data-status item="Operator" />
+                    <x-no-data-status item="Order" />
                 </tr>
             @endif
 

@@ -1,20 +1,18 @@
 <template>
     
     <!-- operators start -->
-    <section id="operators" class="my-16 md:px-8">
-        <div class=" py-2 mb-8">
-            <h4 class="text-lg text-black-500 font-semibold text-center hover:underline md:text-2xl">Operators</h4>
+    <section id="operators" class="my-16 md:px-8 min-h-screen">
+        <div class=" py-2 mb-8 ">
+            <h4 class="text-lg text-green-500 font-semibold  text-center underline md:text-2xl">Operators</h4>
         </div>
 
-        <div class="flex flex-wrap gap-2 ">
+        <div class="flex flex-wrap flex-col md:flex-row  gap-2 ">
             <OperatorCard/>
         </div>
    
-    <!-- This is an example component -->
-   
-        <!-- <div class="flex justify-center">
+        <div class="flex justify-center mt-20">
             <a href="#" class="px-6 py-1 rounded-lg text-white bg-green-500 hover:rounded-none">see more</a>
-        </div> -->
+        </div> 
     </section>
     
 </template>

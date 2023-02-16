@@ -19,7 +19,7 @@ class GroupByTicketResource extends JsonResource
             'ticketCode' => $this->ticket_code,
             'fromWhere' => $this->from_where,
             'toWhere' => $this->to_where,
-            // 'date' => $this->date,
+            'operatorId' => $this->operator_id,
             'departureTime' => $this->departure_time,
             'arriveTime' => $this->arrive_time,
             'price' => $this->price,
@@ -37,7 +37,7 @@ class GroupByTicketResource extends JsonResource
             // ticketClass	"vip"
             // departureTime	"3:00 AM"
             // arriveTime	"9:00 PM"
-            // operatorId	1
+            // 	1
             // operatorName	"Tet Nay Lin Express"
             // phone1	97845
             // phone2	96355

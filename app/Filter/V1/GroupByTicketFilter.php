@@ -13,16 +13,17 @@ class GroupByTicketFilter extends ApiFilter
         'date' => ['eq'],
         'ticketClass' => ['eq'],
         'operatorName' => ['eq'],
-        'date' => ['eq']
-
-
+        'operatorId' => ['eq'],
+        'departureTime' => ['eq'],
     ];
 
     protected $columnMap = [
         'fromWhere' => 'from_where',
         'toWhere' => 'to_where',
         'ticketClass' => 'class',
-        'operatorName' => 'operator_name'
+        'operatorName' => 'operator_name',
+        'operatorId' => 'operator_id',
+        'departureTime' => 'departure_time'
 
     ];
 

@@ -1,6 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.h-30vh {
+    height: 30vh;
+}
+
+.h-20vh {
+    height: 20vh;
+}
+
+.btn-theme {
+    background-color: #22c55e;
+    padding: 5px 20px;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
 #main-hero {
     height: 60vh;
     background-image: url('../public/img/banner/greenbanner.jpg');

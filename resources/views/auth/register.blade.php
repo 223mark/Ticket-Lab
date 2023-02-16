@@ -34,6 +34,8 @@
                   "
                     placeholder="Enter your name" />
             </div>
+            <x-jet-input-error for="name" />
+
         </div>
         <div class="flex flex-col mb-5">
             <label for="email" class="mb-1 text-xs tracking-wide text-gray-600">E-Mail Address:</label>
@@ -66,7 +68,9 @@
                     focus:outline-none focus:border-blue-400
                   "
                     placeholder="Enter your email" />
+
             </div>
+            <x-jet-input-error for="email" />
         </div>
         <div class="flex flex-col mb-5">
             <label for="password" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Password:</label>
@@ -102,6 +106,7 @@
                   "
                     placeholder="Enter your password" />
             </div>
+            <x-jet-input-error for="password" />
         </div>
         <div class="flex flex-col mb-6">
             <label for="password" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Confirm Password:</label>
@@ -137,6 +142,7 @@
                   "
                     placeholder="Enter confirm password" />
             </div>
+            <x-jet-input-error for="password_confirmation" />
         </div>
 
         <div class="flex w-full">

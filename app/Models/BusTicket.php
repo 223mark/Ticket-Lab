@@ -26,4 +26,8 @@ class BusTicket extends Model
     {
         return $this->belongsTo(Routes::class, 'id');
     }
+    public function order()
+    {
+        return $this->hasMany(Order::class, 'ticket_id');
+    }
 }

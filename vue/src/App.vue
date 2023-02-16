@@ -2,8 +2,10 @@
    <!-- nav start -->
    <!-- <NavBar/> -->
    <!-- nav end -->
-   <main>
+   <main >
+      
       <router-view></router-view>
+
    </main>
    <!-- footer start -->
    <!-- <Footer/> -->
@@ -12,7 +14,7 @@
 </template>
 <script setup>
 //components import 
-import NavBar from './components/NavBar.vue'
+import AuthCard from './views/auth/Auth.vue'
 import Footer from './components/Footer.vue'
 
 </script>

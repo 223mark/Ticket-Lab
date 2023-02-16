@@ -1,6 +1,6 @@
 <template>
     <!-- footer start -->
-    <footer id="footer">
+    <footer id="footer" class="mt-2">
         <div class="flex flex-col md:flex-row md:justify-around p-10 ">
             <div class="">
                 <div class="pb-2">

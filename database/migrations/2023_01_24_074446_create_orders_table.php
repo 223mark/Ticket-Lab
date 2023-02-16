@@ -15,13 +15,14 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable();
+            $table->foreignId('customer_id')->nullable();
+            $table->string('customer_email')->nullable();
             $table->integer('ticket_id');
             $table->string('cancel_status')->nullable();
             $table->string('customer_name');
             $table->char('customer_nrc_number');
             $table->string('payment_method');
-            $table->timestamp('departure_date');
+            $table->dateTimeTz('departure_date');
             $table->timestamps();
         });
     }
