@@ -38,16 +38,17 @@ class OrderController extends Controller
      */
     public function store(Request  $request)
     {
-        logger($request->all());
+
         $orderData = [
             'customer_name' => $request->name,
             'customer_nrc_number' =>  $request->customerNrc,
             'payment_method' => $request->paymentMethod,
             'departure_date' =>  $request->departureDate,
             'ticket_id' => $request->ticketId,
-            'customer_email' => $request->email
+            'customer_email' => $request->email,
+            'operator_id' => $request->operatorId
         ];
-        logger($orderData);
+        //logger($orderData);
         return new OrderResource(Order::create($orderData));
     }
 

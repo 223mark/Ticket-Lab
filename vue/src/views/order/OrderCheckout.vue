@@ -74,7 +74,7 @@
                         <option :value="p" v-for="(p,index) in payment" :key="index">{{ p }}</option>
                     </select>
                     <span class="text-red-500 font-medium mt-4 text-sm" v-for="error in v$.paymentMethod.$errors" :key="error.$uid">{{
-                        error.$message }}</span>
+                    error.$message }}</span>
                 
                 </div>
                 <div class="mt-8">
@@ -122,11 +122,8 @@ const nrcCtz = ref(null);
 const nrcNo = ref(null);
 //end customer nrc section
 
-// const customerName = ref(null);
-// const customerEmail = ref(null);
-// const paymentMethod = ref(null);
 const selectedTicket = ref({});
-
+const operatorId = ref(null);
 //for validation
 const formData = reactive({
      customerName : "",
@@ -167,6 +164,7 @@ const addOrder = async () => {
             ticketId: route.params.ticketId,
             customerNrc: customerNrc.value,
             departureDate: departureDate,
+            operatorId: operatorId.value,
         });
 
         axiosClient.post('/orders', customerData.value).then(({ data }) => {
@@ -187,6 +185,7 @@ const addOrder = async () => {
 async function getRelatedTicket() {
     await axiosClient.get(`/tickets/?ticketId[eq]=${route.params.ticketId}`).then(({ data }) => {
         selectedTicket.value = data.data[0];
+        operatorId.value = data.data[0].operatorId;
         console.log(selectedTicket.value, 'sle');
     }).catch((error) => {
         console.log(error)

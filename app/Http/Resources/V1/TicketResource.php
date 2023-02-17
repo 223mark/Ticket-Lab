@@ -29,7 +29,7 @@ class TicketResource extends JsonResource
             'ticketClass' => $this->class,
             'departureTime' => $this->departure_time,
             'arriveTime' => $this->arrive_time,
-            //'operatorId' => $this->operator_id,
+            'operatorId' => $this->operator_id,
             'operatorName' => $this->operator_name,
             'phone1' => $this->phone1,
             'phone2' => $this->phone2,
