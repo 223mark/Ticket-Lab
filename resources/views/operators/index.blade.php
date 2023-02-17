@@ -1,6 +1,6 @@
 <x-main-layout title="Operators">
     <div class="mx-2 mt-10 md:mt-10 md:mx-4 ">
-        <div class="flex justify-between pb-2">
+        <div class="flex justify-between items-center ">
 
             <x-add-button btn_name="Add Operators"></x-add-button>
 

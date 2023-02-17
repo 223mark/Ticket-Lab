@@ -1,7 +1,11 @@
 <x-main-layout title="Order/Index">
 
 
-
+    <div class="flex justify-end mb-2">
+        <form action="">
+            <x-search-input :searchText=$searchText></x-search-input>
+        </form>
+    </div>
     {{-- table --}}
     <table class="w-full  border-collapse bg-white text-left text-sm text-gray-500 border shadow-lg ">
         {{-- table header --}}

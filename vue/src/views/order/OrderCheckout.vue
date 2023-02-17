@@ -8,6 +8,7 @@
                 
             </div>
             <h2 class="text-xl font-semibold mb-4 ">Customer Information</h2>
+            <!-- customer form -->
             <form @submit.prevent="addOrder">
                 <div class="space-y-2 mb-4">
                     <label for="name" class="text-md text-green-500 font-medium ">Name</label>
@@ -82,6 +83,7 @@
                 
                 </div>
             </form>
+            <!-- customer form end -->
             
         </div>
         <!-- ticket detail -->
@@ -93,6 +95,8 @@
 </template>
 <script setup>
 import BookingSummary from '../../components/BookingSummary.vue'
+
+import moment from 'moment'
 import { computed, ref } from 'vue';
 import { onMounted } from '@vue/runtime-core';
 import axiosClient from '../../axiosClient';
@@ -146,7 +150,8 @@ const rules = {
 //init vuelidate component
 const v$ = useVuelidate(rules, formData);
 
-
+//change date format
+const departureDate = moment(route.params.date).format('DD/MM/YYYY') ;
 const customerNrc = computed(() => {
     return `${formData.nrcType}${formData.nrcTownship}${formData.nrcCtz}${formData.nrcNo}`;
 });
@@ -161,7 +166,7 @@ const addOrder = async () => {
             paymentMethod: formData.paymentMethod,
             ticketId: route.params.ticketId,
             customerNrc: customerNrc.value,
-            departureDate: route.params.date,
+            departureDate: departureDate,
         });
 
         axiosClient.post('/orders', customerData.value).then(({ data }) => {

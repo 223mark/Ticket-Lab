@@ -15,8 +15,6 @@
 </head>
 
 <body>
-    <!-- component -->
-    <!-- This is an example component -->
     <div>
         <nav class="bg-white border-b border-gray-200 fixed z-30 w-full">
             <div class="px-3 py-3 lg:px-5 lg:pl-3">
@@ -46,54 +44,27 @@
                         </a>
 
                     </div>
-                    <div class="flex items-center">
-                        {{-- <button id="toggleSidebarMobileSearch" type="button"
-                            class="lg:hidden text-gray-500 hover:text-gray-900 hover:bg-gray-100 p-2 rounded-lg">
-                            <span class="sr-only">Search</span>
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
-                        </button> --}}
+                    <div class="flex items-center " id="toggleSidebarMobileSearch">
+
+
                         <a href="{{ route('profile#index') }}">
                             <x-button name="{{ auth()->user()->name }}" />
 
                         </a>
-
-
                     </div>
                 </div>
             </div>
         </nav>
-        <div class="flex overflow-hidden  pt-16 ">
+        <div class="flex overflow-hidden bg-white pt-16">
             <aside id="sidebar"
-                class=" fixed hidden z-20 h-full top-0 left-0 pt-16 flex lg:flex flex-shrink-0 flex-col w-54  transition-width duration-75"
+                class="fixed hidden z-20 h-full top-0 left-0 pt-16 flex lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75"
                 aria-label="Sidebar">
-                <div class="relative flex-1 flex flex-col min-h-0 border-r border-gray-200  pt-0">
+                <div class="relative flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white pt-0">
                     <div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
                         <div class="flex-1 px-3 bg-white divide-y space-y-1">
+                            {{-- dashboard nav --}}
                             <ul class="space-y-2 pb-2">
-                                <li>
-                                    <form action="#" method="GET" class="lg:hidden">
-                                        <label for="mobile-search" class="sr-only">Search</label>
-                                        <div class="relative">
-                                            <div
-                                                class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                                <svg class="w-5 h-5 text-gray-500" fill="currentColor"
-                                                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z">
-                                                    </path>
-                                                </svg>
-                                            </div>
-                                            <input type="text" name="email" id="mobile-search"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-cyan-600 focus:ring-cyan-600 block w-full pl-10 p-2.5"
-                                                placeholder="Search">
-                                        </div>
-                                    </form>
-                                </li>
+
                                 <li>
                                     <a href="{{ route('dashboard#index') }}"
                                         class="text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group">
@@ -133,8 +104,7 @@
                                     <a href="{{ route('busRoutes#index') }}"
                                         class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
                                         <svg class="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
-                                            fill="currentColor" viewBox="0 0 20 20"
-                                            xmlns="http://www.w3.org/2000/svg">
+                                            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                             <path
                                                 d="M8.707 7.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l2-2a1 1 0 00-1.414-1.414L11 7.586V3a1 1 0 10-2 0v4.586l-.293-.293z">
                                             </path>
@@ -150,8 +120,7 @@
                                     <a href="{{ route('operators#index') }}"
                                         class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
                                         <svg class="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
-                                            fill="currentColor" viewBox="0 0 20 20"
-                                            xmlns="http://www.w3.org/2000/svg">
+                                            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                             <path
                                                 d="M8.707 7.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l2-2a1 1 0 00-1.414-1.414L11 7.586V3a1 1 0 10-2 0v4.586l-.293-.293z">
                                             </path>
@@ -186,22 +155,23 @@
                                 </li>
 
                             </ul>
+
                         </div>
                     </div>
                 </div>
             </aside>
-            <div class=" opacity-50 hidden fixed inset-0 z-10" id="sidebarBackdrop">
-            </div>
-            <div id="main-content" class="h-full w-full bg-gray-50 relative overflow-y-auto lg:ml-44">
-                <main class="mt-5 ">
-                    {{ $slot }}
+            <div class="bg-gray-900 opacity-50 hidden fixed inset-0 z-10" id="sidebarBackdrop"></div>
+            <div id="main-content" class="h-full w-full bg-gray-50 relative overflow-y-auto lg:ml-64">
+                <main>
+                    <div class="pt-6 px-4">
+                        {{ $slot }}
+                    </div>
                 </main>
                 <footer
-                    class=" bg-white md:flex md:items-center md:justify-between shadow rounded-lg p-4 md:p-6 xl:p-8 my-6 mx-4">
+                    class="bg-white md:flex md:items-center md:justify-between shadow rounded-lg p-4 md:p-6 xl:p-8 my-6 mx-4">
                     <ul class="flex items-center flex-wrap mb-6 md:mb-0">
                         <li><a href="#"
-                                class="text-sm font-normal text-gray-500 hover:underline mr-4 md:mr-6">Terms
-                                and
+                                class="text-sm font-normal text-gray-500 hover:underline mr-4 md:mr-6">Terms and
                                 conditions</a></li>
                         <li><a href="#"
                                 class="text-sm font-normal text-gray-500 hover:underline mr-4 md:mr-6">Privacy
@@ -252,28 +222,16 @@
                         </a>
                     </div>
                 </footer>
-                <p class="text-center text-sm text-gray-500 my-10 block">
-                    &copy; CodeLab Project <>
-                        <span class="text-green-500 font-medium">We Learn We Code We Share</span>
-
+                <p class="text-center text-sm text-gray-500 my-10">
+                    &copy; 2019-2021 <a href="#" class="hover:underline" target="_blank">Themesberg</a>. All
+                    rights reserved.
                 </p>
-
-
             </div>
-            <script async defer src="https://buttons.github.io/buttons.js"></script>
-            <script src="https://demo.themesberg.com/windster/app.bundle.js"></script>
         </div>
-        {{-- jquery --}}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
-            integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script async defer src="https://buttons.github.io/buttons.js"></script>
+        <script src="https://demo.themesberg.com/windster/app.bundle.js"></script>
+    </div>
 
-        {{-- alphine js --}}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.3.0/alpine-ie11.js"
-            integrity="sha512-6m6AtgVSg7JzStQBuIpqoVuGPVSAK5Sp/ti6ySu6AjRDa1pX8mIl1TwP9QmKXU+4Mhq/73SzOk6mbNvyj9MPzQ=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-        <script src="{{ asset('js/model.js') }}"></script>
 
 
 </body>

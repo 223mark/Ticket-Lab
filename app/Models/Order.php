@@ -20,8 +20,22 @@ class Order extends Model
         'departure_date'
     ];
 
-    public function tickets()
+    public function scopeFilter($query, array $filters)
     {
-        return $this->belongsTo(BusTicket::class, 'id');
+        if ($filters['tag'] ?? false) {
+            $query->where('departure_date', 'like', '%' . request('tag') . '%')
+                ->orWhere('payment_method', 'like', '%' . request('tag') . '%');
+        }
+
+        if ($filters['searchText'] ?? false) {
+            $query->where('title', 'like', '%' . request('searchText') . '%')
+                ->orWhere('description', 'like', '%' . request('searchText') . '%')
+                ->orWhere('tags', 'like', '%' . request('searchText') . '%');
+        }
     }
+
+    // public function bustickets()
+    // {
+    //     return $this->belongsTo(BusTicket::class,);
+    // }
 }

@@ -12,8 +12,15 @@ class OrderController extends Controller
 
     public function index()
     {
-        return view('orders.index', [
-            'orders' => Order::paginate('6')
-        ]);
+        $orderData = Order::select('orders.*', 'bus_tickets.*')
+            ->leftJoin('bus_tickets', 'bus_tickets.ticket_id', 'orders.ticket_id')
+            ->get()->dd();
+
+        // $order = Order::with('bustickets')->get();
+        // dd($order->toArray());
+        // return view('orders.index', [
+
+        //     'searchText' => ''
+        // ]);
     }
 }

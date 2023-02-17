@@ -21,8 +21,9 @@
                 </div>
                 <h6 class=" font-semibold py-2 text-lg text-center"> {{ t.operatorName }}</h6>
                 <div class="flex justify-center">
-                    
-                    <button class="px-4 py-1 border border-indigo-400 rounded hover:bg-blue-400">Operator</button>
+                    <router-link :to="{ name: 'app.operators.detail', params: { operator: t.operatorId }}">
+                        <button class="px-4 py-1 border border-indigo-400 rounded hover:bg-blue-400">Operator</button>
+                    </router-link>
                 </div>
             </div>
             <div class="space-y-2 ml-2 md:space-y-4 md:w-1/4 flex flex-col items-center justify-start">

@@ -1,5 +1,5 @@
 <template>
-   
+     
         <div class=" mx-2 md:w-1/4" v-for="operator in operators" :key="operator.id">
             <div
                 class="  shadow-md border border-gray-200 rounded-lg max-w-sm bg-gray-800">

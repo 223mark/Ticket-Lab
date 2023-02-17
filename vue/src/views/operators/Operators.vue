@@ -1,12 +1,14 @@
 <template>
     
     <!-- operators start -->
+    <!-- <LoadingCard /> -->
     <section id="operators" class="my-16 md:px-8 min-h-screen">
         <div class=" py-2 mb-8 ">
             <h4 class="text-lg text-green-500 font-semibold  text-center underline md:text-2xl">Operators</h4>
         </div>
 
         <div class="flex flex-wrap flex-col md:flex-row  gap-2 ">
+            
             <OperatorCard/>
         </div>
    
@@ -17,9 +19,9 @@
     
 </template>
 <script setup>
+//component imports
+import LoadingCard from '../../components/LoadingCard.vue'
 import OperatorCard from '../../components/OperatorCard.vue'
-import { useRoute } from 'vue-router';
-import { computed } from '@vue/runtime-core'
 
 
 

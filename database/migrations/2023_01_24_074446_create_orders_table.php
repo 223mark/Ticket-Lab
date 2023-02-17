@@ -22,7 +22,8 @@ return new class extends Migration
             $table->string('customer_name');
             $table->char('customer_nrc_number');
             $table->string('payment_method');
-            $table->dateTimeTz('departure_date');
+            //$table->dateTimeTz('departure_date');
+            $table->string('departure_date');
             $table->timestamps();
         });
     }

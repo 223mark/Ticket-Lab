@@ -148,6 +148,7 @@ const departureTime = ref(null);
 const ticketClass = ref(null);
 const allCheck = ref(true)
 const selectedDate = ref(route.params.d);
+
 const fromWhere = ref(route.params.f);
 const toWhere = ref(route.params.t);
 const ticketTime = ['3:00 PM', '9:00 PM']

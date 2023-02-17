@@ -28,6 +28,6 @@ class BusTicket extends Model
     }
     public function order()
     {
-        return $this->hasMany(Order::class, 'ticket_id');
+        return $this->hasMany(Order::class);
     }
 }
