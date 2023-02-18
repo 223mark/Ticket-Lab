@@ -1,6 +1,6 @@
 <template>
     <!-- hero section start -->
-      <section class="flex flex-col mt-14 h-30vh md:h-20vh md:flex-row md:items-center md:justify-around" id="main-hero">
+      <section class="flex flex-col mt-20 md:mt-14 h-smHeroImage md:h-mdHeroImage md:flex-row md:items-center md:justify-around" id="main-hero">
             <!-- left section -->
             <div class="px-5 hidden sm:text-center md:block md:w-1/2 ">
                 <h2 class="text-lg font-semibold leading-8 text-white">Online Ticket Website</h2>
@@ -50,10 +50,5 @@ import PopularRoute from './PopularRoutes.vue'
 </script>
 
 <style scoped>
-#newsletter{
-    background-image: url('../../public/img/banner/news_banner.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: top 20% right 0;
-}
+
 </style>

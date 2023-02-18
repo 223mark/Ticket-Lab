@@ -1,5 +1,5 @@
 <template>
-<div class="flex flex-col space-y-4 px-4 py-2 mx-auto bg-white  shadow-lg rounded-lg w-4/5  ">
+<div class="flex flex-col  space-y-4 px-4 py-2 mx-auto bg-white  shadow-lg rounded-lg w-4/5  ">
     <div class="w-full space-y-2">
         
       <div class="space-y-4">
@@ -23,7 +23,7 @@
             
         </div>
     
-        <div class="w-full flex justify-center">
+        <div class="w-full flex justify-center mt-2">
             <router-link :to="{ name: 'app.tickets', params: { f: fromWhere, t: toWhere, d: selectedDate }}">
             <button @click="searchTicket()" class="px-8 py-1 rounded shadow text-white  bg-green-500 hover:bg-green-400">Search</button>
         </router-link>

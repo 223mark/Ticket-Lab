@@ -2,9 +2,9 @@
     
     <!-- operators start -->
     <!-- <LoadingCard /> -->
-    <section id="operators" class="my-16 md:px-8 min-h-screen">
+    <section id="operators" class="my-20 md:px-8 min-h-screen">
         <div class=" py-2 mb-8 ">
-            <h4 class="text-lg text-green-500 font-semibold  text-center underline md:text-2xl">Operators</h4>
+            <h4 class=" text-green-500 font-semibold  text-center underline text-2xl">Operators</h4>
         </div>
 
         <div class="flex flex-wrap flex-col md:flex-row  gap-2 ">

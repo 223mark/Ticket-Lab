@@ -3,7 +3,7 @@
     <div class="p-6 mt-16  w-screen space-y-8 bg-slate-100">
        
         <button  @click="router.back()"
-        class="px-8  bg-indigo-500 text-white rounded font-semibold text-lg"
+        class="px-6 py-1 bg-indigo-500 text-white rounded font-semibold text-md"
         >Back</button>
         
         <div class="flex  bg-white shadow-xl rounded-lg overflow-hidden mt-5">

@@ -1,83 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-.h-30vh {
-    height: 30vh;
-}
-
-.h-20vh {
-    height: 20vh;
-}
-
 .theme-color {
-    background-color: rgb(2, 133, 39);
-    padding: 5px 20px;
-    color: #fff;
-    border-radius: 5px;
-    font-weight: bold;
-    font-size: 1rem;
+    color: #028527;
+}
+
+.bg-theme-color {
+    background-color: #028527;
 }
 
 #main-hero {
-    height: 60vh;
     background-image: url('../public/img/banner/greenbanner.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top 40% right 20%;
-}
-
-#payment-banner {
-    height: 30vh;
-    background-image: url('../public/img/banner/paymentbanner.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-
-/* hamburger menu */
-
-.hamburger {
-    cursor: pointer;
-    width: 24px;
-    height: 24px;
-    transition: all 0.25s;
-    position: relative;
-}
-
-.hamburger-top,
-.hamburger-middle,
-.hamburger-bottom {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 24px;
-    height: 2px;
-    background: #000;
-    transform: rotate(0);
-    transition: all 0.5s;
-}
-
-.hamburger-middle {
-    transform: translateY(7px);
-}
-
-.hamburger-bottom {
-    transform: translateY(14px);
-}
-
-.open {
-    transform: rotate(90deg);
-    transform: translateY(0px);
-}
-
-.open .hamburger-top {
-    transform: rotate(45deg) translateY(6px) translate(6px);
-}
-
-.open .hamburger-middle {
-    display: none;
-}
-
-.open .hamburger-bottom {
-    transform: rotate(-45deg) translateY(6px) translate(-6px);
 }

@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import './style.css'
+import './js/hambager'
 import router from './router'
 import store from './store'
 import App from './App.vue'
