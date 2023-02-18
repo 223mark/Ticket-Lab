@@ -1,12 +1,12 @@
 <x-main-layout title="Routes">
     <div class="mx-2 mt-10 md:mt-10 md:mx-4 ">
-        <div class="flex justify-between pb-2">
-            {{-- add model btn --}}
-            <x-add-button btn_name="Add Routes" id="addBtn"></x-add-button>
+        <div class="flex flex-col-reverse md:flex-row md:justify-between items-center ">
 
-            <form action="" method="">
+            <x-add-button btn_name="Add Route"></x-add-button>
 
-                <x-search-input :searchText=$searchText></x-search-input>
+            {{-- search  --}}
+            <form action="">
+                <x-search-input :searchText=$searchText />
             </form>
         </div>
         {{-- route add form --}}
@@ -29,27 +29,30 @@
         @endif
 
 
+
         {{-- route table --}}
 
-        <table class="w-full  border-collapse bg-white text-left text-sm text-gray-500 border shadow-lg ">
-            {{-- table header --}}
-            <x-table-header>route</x-table-header>
+        <div class="overflow-auto shadow rounded-lg">
+            <table class="w-full  border-collapse bg-white text-left text-sm text-gray-500 border shadow-lg ">
+                {{-- table header --}}
+                <x-table-header>route</x-table-header>
 
 
-            <tbody class="divide-y divide-gray-100 border-t border-gray-100">
+                <tbody class="divide-y divide-gray-100 border-t border-gray-100">
 
-                @forelse ($busRoutes as $data)
-                    @include('partials.data._bus_routes')
-                @empty
-                    <tr class="hover:bg-gray-200">
-                        <x-no-data-status item="Routes" />
-                    </tr>
+                    @forelse ($busRoutes as $data)
+                        @include('partials.data._bus_routes')
+                    @empty
+                        <tr class="hover:bg-gray-200">
+                            <x-no-data-status item="Routes" />
+                        </tr>
 
-                @endif
+                    @endif
 
-            </tbody>
+                </tbody>
 
-        </table>
+            </table>
+        </div>
         <div class="my-4 md:my-6">
             {{ $busRoutes->links() }}
         </div>

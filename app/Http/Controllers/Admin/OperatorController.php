@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\File;
 
 class OperatorController extends Controller
 {
-
+    //index 
     public function index()
     {
         return view('operators.index', [
@@ -22,7 +22,7 @@ class OperatorController extends Controller
         ]);
     }
 
-
+    //store new operator
     public function store(Request $request)
     {
         $this->validationCheck($request);
@@ -40,11 +40,13 @@ class OperatorController extends Controller
         return redirect()->route('operators#index')->with('addMessage', 'Operator Added Successfully');
     }
 
+    //editpage operator
     public function edit(Operator $operator)
     {
         return view('operators.edit', compact('operator'));
     }
 
+    //update operator
     public function update(Operator $operator, Request $request)
     {
 
@@ -64,6 +66,7 @@ class OperatorController extends Controller
         return redirect()->route('operators#index')->with('updateMessage', 'Operator Updated Successfully');
     }
 
+    //destory operator
     public function destory(Operator $operator)
     {
         //delete img form local
@@ -79,6 +82,12 @@ class OperatorController extends Controller
         return redirect()->route('operators#index')->with('deleteMessage', 'Operators Deleted Successfully');
     }
 
+    //deatil of operator
+    public function deatil(Operator $operator)
+    {
+
+        return view('operators.detail', compact('operator'));
+    }
 
 
     //related ticket

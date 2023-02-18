@@ -1,4 +1,4 @@
-<x-main-layout title="Operators/Edit">
+<x-main-layout title="Operator/Edit">
 
     <div class="md:px-10 sm:px-5    shadow-md border">
         <h1 class="text-gray-800 font-bold text-lg pl-4 md:pl-0 md:text-2xl my-2">Edit Operator</h1>

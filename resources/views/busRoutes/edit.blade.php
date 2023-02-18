@@ -3,19 +3,7 @@
     <form class="px-8 pt-6 pb-8 mb-4  rounded" action="{{ route('busRoutes#update', $route->id) }}" method="POST">
         @csrf
         <div class=" flex flex-wrap justify-between gap-2 ">
-            {{-- <div class="w-full md:w-2/5 ">
-                <x-input-label labelName="From Where" />
-                <x-select-tag :data=$location filterText="location" name="fromWhere" />
-                <x-jet-input-error for="fromWhere" />
 
-
-            </div>
-            <div class="w-full md:w-2/5 ">
-                <x-input-label labelName="To Where" />
-                <x-select-tag :data=$location filterText="location" name="toWhere" />
-                <x-jet-input-error for="toWhere" />
-
-            </div> --}}
             <div class="w-full md:w-2/5 ">
                 <x-input-label labelName="Departure Time" />
                 <x-input-tag type="text" name="departureTime" value="{{ $route->departure_time }}" />
@@ -55,7 +43,7 @@
 
                 </a>
                 <a href="{{ route('busRoutes#destory', $route->id) }}">
-                    <x-button name="Delete" onclick="confirm()" type="button" />
+                    <x-button name="Delete" type="button" />
 
                 </a>
 

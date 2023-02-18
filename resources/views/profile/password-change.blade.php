@@ -1,4 +1,4 @@
-<x-main-layout title="Admin/Profile">
+<x-main-layout title="Admin/ChangePassword">
     <div class="flex items-center shadow-md mt-5 md:mt-10 bg-gray-100 ">
 
         <div class="md:px-10 sm:px-5 w-full ">

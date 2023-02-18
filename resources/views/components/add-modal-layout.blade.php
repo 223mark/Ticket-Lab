@@ -1,12 +1,12 @@
 @php
-    $showClass = 'inline   min-h-screen  transition duration-150 ease-in-out z-50 fixed top-2 right-0 bottom-0 left-0';
-    $hiddenClass = 'hidden min-h-screen  transition duration-150 ease-in-out z-50 fixed top-2 right-0 bottom-0 left-0 ';
+    $showClass = 'inline   min-h-screen  transition duration-150 ease-in-out z-50 absolute top-2 right-0 bottom-0 left-0 md:fixed';
+    $hiddenClass = 'hidden min-h-screen  transition duration-150 ease-in-out z-50 absolute top-2 right-0 bottom-0 left-0 md:fixed ';
 @endphp
 
 <div @if (!$errors->isEmpty()) {{ $attributes->merge(['class' => $showClass]) }} @else {{ $attributes->merge(['class' => $hiddenClass]) }} @endif
     id="modal">
     <div role="alert" class=" container mx-auto  h-full  w-full max-w-lg md:max-w-2xl ">
-        <div class=" relative md:px-5 bg-white shadow-md rounded border border-gray-400">
+        <div class=" relative md:px-5 bg-white shadow-md rounded border border-gray-400 px-2">
             <div class="w-full flex justify-start text-gray-600 mb-3">
                 <img src="{{ asset('img/codelab.png') }}" alt="logo" class="h-14">
 

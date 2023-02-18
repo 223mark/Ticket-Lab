@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -38,12 +39,32 @@ class ProfileController extends Controller
         User::where('id', auth()->user()->id)->update($data);
         return back()->with('updateMessage', 'Profile Updated Successfully.');
     }
-
+    //password 
     public function passwordChagePage()
     {
         return view('profile.password-change');
     }
+    //update password
+    public function passwordUpdate(Request $request)
+    {
+        $request->validate([
+            'currentPassword' => 'required|min:6',
+            'newPassword' => 'required|min:6',
+            //  'confirmPassword' => 'required|min:6|same:newPassword',
 
+        ]);
+        $dbPsw = User::select('password')->where('id', Auth()->user()->id)->first();
+        $hashdbPsw = $dbPsw->password;
+        if (Hash::check($request->currentPassword, $hashdbPsw)) {
+            $newPsw = [
+                'password' => Hash::make($request->newPassword),
+            ];
+            User::where('id', Auth()->user()->id)->update($newPsw);
+            return redirect()->route('profile#index')->with(['updateMessage' => 'Password Updated Successfully..']);
+        } else {
+            return back()->with(['PswnotMatch' => 'Wrong Current Password! Please Try Again!!']);
+        }
+    }
     //PRIVATE FUNCTON
     private function validationCheck($request)
     {
