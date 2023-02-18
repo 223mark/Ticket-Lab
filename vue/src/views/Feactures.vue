@@ -1,6 +1,6 @@
 <template>
-        <div class="mx-auto max-w-7xl px-10 lg:px-20 ">
-            <h4 class="text-2xl text-center text-indigo-600 font-bold ">Our Feactures</h4>
+        <div class="mx-auto max-w-7xl mt-3 px-10 lg:px-20 ">
+            <h4 class="text-2xl text-center text-indigo-600 font-bold dark:text-darkIndigo">Our Feactures</h4>
             <div class="mt-10 max-w-lg sm:mx-auto md:max-w-none">
                 <div class="grid grid-cols-1 gap-y-16 md:grid-cols-2 md:gap-x-12 md:gap-y-16">
                     <div v-for="feature in features" :key="feature.name"

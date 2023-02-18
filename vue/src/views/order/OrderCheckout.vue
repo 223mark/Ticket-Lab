@@ -1,13 +1,13 @@
 <template>
-    <div class="flex flex-col md:flex-row mt-20 m-4 md:mx-8 "> 
+    <div class="flex flex-col md:flex-row pt-20 p-4 md:px-8 dark:bg-dark"> 
         <!-- customer info -->
-        <div class="w-full md:w-2/3 px-4 py-6 mb-4 bg-white shadow-lg rounded">
+        <div class="w-full md:w-2/3 px-4 py-6 mb-4 bg-white border shadow-lg rounded dark:bg-dark">
             <div class="mb-2" @click="$router.back()">
                 
                 <span class="text-indigo-600 text-lg  font-semibold transition-color hover:text-indigo-500">Back</span>
                 
             </div>
-            <h2 class="text-xl font-semibold mb-4 ">Customer Information</h2>
+            <h2 class="text-xl font-semibold mb-4 dark:text-darkIndigo">Customer Information</h2>
             <!-- customer form -->
             <form @submit.prevent="addOrder">
                 <div class="space-y-2 mb-4">

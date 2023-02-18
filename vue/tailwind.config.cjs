@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+    darkMode: "class",
     content: [
         "./index.html",
         "./src/**/*.{vue,js,ts,jsx,tsx}",
@@ -15,8 +16,15 @@ module.exports = {
         },
         extend: {
             height: {
-                smHeroImage: '43vh',
+                smHeroImage: '50vh',
                 mdHeroImage: '60vh'
+            },
+            colors: {
+                theme: '#028527',
+                dark: '#1F1B24',
+                darkTheme: '#27e8a7',
+                darkIndigo: '#168FFF',
+                darkWhite: '#91FFFF'
             }
         },
     },

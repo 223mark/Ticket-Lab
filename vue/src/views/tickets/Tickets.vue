@@ -1,57 +1,61 @@
 <template>
     
+       <div class="dark:bg-dark">
         <!-- ticket hero section -->
-        <div  id="ticket-section" class="mt-10 relative ">
+        <div id="ticket-section" class="mt-10 relative md:mb-3 ">
             <!-- ticket search section -->
-            <div class="flex  flex-col md:flex-row justify-around  absolute bottom-0 border-t-2 border-x-2 border-green-500 bg-white  pb-4 pt-6 px-4 rounded-t-lg m-auto right-0 left-0  max-w-2xl    ">
-                
-                <div class="w-full md:w-1/3  bg-white">
-                    <label for="from" class="block mb-4 text-green-500  font-medium">From Location</label>
-                    <select v-model="fromWhere" id="from" class="w-full px-4 py-2 ">
+            <div
+                class="flex  flex-col md:flex-row justify-around  absolute bottom-0 border-t-2 border-x-2 border-green-500 bg-white  pb-4 pt-6 px-4 space-y-2 rounded-t-lg m-auto right-0 left-0  max-w-2xl md:space-y-0 md:space-x-2  dark:bg-dark  ">
+        
+                <div class="w-full md:w-1/3  ">
+                    <label for="from" class="block mb-4 text-green-500  font-medium dark:text-darkTheme">From Location</label>
+                    <select v-model="fromWhere" id="from" class="w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100 ">
                         <option :value="l.location" v-for="l in location" :key="l.id">{{ l.location }}</option>
                     </select>
                 </div>
-                
-               
-                <div class="w-full md:w-1/3 bg-white">
-                    <label for="from" class="block mb-4 text-green-500  font-medium">To Location</label>
-                    <select v-model="toWhere" id="to" class="w-full px-4">
+        
+        
+                <div class="w-full md:w-1/3 ">
+                    <label for="from" class="block mb-4 text-green-500  font-medium dark:text-darkTheme">To Location</label>
+                    <select v-model="toWhere" id="to" class="w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100 ">
                         <option :value="l.location" v-for="l in location" :key="l.id">{{ l.location }}</option>
                     </select>
                 </div>
-               
-                <div class="w-full md:w-1/3 bg-white">
-                    <label for="date" class="block mb-4 text-green-500  font-medium">  Date</label>
-                    <Datepicker v-model.date="selectedDate" type="date" position="center" id="date" :format="format" :min-date="new Date()" >
+        
+                <div class="w-full md:w-1/3 ">
+                    <label for="date" class="block mb-4 text-green-500  font-medium dark:text-darkTheme"> Date</label>
+                    <Datepicker v-model.date="selectedDate" type="date" position="center" id="date" :format="format"
+                        :min-date="new Date()">
                     </Datepicker>
-                    <span class="text-red-500 font-semibold mt-4 pl-2 leading-4 text-xs" v-if="selectedDate == null">Please choose a date</span>
+                    <span class="text-red-500 font-semibold mt-4 pl-2 leading-4 text-xs" v-if="selectedDate == null">Please
+                        choose a date</span>
                 </div>
-               
+        
             </div>
             <!-- ticket searcch end -->
         </div>
         <!-- ticket hero end -->
         
-        <section class="flex flex-col  md:flex-row mx-0 md:mx-8" id="operator-date">
-
+        <div class="flex flex-col  md:flex-row mx-0 md:mx-8 " id="operator-date">
+            <!-- ticket filtering -->
             <div class=" mb-4 md:w-1/6">
                 <!-- operator and date time section -->
                 <div class=" w-full flex flex-col gap-2">
                     <!-- departure time -->
-                    <div class="border border-gray-500 bg-white mx-4 md:mx-2 ">
+                    <div class="border border-gray-500 bg-white mx-4 md:mx-2 dark:bg-gray-200">
                         <div class="pt-4 pb-2 w-full border-b border-gray-700 ">
-                            <h1 class="text-lg font-semibold text-gray-500 text-center">Departure Time</h1>
+                            <h1 class="text-lg font-semibold text-gray-500 text-center dark:text-darkIndigo">Departure Time</h1>
                         </div>
                         <div class=" p-4 flex flex-col ">
                             <div class="border-b-2 border-dashed border-gray-700 ">
-                                <input class="mr-2" type="checkbox" v-model="allCheck" value="" id="all" >
-                                <label class="font-medium text-gray-800 text-md" for="all" >
-                                   For ALL 
+                                <input class="mr-2" type="checkbox" v-model="allCheck" value="" id="all">
+                                <label class="font-medium text-gray-800 text-md dark:text-darkIndigo" for="all">
+                                    For ALL
                                 </label>
                             </div>
                             <div class="mt-2" v-for="(time,index) in ticketTime" :key="index">
-                                <input class="mr-2" v-model="departureTime" type="radio" :value="time" :id="time" >
-                                <label class="font-medium text-gray-800 text-md" :for="time">
+                                <input class="mr-2" v-model="departureTime" type="radio" :value="time" :id="time">
+                                <label class="font-medium text-gray-800 text-md dark:text-darkIndigo" :for="time">
                                     {{ time }}
                                 </label>
                             </div>
@@ -59,52 +63,51 @@
                     </div>
                     <!-- departure time end -->
                     <!-- operators -->
-                    <div class="border border-gray-500 bg-white mx-4 md:mx-2 ">
+                    <div class="border border-gray-500 bg-white mx-4 md:mx-2 dark:bg-gray-200">
                         <div class="pt-4 pb-2 w-full border-b border-gray-700 ">
-                            <h1 class="text-lg font-semibold text-gray-500 text-center">Operators</h1>
+                            <h1 class="text-lg font-semibold text-gray-500 text-center dark:text-darkIndigo">Operators</h1>
                         </div>
-                       
+        
                         <div class=" p-4 flex flex-col ">
-                            <div class="" v-for="op in operator" :key="op.id" >
+                            <div class="" v-for="op in operator" :key="op.id">
                                 <input class="mr-2" v-model="operatorId" type="radio" :value="op.id" :id=" op.operatorName">
-                                <label class="font-medium text-gray-800 text-md" :for="op.operatorName">
+                                <label class="font-medium text-gray-800 text-md dark:text-darkIndigo" :for="op.operatorName">
                                     {{ op.operatorName }}
-                                </label> 
-                                
+                                </label>
+        
                             </div>
-                            
-                    
+        
+        
                         </div>
                     </div>
                     <!-- operators end -->
                     <!-- ticket class -->
-                    <div class="border border-gray-500 bg-white mx-4 md:mx-2 ">
+                    <div class="border border-gray-500 bg-white mx-4 md:mx-2 dark:bg-gray-200">
                         <div class="pt-4 pb-2 w-full border-b border-gray-700 ">
-                            <h1 class="text-lg font-semibold text-gray-500 text-center">Ticket Class</h1>
+                            <h1 class="text-lg font-semibold text-gray-500 text-center dark:text-darkIndigo">Ticket Class</h1>
                         </div>
                         <div class=" p-4 flex flex-col ">
                             <div class="mt-2" v-for="(tClass,index) in ticketClassArr" :key="index">
                                 <input class="mr-2" v-model="ticketClass" type="radio" :value="tClass" :id="tClass">
-                                <label class="font-medium text-gray-800 text-md" :for="tClass">
+                                <label class="font-medium text-gray-800 text-md dark:text-darkIndigo" :for="tClass">
                                     {{ tClass }}
                                 </label>
                             </div>
-                    
-                    
+        
+        
                         </div>
                     </div>
                     <!-- ticket class end -->
                 </div>
-            
+        
             </div>
-            <div class="w-full  flex flex-wrap gap-2 md:w-5/6 ">
-                <Ticket  :tickets="tickets" :selectedDate="selectedDate" ></Ticket>
+            <!-- tickets -->
+            <div class="w-full   flex flex-wrap gap-2 md:w-5/6 ">
+                <Ticket :tickets="tickets" :selectedDate="selectedDate"></Ticket>
             </div>
-        </section>
-        <!-- operator and date time section end-->
-        <section>
-            
-        </section>
+        </div>
+       </div>
+        
    
     
 </template>

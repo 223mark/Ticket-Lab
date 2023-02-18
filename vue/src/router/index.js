@@ -1,10 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-//auth sectuin
-import AuthLayout from '../components/AuthMaster.vue'
-import Register from '../views/auth/Register.vue'
-//import ResetPassword from '../views/auth/ResetPassword.vue'
-import Login from '../views/auth/Login.vue'
-
 
 
 //frontend
@@ -77,28 +71,7 @@ const routes = [{
 
         ]
     },
-    {
-        path: '/auth',
-        name: 'auth',
-        component: AuthLayout,
-        children: [{
-                path: '/login',
-                name: 'auth.login',
-                component: Login
-            },
-            {
-                path: '/register',
-                name: 'auth.register',
-                component: Register
 
-            },
-            // {
-            //     path: '/reset/password',
-            //     name: 'resetPassword',
-            //     component: ResetPassword
-            // }
-        ]
-    },
 
 
 

@@ -13,9 +13,9 @@
                 <div class="p-5">
                     <div class="space-y-2 ">
     
-                        <h3 class=" text-gray-900 font-bold text-xl tracking-tight mb-2 dark:text-white">{{
-                            operator.operatorName
-                        }}</h3>
+                        <h3 class=" text-white font-bold text-xl tracking-tight mb-2 dark:text-white">
+                            {{ operator.operatorName}}
+                        </h3>
                         <h6 class=" w-1/3 text-indigo-500">{{ operator.email }}</h6>
                         <div class="flex">
     

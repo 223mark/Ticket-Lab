@@ -1,6 +1,6 @@
 <template>
     <!-- component -->
-    <div class="p-6 mt-16  w-screen space-y-8 bg-slate-100">
+    <div class="p-6 mt-16  w-screen space-y-8 bg-slate-100 dark:bg-dark">
        
         <button  @click="router.back()"
         class="px-6 py-1 bg-indigo-500 text-white rounded font-semibold text-md"
@@ -13,7 +13,7 @@
            
            </div>
             <div class="w-2/3 p-4 space-y-4">
-                <h1 class="text-gray-900 font-bold text-2xl">{{ operator.operatorName}}</h1>
+                <h1 class="text-gray-900 font-bold text-2xl dark:text-darkTheme">{{ operator.operatorName}}</h1>
                 <h5 class="text-gray-400 font-semibold text-xl">{{ operator.email}}</h5>
                 <h6 class="text-gray-900 font-medium text-sm">{{ operator.phone1}}</h6>
                 <h6 class="text-gray-900 font-medium text-sm">{{ operator.phone2}}</h6>
