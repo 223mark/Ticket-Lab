@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\BusTicket;
-use App\Models\Operator;
+use Carbon\Carbon;
 use App\Models\Order;
+use App\Models\Operator;
+use App\Models\BusTicket;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class OrderController extends Controller
 {
@@ -15,10 +16,22 @@ class OrderController extends Controller
     public function index()
     {
 
+
+
         $orderData = Order::select('orders.*',  'bus_tickets.*', 'operators.*')
             ->leftJoin('bus_tickets', 'bus_tickets.ticket_id', 'orders.ticket_id')
             ->leftJoin('operators', 'operators.id', 'orders.operator_id')->filter(request(['tag', 'searchText']))
             ->paginate(request('perPage'));
+        // dd($orderData->toArray());
+
+
+        // $orderData = Order::get();
+        // $date = Carbon::createFromFormat('d/m/Y', $orderData->departureDate)->format('Y-m-d');
+        // $currentDate = new \DateTime();
+        // $expireDate = new \DateTime($orderData->created_at);
+        // dd($expireDate);
+
+        // dd($orderData->toArray());
         // $order = Order::with('bustickets')->get();
         return view('orders.index', [
             'orders' => $orderData,
@@ -56,4 +69,10 @@ class OrderController extends Controller
             'ticket' => $ticketData,
         ]);
     }
+
+    //date
+
+    // public function expiredTicket () {
+
+    // }
 }

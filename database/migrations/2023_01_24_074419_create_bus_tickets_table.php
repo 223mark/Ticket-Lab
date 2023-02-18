@@ -19,10 +19,9 @@ return new class extends Migration
             //$table->foreignId('route_id')->constrained()->onDelete('cascade');
             $table->foreignId('route_id');
             $table->foreignId('operator_id')->constrained()->onDelete('cascade');
-            $table->string('status')->nullable();
             $table->string('price');
+            $table->string('class');
             $table->string('seat_number')->nullable();
-            // $table->timestamp('departure_date');
             $table->timestamps();
         });
     }

@@ -5,17 +5,16 @@
         <div class="">
 
             {{-- {{ $currentUrl }} --}}
-            <form action="" method="POST">
+            {{-- <form action="" method="POST">
                 @csrf
                 <x-per-page></x-per-page>
-            </form>
-
+            </form> --}}
+            <x-filter-dropdown :data=$operators></x-filter-dropdown>
         </div>
         <div class="">
             <a href="/orders/index">
                 <x-button name="reset"></x-button>
             </a>
-            <x-filter-dropdown :data=$operators></x-filter-dropdown>
         </div>
     </div>
     {{-- table --}}

@@ -19,8 +19,6 @@ return new class extends Migration
             // $table->integer('operator_id');
             $table->string('from_where');
             $table->string('to_where');
-            //$table->string('price');
-            $table->string('class');
             $table->string('departure_time');
             $table->string('arrive_time');
             $table->timestamps();

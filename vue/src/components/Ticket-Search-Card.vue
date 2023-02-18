@@ -4,14 +4,14 @@
         
       <div class="space-y-4">
         <label for="from" class="text-green-500  font-medium">Please Choose From Location</label>
-        <select v-model="fromWhere"   id="from" class="w-full px-4 py-2 focus:border-indigo-500 ">
+        <select v-model="fromWhere"   id="from" class="w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100 ">
             <option :value=" l.location " v-for="l in location" :key="l.id">{{ l.location }}</option>
             
         </select>
       </div>
      <div class="space-y-4">
             <label for="to" class="text-green-500  font-medium mb-4">Please Choose To Location</label>
-            <select v-model="toWhere" id="to" class="w-full">
+            <select v-model="toWhere" id="to" class="w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100">
                 <option :value=" l.location " v-for="l in location" :key="l.id">{{ l.location }}</option>
             </select>
         </div>

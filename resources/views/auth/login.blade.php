@@ -34,6 +34,8 @@
                   "
                     placeholder="Enter your email" />
             </div>
+            <x-jet-input-error for="email" />
+
         </div>
         <div class="flex flex-col mb-5">
             <label for="password" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Password:</label>
@@ -69,6 +71,8 @@
                   "
                     placeholder="Enter your password" />
             </div>
+            <x-jet-input-error for="password" />
+
         </div>
 
 

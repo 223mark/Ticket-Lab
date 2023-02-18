@@ -22,7 +22,7 @@
                
                 <div class="w-full md:w-1/3 bg-white">
                     <label for="date" class="block mb-4 text-green-500  font-medium">  Date</label>
-                    <Datepicker v-model="selectedDate" position="center" id="date" :format="format" :min-date="new Date()" >
+                    <Datepicker v-model.date="selectedDate" type="date" position="center" id="date" :format="format" :min-date="new Date()" >
                     </Datepicker>
                     <span class="text-red-500 font-semibold mt-4 pl-2 leading-4 text-xs" v-if="selectedDate == null">Please choose a date</span>
                 </div>

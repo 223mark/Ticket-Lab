@@ -147,8 +147,7 @@ const rules = {
 //init vuelidate component
 const v$ = useVuelidate(rules, formData);
 
-//change date format
-const departureDate = moment(route.params.date).format('DD/MM/YYYY') ;
+
 const customerNrc = computed(() => {
     return `${formData.nrcType}${formData.nrcTownship}${formData.nrcCtz}${formData.nrcNo}`;
 });
@@ -163,7 +162,7 @@ const addOrder = async () => {
             paymentMethod: formData.paymentMethod,
             ticketId: route.params.ticketId,
             customerNrc: customerNrc.value,
-            departureDate: departureDate,
+            departureDate: moment(route.params.date).format('DD/MM/YYYY'),
             operatorId: operatorId.value,
         });
 

@@ -1,7 +1,7 @@
 @props(['name'])
 
 @php
-    $defaultBtn = 'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-700  hover:bg-cyan-500 bg-cyan-600 rounded text-white px-4  py-2 text-xs sm:text-sm ';
+    $defaultBtn = 'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-700 ml-2  hover:bg-cyan-500 bg-cyan-600 rounded text-white px-4  py-2 text-xs sm:text-sm ';
     $backBtn = 'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700  hover:bg-gray-600 bg-gray-700 rounded text-white px-4  py-1 text-xs sm:text-sm ';
     
     $updateBtn = 'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-700  hover:bg-green-600 bg-green-700 rounded text-white px-4  py-2 text-xs sm:text-sm ';

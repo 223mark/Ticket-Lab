@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\V1\StoreOrderRequest;
 use App\Http\Resources\V1\OrderResource;
 use App\Models\Order;
+use Carbon\Carbon;
 
 class OrderController extends Controller
 {
@@ -39,16 +40,19 @@ class OrderController extends Controller
     public function store(Request  $request)
     {
 
+        $date = Carbon::createFromFormat('d/m/Y', $request->departureDate)->format('Y-m-d');
+
         $orderData = [
             'customer_name' => $request->name,
             'customer_nrc_number' =>  $request->customerNrc,
             'payment_method' => $request->paymentMethod,
-            'departure_date' =>  $request->departureDate,
+            'departure_date' =>  $date,
             'ticket_id' => $request->ticketId,
             'customer_email' => $request->email,
             'operator_id' => $request->operatorId
         ];
-        //logger($orderData);
+        // logger($orderData);
+
         return new OrderResource(Order::create($orderData));
     }
 

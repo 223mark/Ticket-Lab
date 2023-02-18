@@ -39,22 +39,26 @@
 
             </div>
 
-            {{-- <div class="w-full md:w-2/5 ">
+            <div class="w-full  md:w-2/5 ">
+                <x-input-label labelName="Class Of Ticket" />
+                <select name="ticketClass" id=""
+                    class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:border focus:border-indigo-700">
+                    <option value="">Choose Ticket Class</option>
+                    <option value="normal">Normal Ticket</option>
+                    <option value="vip">VIP Ticket</option>
+                    <option value="vvip">VVIP Ticket</option>
+                </select>
+                <x-jet-input-error for="class" />
 
-                <x-input-label labelName="Pick Date" />
-                <x-input-tag type="date" name="date" value="{{ old('date') }}" />
-                <x-jet-input-error for="date" />
+            </div>
 
-            </div> --}}
 
             <div class="flex items-center justify-start w-full">
-                <button
-                    class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm"
-                    type="submit">Add</button>
+
+                <x-button name="Add" type="submit" />
                 <a href="{{ route('busRoutes#index') }}">
-                    <button
-                        class="focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm"
-                        type="button">Cancel</button>
+
+                    <x-button name="Cancel" type="button" />
                 </a>
             </div>
             <div class="mt-5">

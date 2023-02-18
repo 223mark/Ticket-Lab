@@ -13,12 +13,12 @@ class Order extends Model
         'ticket_id',
         'operator_id',
         //'operator_id',
-        // 'cancel_status',
         'customer_email',
         'customer_name',
         'customer_nrc_number',
         'payment_method',
-        'departure_date'
+        'departure_date',
+        'expired_status'
     ];
 
     public function scopeFilter($query, array $filters)

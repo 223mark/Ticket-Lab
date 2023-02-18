@@ -112,7 +112,8 @@ class TicketController extends Controller
             //  'departure_date' => $request->date,
             'route_id' => $request->routeId,
             'operator_id' => $request->operatorId,
-            'price' => $request->price . 'Ks'
+            'price' => $request->price . 'Ks',
+            'class' => $request->ticketClass,
 
         ]);
     }

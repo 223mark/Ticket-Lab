@@ -14,13 +14,7 @@
             <tr class="hover:bg-gray-200">
 
                 <td class="px-6 py-4">{{ $ticket->seat_number }}</td>
-                <td class="px-6 py-4">
-                    @if ($ticket->status == null)
-                        <x-button name="null" />
-                    @endif
-                    {{ $ticket->status }}
 
-                </td>
                 <td class="px-6 py-4">
                     {{ $ticket->from_where }}
                 </td>

@@ -15,7 +15,8 @@ class BusTicket extends Model
         'ticket_code',
         'route_id',
         'operator_id',
-        'price'
+        'price',
+        'class'
     ];
 
     public function operator()

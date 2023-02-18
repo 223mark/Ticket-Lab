@@ -56,13 +56,12 @@ class RouteController extends Controller
     {
         // $this->validationCheck($request);
         $request->validate([
-            'class' => 'required',
+
             'departureTime' => 'required',
             'arriveTime' => 'required',
         ]);
 
         $data = [
-            'class' => $request->class,
             'departure_time' => $request->departureTime,
             'arrive_time' => $request->arriveTime,
         ];
@@ -87,7 +86,6 @@ class RouteController extends Controller
             'fromWhere' => 'required',
             'departureTime' => 'required',
             'arriveTime' => 'required',
-            'class' => 'required',
         ]);
     }
     private function requestedData($request)
@@ -98,7 +96,6 @@ class RouteController extends Controller
             'from_where' => $request->fromWhere,
             'departure_time' => $request->departureTime,
             'arrive_time' => $request->arriveTime,
-            'class' => $request->class,
 
         ]);
     }
@@ -111,7 +108,7 @@ class RouteController extends Controller
             'to_where' => $request->fromWhere,
             'departure_time' => $request->departureTime,
             'arrive_time' => $request->arriveTime,
-            'class' => $request->class,
+
         ];
     }
 }

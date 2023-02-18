@@ -1,6 +1,6 @@
 @php
     $ticketTableHeader = ['TicketCode', 'Related Operator', 'Route', 'Tickets'];
-    $allTicketsTableHeader = ['Seat Number', 'Status', 'From', 'To', 'Price', 'Class', 'Departure Time'];
+    $allTicketsTableHeader = ['Seat Number', 'From', 'To', 'Price', 'Class', 'Departure Time'];
     $locationTableHeader = ['location'];
     $operatorTableHeader = ['Operator', 'TicketCodes', 'Phone1', 'Phone2', 'Description', ''];
     $routeTableHeader = ['From', 'To', 'Class', 'Departure Time', 'Arrive Time', 'Export Tickets', ''];

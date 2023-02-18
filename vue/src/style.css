@@ -9,8 +9,8 @@
     height: 20vh;
 }
 
-.btn-theme {
-    background-color: #22c55e;
+.theme-color {
+    background-color: rgb(2, 133, 39);
     padding: 5px 20px;
     color: #fff;
     border-radius: 5px;
