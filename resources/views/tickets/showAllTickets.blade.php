@@ -20,13 +20,6 @@
                     <tr class="hover:bg-gray-200">
 
                         <td class="px-6 py-4 whitespace-nowrap">{{ $data->seat_number }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            @if ($data->status == null)
-                                <x-button name="null" />
-                            @endif
-                            {{ $data->status }}
-
-                        </td>
 
                         <td class="px-6 py-4 whitespace-nowrap">
                             {{ $data->from_where }}

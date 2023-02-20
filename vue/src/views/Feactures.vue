@@ -10,7 +10,7 @@
                             <component :is="feature.icon" class="h-8 w-8" aria-hidden="true" />
                         </div>
                         <div class="sm:min-w-0 sm:flex-1">
-                            <p class="text-lg font-semibold leading-8 text-gray-900">{{ feature.name }}</p>
+                            <p class="text-lg font-semibold leading-8 text-gray-900 dark:text-darkIndigo">{{ feature.name }}</p>
                             <p class="mt-2 text-base leading-7 text-gray-600">{{ feature.description }}</p>
                         </div>
                     </div>

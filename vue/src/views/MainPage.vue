@@ -2,7 +2,7 @@
    <div class="dark:bg-dark">
     <!-- hero section start -->
     <div
-        class="flex flex-col mt-20 md:mt-14 h-smHeroImage md:h-mdHeroImage md:flex-row md:items-center md:justify-around "
+        class="flex flex-col mt-16 md:mt-14 h-smHeroImage md:h-mdHeroImage md:flex-row md:items-center md:justify-around "
         id="main-hero">
         <!-- left section -->
         <div class="px-5 hidden sm:text-center md:block md:w-1/2 ">

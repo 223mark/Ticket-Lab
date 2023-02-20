@@ -28,11 +28,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //api/v1
 Route::group(['prefix' => 'v1',], function () {
-
+    //operators
     Route::apiResource('operators', OperatorController::class);
+    //locations
     Route::apiResource('locations', LocationController::class);
-    //ticket
+    //groupBy tickets
     Route::apiResource('gb-tickets', GroupByTicketController::class);
+    //tickets
     Route::apiResource('tickets', TicketController::class);
     //order 
     Route::apiResource('orders/', OrderController::class);

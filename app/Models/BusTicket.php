@@ -21,11 +21,11 @@ class BusTicket extends Model
 
     public function operator()
     {
-        return $this->belongsTo(Operator::class, 'id');
+        return $this->belongsTo(Operator::class);
     }
     public function route()
     {
-        return $this->belongsTo(Routes::class, 'id');
+        return $this->belongsTo(Routes::class);
     }
     public function order()
     {

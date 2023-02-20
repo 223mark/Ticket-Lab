@@ -23,11 +23,12 @@ class OperatorController extends Controller
         $filter = new OperatorFilter();
         $queryItems = $filter->transform($request);
 
+        //checking url qurey and data return
         if (count($queryItems) == 0) {
             return new OperatorCollection(Operator::paginate('5'));
         } else {
             //for pagination
-            $operator = Operator::where($queryItems)->paginate('1');
+            $operator = Operator::where($queryItems)->paginate('5');
             return new OperatorCollection($operator->appends($request->query()));
         }
 

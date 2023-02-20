@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class  ApiFilter
 {
-    protected $safeParams = [];
+    protected $allowedParams = [];
 
     protected $columnMap = [];
 
@@ -16,7 +16,7 @@ class  ApiFilter
     {
         $eloQuery = [];
         //$operators?
-        foreach ($this->safeParams as $parm => $operators) {
+        foreach ($this->allowedParams as $parm => $operators) {
             $query = $request->query($parm);
             if (!isset($query)) {
                 continue;

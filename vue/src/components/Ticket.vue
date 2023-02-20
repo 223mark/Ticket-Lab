@@ -4,6 +4,7 @@
         class="flex  mx-2 items-center p-2  border border-gray-700 md:p-4 bg-gray-300 rounded mb-2 w-full md:justify-between " style="min-height:200px;max-height: 250px;"
         v-for="t in tickets" :key="t.id"
         >
+          <!-- ticket deatil section -->
             <div class="space-y-1 md:space-y-4 w-2/4">
                 <div class="">
                     <h5 class="font-bold text-md md:text-2xl text-blue-600 ">{{ t.departureTime }} Standard </h5>
@@ -15,9 +16,13 @@
                         class="font-bold text-orange-500 uppercase text-xs block md:inline md:text-md">{{ t.class }}</span> </small>
                 <small class="block font-medium text-sm md:text-md">Arrives : <span class="font-bold text-xs block md:inline md:text-md">{{ t.arriveTime }}</span> </small>
             </div>
+            <!-- ticket detail section end -->
+            <!-- middle section -->
             <div class="hidden md:inline-block w-1/4 ">
                 <div class="h-28 bg-white ">
-                    <img src="../../public/img/operators/operator.png" alt="" class="w-full h-full">
+                     <img class="rounded-t-lg w-full h-full " v-if="t.operatorImg == 'http://localhost:8000/img/OperatorImage/'"  src="../../public/img/brand/codelab.png" alt=""> 
+                       
+                     <img class="rounded-t-lg w-full h-full " v-else  :src="t.operatorImg" alt=""> 
                 </div>
                 <h6 class=" font-semibold py-2 text-lg text-center"> {{ t.operatorName }}</h6>
                 <div class="flex justify-center">
@@ -26,6 +31,8 @@
                     </router-link>
                 </div>
             </div>
+            <!-- middle section end -->
+            <!-- seat section  -->
             <div class="space-y-2 ml-2 md:space-y-4 md:w-1/4 flex flex-col items-center justify-start">
                 <div class="md:py-2">
                     <h4 class=" font-bold text-green-500 my-2 text-sm md:text-lg"><span class="text-gray-600 mr-2">Price :</span> {{ t.price }}</h4>
@@ -37,6 +44,7 @@
                 </router-link>
         
             </div>
+            <!-- seat section end -->
         </div>
 </template>
 
@@ -50,11 +58,5 @@ const { tickets, selectedDate } = defineProps({
     selectedDate: Date
 })
 
-
-//from vue x
-// const setSelectedDate = (selectedDate) => {
-//     store.dispatch('getSelectedDate',selectedDate)
-// }
-//console.log(selectedDate.toDateString(), 'sel');
 
 </script>

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
-    //profile
+    //profile index
     public function profile()
     {
         return view('profile.profile', [
@@ -18,7 +18,7 @@ class ProfileController extends Controller
         ]);
     }
 
-    //update
+    //profile update
     public function update(Request $request)
     {
         $this->validationCheck($request);
@@ -39,12 +39,14 @@ class ProfileController extends Controller
         User::where('id', auth()->user()->id)->update($data);
         return back()->with('updateMessage', 'Profile Updated Successfully.');
     }
-    //password 
+    //profile password change page
     public function passwordChagePage()
     {
         return view('profile.password-change');
     }
-    //update password
+
+
+    //profile password change
     public function passwordUpdate(Request $request)
     {
         $request->validate([
@@ -65,6 +67,8 @@ class ProfileController extends Controller
             return back()->with(['PswnotMatch' => 'Wrong Current Password! Please Try Again!!']);
         }
     }
+
+
     //PRIVATE FUNCTON
     private function validationCheck($request)
     {

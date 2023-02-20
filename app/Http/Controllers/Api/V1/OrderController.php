@@ -39,7 +39,7 @@ class OrderController extends Controller
      */
     public function store(Request  $request)
     {
-
+        //change  dateform from request 
         $date = Carbon::createFromFormat('d/m/Y', $request->departureDate)->format('Y-m-d');
 
         $orderData = [
@@ -49,7 +49,8 @@ class OrderController extends Controller
             'departure_date' =>  $date,
             'ticket_id' => $request->ticketId,
             'customer_email' => $request->email,
-            'operator_id' => $request->operatorId
+            'operator_id' => $request->operatorId,
+            'created_at' => Carbon::now()->format('Y-m-d')
         ];
         // logger($orderData);
 

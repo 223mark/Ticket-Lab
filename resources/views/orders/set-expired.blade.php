@@ -1,20 +1,15 @@
-<x-main-layout title="Dashboard">
-
-    {{-- dashboard card --}}
-    <div class="flex flex-col md:flex-row justify-between gap-2 px-4">
-        {{-- today order --}}
-        <x-dashboard-card :data=$todayOrderCount>Today Order</x-dashboard-card>
-
-        {{-- total operator --}}
-        <x-dashboard-card :data=$operatorCount>Operator Count</x-dashboard-card>
-
-        {{-- total order --}}
-        <x-dashboard-card :data=$allOrdersCount>Total Orders</x-dashboard-card>
-
-
+<x-main-layout title="SetOrders/Expired">
+    <a href="{{ route('orders#index') }}">
+        <x-button name="Back" />
+    </a>
+    <div class="my-4 ">
+        <h1 class="text-xl font-medium text-blue-600 tracking-normal">Setting Tickets To Define Expire</h1>
+        <p class="text-md font-normal text-slate-500 pt-4">Are you sure you want to set expired status to the tickets
+            with this date
+            <span class="text-blue-500 font-bold">{{ $date }}</span>
+        </p>
     </div>
-    {{-- dashboard card end --}}
-    {{-- latest order --}}
+
     <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
         <div class="mb-4 flex items-center justify-between">
             <div>
@@ -23,9 +18,10 @@
                     orders</span>
             </div>
             <div class="flex-shrink-0">
-                <a href="{{ route('orders#index') }}"
-                    class="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg p-2">View
-                    all</a>
+                <a href="{{ route('orders#setOrdersExpired', $date) }}"
+                    class="text-sm font-medium text-red-600 border border-red-500 bg-white hover:bg-red-500 hover:text-white rounded-lg p-2">
+                    Set All Expire
+                </a>
             </div>
         </div>
         <div class="flex flex-col mt-8">
@@ -54,14 +50,14 @@
                                 </tr>
                             </thead>
                             <tbody class="bg-white">
-                                @forelse ($order as $order)
+                                @forelse ($data as $order)
                                     <tr class="hover:bg-gray-200">
                                         <td class="p-4 whitespace-nowrap text-sm font-normal text-gray-900">
                                             Order from
                                             <span
                                                 class="font-semibold text-indigo-400">{{ $order->customer_name }}</span>
                                         </td>
-                                        <td class="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
+                                        <td class="p-4 whitespace-nowrap text-sm font-bold text-red-500">
                                             {{ $order->departure_date }}
                                         </td>
                                         <td class="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
@@ -84,6 +80,6 @@
             </div>
         </div>
     </div>
-    {{-- latest order end --}}
+
 
 </x-main-layout>

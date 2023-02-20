@@ -1,22 +1,45 @@
 <x-main-layout title="Order/Index">
 
 
-    <div class="flex justify-between mb-2">
-        <div class="">
+    <div class="flex justify-between px-2 mb-2">
+        <div class="flex pr-2 ">
+            <x-filter-dropdown :data=$operators></x-filter-dropdown>
 
-            {{-- {{ $currentUrl }} --}}
-            {{-- <form action="" method="POST">
-                @csrf
+            {{-- <div class="bg-red-500">
+                <span class="text-green-500 text-md font-medium">Order Total -</span>
+                <span class="font-bold">{{ $orders->count() }}</span>
+            </div> --}}
+
+            {{-- <form action="">
+
                 <x-per-page></x-per-page>
             </form> --}}
-            <x-filter-dropdown :data=$operators></x-filter-dropdown>
+
+
         </div>
         <div class="">
-            <a href="/orders/index">
-                <x-button name="reset"></x-button>
+            <a href="{{ route('orders#expiredTickets') }}">
+                <button>expired Tickets</button>
             </a>
+
+            <a href="/orders/index">
+                <x-button name="reset search"></x-button>
+            </a>
+
         </div>
     </div>
+    {{-- confirm modal --}}
+    @include('partials.confirm_delete')
+
+    {{-- flash message --}}
+    @if (Session::has('deleteMessage'))
+        <x-toast-message>delete</x-toast-message>
+    @endif
+    @if (Session::has('setExpired'))
+        <x-toast-message>update</x-toast-message>
+    @endif
+
+
     {{-- table --}}
     <div class="overflow-auto rounded-lg shadow">
         <table class="w-full   border-collapse bg-white text-left text-sm text-gray-500 border shadow-lg ">
@@ -45,3 +68,156 @@
         {{ $orders->links() }}
     </div>
 </x-main-layout>
+{{-- jquery --}}
+<script>
+    $(document).ready(function() {
+        //sortingByOperator
+        $('#sortingByOperator').change(function() {
+            $result = $('#sortingByOperator').val();
+
+            $.ajax({
+                type: 'get',
+                url: 'http://127.0.0.1:8000/orders/operators/filter',
+                data: {
+                    'result': $result
+                },
+                dataType: 'json',
+                success: function(response) {
+                    let data = response.data;
+
+                    let responseData = '';
+
+
+                    for ($i = 0; $i < data.length; $i++) {
+                        if (data[$i].img == null) {
+                            responseData += `
+                        <tr class="hover:bg-gray-200 whitespace-nowrap">
+                            <td class="px-6 py-4 text-blue-600 font-medium cursor-pointer">
+                                <a href="{{ route('orders#ticketDetail', $data->ticket_id) }}">
+                                    # ${data[$i].ticket_id}
+                                </a>
+                            </td>
+
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="text-indigo-600">${data[$i].customer_name}</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                               ${data[$i].customer_email}
+                            </td>
+                            <th class="flex gap-3 px-6 py-4 font-normal text-gray-900 whitespace-nowrap">
+                                <div class="relative h-10 w-10">
+                                    <img class="h-full w-full rounded-lg object-cover object-center"
+                                        src="{{ asset('img/codelab.png') }}"
+                                        alt="" />
+                                    <span class="absolute right-0 bottom-0 h-2 w-2 rounded-full bg-green-400 ring ring-white"></span>
+                                </div>
+                                <div class="text-sm">
+                                    <div class="font-medium text-gray-700">${data[$i].operator_name}</div>
+                                    <div class="text-gray-400">${data[$i].email}</div>
+                                </div>
+                            </th>
+                           
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <a href="/orders/index?tag=${data[$i].payment_method}">${data[$i].payment_method}</a>
+
+                            </td>
+                            <td class="px-6 py-4 text-blue-500 font-semibold underline cursor-pointer whitespace-nowrap">
+                                <a href="/orders/index?tag=${data[$i].departure_date}">${data[$i].departure_date}</a>
+
+
+                            </td>
+
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                 <a href="{{ route('orders#setOrdersExpredPg', $data->departure_date) }}">
+                                    <span class="text-red-500 font-medium text-md cursor-pointer hover:underline">
+                                        set expired
+                                    </span>
+                                 </a>
+                            </td>
+
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div id="button">
+                                    <span class="text-green-500 font-medium text-md cursor-pointer hover:underline"
+                                        onclick="modalHandler(true)">cancel
+                                        order</span>
+                                </div>
+                            </td>
+                        </tr>
+                            `
+                        } else if (data[$i].img != null) {
+                            responseData += `
+                        <tr class="hover:bg-gray-200 whitespace-nowrap">
+                            <td class="px-6 py-4 text-blue-600 font-medium cursor-pointer">
+                                <a href="{{ route('orders#ticketDetail', $data->ticket_id) }}">
+                                    #${data[$i].ticket_id}
+                                </a>
+                            </td>
+
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="text-indigo-600">${data[$i].customer_name}</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                               ${data[$i].customer_email}
+                            </td>
+                            <th class="flex gap-3 px-6 py-4 font-normal text-gray-900 whitespace-nowrap">
+                                <div class="relative h-10 w-10">
+                                    <img class="h-full w-full rounded-lg object-cover object-center"
+                                        src="{{ asset('img/OperatorImage/${data[$i].img}') }}"
+                                        alt="" />
+                                    <span class="absolute right-0 bottom-0 h-2 w-2 rounded-full bg-green-400 ring ring-white"></span>
+                                </div>
+                                <div class="text-sm">
+                                    <div class="font-medium text-gray-700">${data[$i].operator_name}</div>
+                                    <div class="text-gray-400">${data[$i].email}</div>
+                                </div>
+                            </th>
+                           
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <a href="/orders/index?tag=${data[$i].payment_method}">${data[$i].payment_method}</a>
+
+                            </td>
+                            <td class="px-6 py-4 text-blue-500 font-semibold underline cursor-pointer whitespace-nowrap">
+                                <a href="/orders/index?tag=${data[$i].departure_date}">${data[$i].departure_date}</a>
+
+
+                            </td>
+
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <a href="{{ route('orders#setOrdersExpredPg', $data->departure_date) }}">
+                                    <span class="text-red-500 font-medium text-md cursor-pointer hover:underline">
+                                        set expired
+                                    </span>
+                                 </a>
+                            </td>
+
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                 <div id="button">
+                                    <span class="text-green-500 font-medium text-md cursor-pointer hover:underline"
+                                        onclick="modalHandler(true)">cancel
+                                        order</span>
+                                </div>
+                            </td>
+                        </tr>
+
+                            `
+                        }
+
+                        $('#table-id').html(responseData);
+                    }
+
+
+                }
+
+
+            })
+
+        })
+
+        //get related id
+        // $getRelatedId = function($id) {
+        //     $('#modalInput').val($id);
+        //     console.log($id);
+        // }
+
+    })
+</script>

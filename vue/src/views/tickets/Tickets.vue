@@ -202,9 +202,10 @@ watchEffect(() => {
         axiosClient.get(`/gb-tickets/?fromWhere[eq]=${fromWhere.value}&toWhere[eq]=${toWhere.value}`).then(({ data }) => {
 
             tickets.value = data.data;
-        
+         console.log(tickets.value)
         }, fromWhere.value, toWhere.value);
-        console.log('watcheffect run')
+       
+        // console.log('watcheffect run', tickets.value)
 })
 
 onMounted(() => {
@@ -217,9 +218,9 @@ onMounted(() => {
     //operators
     axiosClient.get('/operators').then(({ data }) => {
         operator.value = data.data
-        console.log(operator.value);
+        
     })
-    store.dispatch('filterWithOperator');
+   
    
 })
 </script>

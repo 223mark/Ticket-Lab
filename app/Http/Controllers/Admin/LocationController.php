@@ -9,11 +9,9 @@ use Illuminate\Support\Facades\Session;
 
 class LocationController extends Controller
 {
-    //
+    // location index
     public function index()
     {
-
-
         return view('locations.index', [
             'locations' => Location::latest()->filter(request(['searchText']))->paginate('6'),
             'searchText' => request('searchText')
@@ -29,6 +27,7 @@ class LocationController extends Controller
         return redirect()->route('locations#index')->with('addMessage', 'Location Added Successfully.');
     }
 
+    //deleting location
     public function destory(Location $location)
     {
         $location->delete();

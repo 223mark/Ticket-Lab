@@ -2,6 +2,11 @@
         <NavBar/>
 
         <main class=" space-y-4 bg-white">
+            <!-- <RouterView class="router-view"  v-slot="{Component}">
+                 <Transition class="page">
+                    <component :is="Component"/>
+                 </Transition>
+            </RouterView> -->
             <router-view></router-view>
         </main>
 
@@ -13,14 +18,16 @@ import NavBar from './NavBar.vue'
 import Footer from './Footer.vue'
 
 </script>
-
-<style>
-#footer {
-    min-height: 30vh;
-    background-image: url('../../public/img/banner/greenfooter.jpg');
-    background-repeat: no-repeat;
-    background-position: top 40% right 0;
-    background-size: cover;
-
+<style scoped>
+.page-enter-active, 
+.page-leave-active{
+    transition: 600ms ease all;
 }
+
+.page-enter-from,
+.page-leave-to{
+    opacity: 0;
+}
+
+
 </style>

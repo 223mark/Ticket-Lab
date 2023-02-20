@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class GroupByTicketFilter extends ApiFilter
 {
-    protected $safeParams = [
+    protected $allowedParams = [
         'fromWhere' => ['eq'],
         'toWhere' => ['eq'],
         'date' => ['eq'],

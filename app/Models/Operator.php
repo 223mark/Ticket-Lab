@@ -19,14 +19,11 @@ class Operator extends Model
 
     public function tickets()
     {
-        return $this->hasMany(BusTicket::class, 'operator_id');
+        return $this->hasMany(BusTicket::class);
     }
 
     public function scopeFilter($query, array $filters)
     {
-        // if ($filters['tag'] ?? false) {
-        //     $query->where('tags', 'like', '%' . request('tag') . '%');
-        // }
 
         if ($filters['searchText'] ?? false) {
             $query->where('operator_name', 'like', '%' . request('searchText') . '%')

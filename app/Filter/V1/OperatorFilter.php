@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class OperatorFilter extends ApiFilter
 {
-    protected $safeParams = [
+    protected $allowedParams = [
         'email' => ['eq'],
         'operatorName' => ['eq'],
 
@@ -23,24 +23,4 @@ class OperatorFilter extends ApiFilter
         'or' => '||',
         'and' => '&'
     ];
-
-    // public function transform(Request $request)
-    // {
-    //     $eloQuery = [];
-    //     //$operators?
-    //     foreach ($this->safeParams as $parm => $operators) {
-    //         $query = $request->query($parm);
-    //         if (!isset($query)) {
-    //             continue;
-    //         }
-    //         $column = $this->columnMap[$parm] ?? $parm;
-    //         //filter operator
-    //         foreach ($operators as $operator) {
-    //             if (isset($query[$operator])) {
-    //                 $eloQuery[] = [$column, $this->operatorMap[$operator], $query[$operator]];
-    //             }
-    //         }
-    //     }
-    //     return $eloQuery;
-    // }
 }

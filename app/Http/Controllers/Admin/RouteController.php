@@ -11,7 +11,7 @@ use App\Http\Controllers\Controller;
 
 class RouteController extends Controller
 {
-    //
+    //busroutes index
     public function index()
     {
 
@@ -23,6 +23,7 @@ class RouteController extends Controller
         ]);
     }
 
+    //create new busroute
     public function store(Request $request)
     {
 
@@ -44,6 +45,7 @@ class RouteController extends Controller
         }
     }
 
+    //busroutes edit
     public function edit(Routes $route)
     {
         $location = Location::get();
@@ -51,7 +53,7 @@ class RouteController extends Controller
         return view('busRoutes.edit', compact('route', 'location'));
     }
 
-
+    //busroutes update
     public function update(Request $request, Routes $route)
     {
         // $this->validationCheck($request);
@@ -70,6 +72,8 @@ class RouteController extends Controller
         return redirect()->route('busRoutes#index')->with('updateMessage', 'Route Update Successfully');
     }
 
+
+    //busroutes destory
     public function destory(Routes $route)
     {
         $route->delete();

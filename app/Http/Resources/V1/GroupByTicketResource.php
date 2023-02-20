@@ -24,24 +24,10 @@ class GroupByTicketResource extends JsonResource
             'arriveTime' => $this->arrive_time,
             'price' => $this->price,
             'class' => $this->class,
-            'operatorName' => $this->operator_name
+            'operatorName' => $this->operator_name,
+            'operatorImg' => 'http://localhost:8000/img/OperatorImage/' . $this->img,
 
-            //         seatNumber	"S-1"
-            // ticketCode	"9370"
-            // status	null
-            // date	"2023-02-06 00:00:00"
-            // routeId	1
-            // formWhere	"Yangon"
-            // toWhere	"Mandalay"
-            // price	"35000Ks"
-            // ticketClass	"vip"
-            // departureTime	"3:00 AM"
-            // arriveTime	"9:00 PM"
-            // 	1
-            // operatorName	"Tet Nay Lin Express"
-            // phone1	97845
-            // phone2	96355
-            // operatorEmail	"admin@gmail.com"
+
         ];
     }
 }

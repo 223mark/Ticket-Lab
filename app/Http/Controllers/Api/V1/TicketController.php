@@ -20,12 +20,13 @@ class TicketController extends Controller
      */
     public function index(Request $request)
     {
-        //
+
         $ticket = $this->busTicket();
         //filtering
         $filter = new TicketFilter();
         $queryItems = $filter->transform($request);
 
+        //checking url qurey and data return
         if (count($queryItems) == 0) {
             return new TicketCollection($ticket);
         } else {

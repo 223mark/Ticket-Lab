@@ -12,7 +12,7 @@ use App\Http\Controllers\Controller;
 
 class TicketController extends Controller
 {
-    //
+    //bustickets groubBy index
     public function index()
     {
 
@@ -36,6 +36,8 @@ class TicketController extends Controller
         return view('tickets.index', compact('ticketCode', 'operators', 'routes'));
     }
 
+
+    //related bustickets index
     public function show($code)
     {
 
@@ -47,7 +49,7 @@ class TicketController extends Controller
         return view('tickets.showAllTickets', compact('tickets'));
     }
 
-
+    //create new tickets page
     public function create($id)
     {
 
@@ -57,6 +59,7 @@ class TicketController extends Controller
         ]);
     }
 
+    //create new tickets
     public function store(Request $request)
     {
 
@@ -66,16 +69,9 @@ class TicketController extends Controller
         return redirect()->route('tickets#index')->with('addMessage', 'Ticket Added Successfully..');
     }
 
-    public function edit(BusTicket $ticket)
-    {
-        // dd($ticket->toArray());
-        return view('tickets.edit', [
-            'locations' => Location::get(),
-            'operators' => Operator::get(),
-            'data' => $ticket
-        ]);
-    }
 
+
+    // delete bustickets
     public function destory($ticketCode)
     {
         $relatedTickets = BusTicket::where('ticket_code', $ticketCode)->get();

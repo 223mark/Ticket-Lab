@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Order;
 use App\Models\Routes;
 use App\Models\Operator;
 use App\Models\BusTicket;
@@ -14,49 +15,39 @@ class AjaxController extends Controller
     public function operatorFilterbySelect(Request $request)
     {
 
-        $ticketCode = BusTicket::select(
-            'routes.*',
-            'bus_tickets.id as busticketId',
-            'bus_tickets.ticket_code as ticket_code',
-            'bus_tickets.date as date',
-            'operators.id as operatorId',
-            'operators.operator_name as operatorName',
-            'operators.img as operatorImage'
-        )
-            ->leftJoin('routes', 'routes.id', 'bus_tickets.route_id')
-            ->leftJoin('operators', 'operators.id', 'bus_tickets.operator_id')
-            ->groupBy('bus_tickets.ticket_code');
+        $ticketCode = BusTicket::select('operators.*', 'bus_tickets.*', 'routes.*')
+            ->rightJoin('routes', 'routes.id', 'bus_tickets.route_id')
+            ->rightJoin('operators', 'operators.id', 'bus_tickets.operator_id')
+            ->groupBy('ticket_code');
         if ($request->result == 'all') {
-            $ticketCode = $ticketCode->paginate('6');
+            $ticketCode = $ticketCode->get();
         } else {
-            $ticketCode = $ticketCode->where('bus_tickets.operator_id', $request->result)->paginate('6');
+            $ticketCode = $ticketCode->where('bus_tickets.operator_id', $request->result)->get();
         }
 
 
-        $operators = Operator::get();
-        $routes = Routes::get();
+
+        // $operators = Operator::get();
+        //$routes = Routes::get();
         return response()->json([
             'data' => $ticketCode
         ]);
     }
 
-    //operator filter by search to datestring
-    public function operatorFilterbySearch(Request $request)
+    //orderfilterbyOperator
+    public function orderfilterbyOperator(Request $request)
     {
-
-        if (request('searchItem') == '') {
-            $filterData = Operator::latest()->get();
+        $orderData = Order::select('orders.*', 'operators.*', 'bus_tickets.*')
+            ->leftJoin('operators', 'operators.id', 'orders.operator_id')
+            ->leftJoin('bus_tickets', 'bus_tickets.ticket_id', 'orders.ticket_id');
+        if ($request->result == 'all') {
+            $orderData = $orderData->get();
         } else {
-            $filterData = Operator::when(request('searchItem'), function ($query) {
-                $query->where('operator_name', 'like', '%' . request('searchItem') . '%')
-                    ->orWhere('email', 'like', '%' . request('searchItem') . '%');
-            })
-                ->latest()
-                ->get();
+            $orderData = $orderData->where('bus_tickets.operator_id', $request->result)->get();
         }
 
         return response()->json([
-            'data' => $filterData
+            'data' => $orderData
         ]);
     }
 }

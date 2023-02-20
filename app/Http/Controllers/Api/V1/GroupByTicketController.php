@@ -21,12 +21,13 @@ class GroupByTicketController extends Controller
      */
     public function index(Request $request)
     {
-        //
+
         $ticket = $this->busTicket();
         //filtering
         $filter = new GroupByTicketFilter();
         $queryItems = $filter->transform($request);
 
+        //checking url qurey and data return
         if (count($queryItems) == 0) {
             return new GroupByTicketCollection($ticket);
         } else {
@@ -39,6 +40,8 @@ class GroupByTicketController extends Controller
             return new GroupByTicketCollection($ticket);
         }
     }
+
+
 
     private function busTicket()
     {

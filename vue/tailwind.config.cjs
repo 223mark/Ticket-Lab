@@ -16,8 +16,8 @@ module.exports = {
         },
         extend: {
             height: {
-                smHeroImage: '50vh',
-                mdHeroImage: '60vh'
+                smHeroImage: '52vh',
+                mdHeroImage: '62vh'
             },
             colors: {
                 theme: '#028527',

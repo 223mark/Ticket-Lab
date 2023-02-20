@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\File;
 
 class OperatorController extends Controller
 {
-    //index 
+    //operator index
     public function index()
     {
         return view('operators.index', [
@@ -90,7 +90,7 @@ class OperatorController extends Controller
     }
 
 
-    //related ticket
+    //related ticket page
     public function ticketCode($id)
     {
 
@@ -106,6 +106,7 @@ class OperatorController extends Controller
             'ticketCode' => $data
         ]);
     }
+
     //PRIVATE FUNCTIONS
     private function validationCheck($request)
     {

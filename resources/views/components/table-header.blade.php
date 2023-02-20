@@ -4,7 +4,7 @@
     $locationTableHeader = ['location'];
     $operatorTableHeader = ['Operator', 'TicketCodes', 'Phone1', 'Phone2', 'Description', ''];
     $routeTableHeader = ['From', 'To', 'Class', 'Departure Time', 'Arrive Time', 'Export Tickets', ''];
-    $orderTableHeader = ['Ticket Id', 'Customer Name', 'Email', 'Related Operator', ' NRC', 'Payment', 'Departuare Date', ''];
+    $orderTableHeader = ['Ticket Id', 'Customer Name', 'Email', 'Related Operator', 'Payment', 'Departuare Date', '', ''];
     
 @endphp
 

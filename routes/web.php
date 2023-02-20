@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Admin\AjaxController;
 use App\Http\Controllers\Admin\AuthController;
-use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\OperatorController;
@@ -11,11 +10,10 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\RouteController;
 use App\Http\Controllers\Admin\TicketController;
 use App\Models\Location;
-use App\Models\TicketcodeList;
 use Illuminate\Support\Facades\Route;
 
 /*
- name convenction...
+ naming convenction...
   //index - all showing 
   // create - create page to store
   // store - store new data
@@ -55,11 +53,21 @@ Route::middleware([
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard#index');
     });
 
-    //order 
+    //orders
     Route::group(['prefix' => 'orders'], function () {
         Route::get('/index', [OrderController::class, 'index'])->name('orders#index');
+        Route::get('/{order}/destory', [OrderController::class, 'destory'])->name('orders#destory');
         Route::get('/{id}/ticket/details', [OrderController::class, 'ticketDetail'])->name('orders#ticketDetail');
         // Route::post('/perPage', [OrderController::class, 'perPage'])->name('orders#perPage');
+        //about setting expired
+        Route::get('/{date}/setexpired', [OrderController::class, 'setOrdersExpiredPage'])->name('orders#setOrdersExpredPg');
+        Route::get('/{data}/set/expired', [OrderController::class, 'setOrdersExpired'])->name('orders#setOrdersExpired');
+
+        //about expired tickets
+        Route::get('/expired-tickets-orders/index', [OrderController::class, 'expiredTicketsIndex'])->name('orders#expiredTickets');
+
+        //ajax
+        Route::get('operators/filter', [AjaxController::class, 'orderfilterbyOperator']);
     });
 
     //operators
@@ -73,9 +81,6 @@ Route::middleware([
 
         //tickets
         Route::get('/{id}/table/', [OperatorController::class, 'ticketCode'])->name('operators#ticketCode');
-
-        //filter
-        //Route::get('/filter', [AjaxController::class, 'operatorFilterbySearch']);
     });
 
     //tickets
@@ -84,8 +89,10 @@ Route::middleware([
         Route::get('/{code}/show', [TicketController::class, 'show'])->name('tickets#show');
         Route::get('/{id}/create', [TicketController::class, 'create'])->name('tickets#create');
         Route::post('/store', [TicketController::class, 'store'])->name('tickets#store');
-        Route::get('/{ticket}/edit', [TicketController::class, 'edit'])->name('tickets#edit');
         Route::get('/{ticketCode}/destory', [TicketController::class, 'destory'])->name('tickets#destory');
+
+        //operator filter
+        Route::get('/operators/filter', [AjaxController::class, 'operatorFilterbySelect']);
     });
 
     //bus routes
@@ -104,10 +111,5 @@ Route::middleware([
         Route::get('/index', [LocationController::class, 'index'])->name('locations#index');
         Route::post('/store', [LocationController::class, 'store'])->name('locations#store');
         Route::get('/{location}/destory', [LocationController::class, 'destory'])->name('locations#destory');
-    });
-
-
-    Route::group(['prefix' => 'ajax'], function () {
-        Route::get('operators/filter', [AjaxController::class, 'operatorFilterbySelect']);
     });
 });
