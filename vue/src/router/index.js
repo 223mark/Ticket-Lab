@@ -10,6 +10,7 @@ import Ticket from '../views/tickets/Tickets.vue'
 import Process from '../views/order/Process.vue'
 import Checkout from '../views/order/OrderCheckout.vue'
 import AboutUs from '../views/aboutus/AboutUs.vue'
+import OrderHistory from '../views/order/OrderHistory.vue'
 const routes = [{
         path: '/home',
         name: 'app',
@@ -18,16 +19,6 @@ const routes = [{
                 path: '/',
                 name: 'app.home',
                 component: HomePage,
-                // BeforeEach: ((to, from, next) => {
-                //     console.log(from);
-                //     console.log(to);
-                //     if (from.name == 'app.home') {
-                //         next({ name: 'Ticket' })
-                //     } else {
-                //         next({ name: 'app.home' })
-                //     }
-
-                // })
 
             },
             {
@@ -45,8 +36,12 @@ const routes = [{
                 name: 'app.checkout',
                 component: Checkout
             },
+            {
+                path: '/orders-history',
+                name: 'app.orderHistory',
+                component: OrderHistory
 
-
+            },
             {
                 path: '/operators',
                 name: 'app.operators',

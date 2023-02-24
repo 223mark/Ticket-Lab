@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\RouteController;
 use App\Http\Controllers\Admin\TicketController;
+use App\Mail\OrderMail;
 use App\Models\Location;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    //return (new  OrderMail())->render();
     return view('welcome');
 });
 
@@ -46,6 +48,10 @@ Route::middleware([
         Route::post('/update', [ProfileController::class, 'update'])->name('profile#update');
         Route::get('/password/change/page', [ProfileController::class, 'passwordChagePage'])->name('profile#passwordChangePage');
         Route::post('/password/update', [ProfileController::class, 'passwordUpdate'])->name('profile#passwordUpdate');
+
+        //adminlist
+        Route::get('/adminlists', [ProfileController::class, 'adminList'])->name('profile#adminList');
+        Route::get('{admim}/destory', [ProfileController::class, 'destory'])->name('admins#destory');
     });
 
     //dashboard
@@ -58,13 +64,15 @@ Route::middleware([
         Route::get('/index', [OrderController::class, 'index'])->name('orders#index');
         Route::get('/{order}/destory', [OrderController::class, 'destory'])->name('orders#destory');
         Route::get('/{id}/ticket/details', [OrderController::class, 'ticketDetail'])->name('orders#ticketDetail');
-        // Route::post('/perPage', [OrderController::class, 'perPage'])->name('orders#perPage');
+
         //about setting expired
         Route::get('/{date}/setexpired', [OrderController::class, 'setOrdersExpiredPage'])->name('orders#setOrdersExpredPg');
         Route::get('/{data}/set/expired', [OrderController::class, 'setOrdersExpired'])->name('orders#setOrdersExpired');
 
         //about expired tickets
         Route::get('/expired-tickets-orders/index', [OrderController::class, 'expiredTicketsIndex'])->name('orders#expiredTickets');
+        //delete all expired tickets
+        Route::get('/expired-tickets-orders/destory', [OrderController::class, 'destoryAllExpiredTickets'])->name('orders#deleteAllexpired');
 
         //ajax
         Route::get('operators/filter', [AjaxController::class, 'orderfilterbyOperator']);

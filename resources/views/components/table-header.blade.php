@@ -1,9 +1,10 @@
 @php
+    $adminListTableHeader = ['Photo', 'Name', 'Email', 'Phone', 'Created_Date', ''];
     $ticketTableHeader = ['TicketCode', 'Related Operator', 'Route', 'Tickets'];
     $allTicketsTableHeader = ['Seat Number', 'From', 'To', 'Price', 'Class', 'Departure Time'];
     $locationTableHeader = ['location'];
     $operatorTableHeader = ['Operator', 'TicketCodes', 'Phone1', 'Phone2', 'Description', ''];
-    $routeTableHeader = ['From', 'To', 'Class', 'Departure Time', 'Arrive Time', 'Export Tickets', ''];
+    $routeTableHeader = ['From', 'To', 'Departure Time', 'Arrive Time', 'Export Tickets', ''];
     $orderTableHeader = ['Ticket Id', 'Customer Name', 'Email', 'Related Operator', 'Payment', 'Departuare Date', '', ''];
     
 @endphp
@@ -69,6 +70,17 @@
         <thead class="bg-gray-50">
             <tr>
                 @foreach ($orderTableHeader as $d)
+                    <th scope="col" class="px-6 py-4 font-medium ">{{ $d }} </th>
+                @endforeach
+
+            </tr>
+        </thead>
+    @break
+
+    @case('adminlist')
+        <thead class="bg-gray-50">
+            <tr>
+                @foreach ($adminListTableHeader as $d)
                     <th scope="col" class="px-6 py-4 font-medium ">{{ $d }} </th>
                 @endforeach
 

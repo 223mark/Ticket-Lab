@@ -9,11 +9,6 @@
 
     <td class="px-6 py-4 whitespace-nowrap">
 
-        {{ $data->class }}
-
-    </td>
-    <td class="px-6 py-4 whitespace-nowrap">
-
         {{ $data->departure_time }}
 
     </td>
@@ -27,11 +22,11 @@
     </td>
     <td class="px-6 py-4 whitespace-nowrap">
         <div class="flex justify-end gap-4">
-            <a x-data="{ tooltip: 'Delete' }" href="{{ route('busRoutes#destory', $data->id) }}">
+            <a href="{{ route('busRoutes#destory', $data->id) }}">
                 <x-table-field-option>delete</x-table-field-option>
             </a>
 
-            <a x-data="{ tooltip: 'Edite' }" href="{{ route('busRoutes#edit', $data->id) }}">
+            <a href="{{ route('busRoutes#edit', $data->id) }}">
                 <x-table-field-option>edit</x-table-field-option>
             </a>
         </div>

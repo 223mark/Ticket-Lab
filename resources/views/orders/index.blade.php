@@ -1,30 +1,23 @@
 <x-main-layout title="Order/Index">
 
 
-    <div class="flex justify-between px-2 mb-2">
-        <div class="flex pr-2 ">
+    <div class="flex flex-col justify-between px-2 mb-2 md:flex-row">
+        <div class="flex pr-2 mb-2 md:mb-0 ">
+
             <x-filter-dropdown :data=$operators></x-filter-dropdown>
-
-            {{-- <div class="bg-red-500">
-                <span class="text-green-500 text-md font-medium">Order Total -</span>
-                <span class="font-bold">{{ $orders->count() }}</span>
-            </div> --}}
-
-            {{-- <form action="">
-
-                <x-per-page></x-per-page>
-            </form> --}}
 
 
         </div>
-        <div class="">
-            <a href="{{ route('orders#expiredTickets') }}">
-                <button>expired Tickets</button>
-            </a>
-
-            <a href="/orders/index">
+        <div class="flex justify-between">
+            <a href="/orders/index" class="mr-2">
                 <x-button name="reset search"></x-button>
             </a>
+            <a href="{{ route('orders#expiredTickets') }}">
+                <button
+                    class="px-3 py-1 border border-red-500 text-red-500 bg-white hover:text-white hover:bg-red-500 rounded">expired
+                    tickets</button>
+            </a>
+
 
         </div>
     </div>
@@ -89,6 +82,7 @@
 
 
                     for ($i = 0; $i < data.length; $i++) {
+
                         if (data[$i].img == null) {
                             responseData += `
                         <tr class="hover:bg-gray-200 whitespace-nowrap">
@@ -202,8 +196,12 @@
                             `
                         }
 
+
+
                         $('#table-id').html(responseData);
+                        console.log(data, 'd');
                     }
+
 
 
                 }

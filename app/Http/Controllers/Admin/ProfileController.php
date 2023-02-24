@@ -68,6 +68,19 @@ class ProfileController extends Controller
         }
     }
 
+    //AdminList
+    public function adminList()
+    {
+        $admins = User::where('id', '!=', Auth()->user()->id)->paginate('5');
+        return view('profile.admin-list', compact('admins'));
+    }
+
+    //admin delete
+    public function destory(User $admin)
+    {
+        $admin->delete();
+        return back()->with('deleteMessage', 'Admin Deleted Successfully!!');
+    }
 
     //PRIVATE FUNCTON
     private function validationCheck($request)

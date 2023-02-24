@@ -1,8 +1,8 @@
 <template>
      
-        <div class=" mx-2 md:w-1/4" v-for="operator in operators" :key="operator.id">
+        <div class=" mx-2 md:w-1/4 " v-for="operator in operators" :key="operator.id">
             <div
-                class="  shadow-md border border-gray-200 rounded-lg max-w-sm bg-gray-800">
+                class="  shadow-md border border-gray-200 rounded-lg max-w-sm bg-gray-800 dark:border-darkTheme">
                 <div class="bg-white">
                     
                     <img class="rounded-t-lg w-full h-32 " v-if="operator.img== 'http://localhost:8000/img/OperatorImage/null'"  src="../../public/img/brand/codelab.png" alt="">

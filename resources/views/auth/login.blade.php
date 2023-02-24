@@ -114,8 +114,8 @@
             font-medium
             text-xs text-center
           ">
-            <span class="ml-2">Forget Password?
-                <a href="/login" class="text-xs ml-2 text-blue-500 font-semibold">Click here</a></span>
+            <span class="ml-2"> New here ?
+                <a href="/register" class="text-sm ml-2 text-blue-500 font-semibold">Click here</a></span>
         </a>
     </div>
 

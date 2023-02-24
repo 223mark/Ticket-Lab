@@ -36,17 +36,20 @@
 
     <td class="px-6 py-4 whitespace-nowrap">
         <a href="{{ route('orders#setOrdersExpredPg', $data->departure_date) }}">
-            <span class="text-red-500 font-medium text-md cursor-pointer hover:underline">set expired</span>
+            <div class="text-red-500 font-medium text-md cursor-pointer hover:underline">set expired</div>
         </a>
     </td>
 
     <td class="px-6 py-4 whitespace-nowrap">
 
-        <div id="button">
+        {{-- <div id="button">
             <span class="text-green-500 font-medium text-md cursor-pointer hover:underline"
                 onclick="modalHandler(true)">cancel
                 order</span>
-        </div>
+        </div> --}}
+        <a href="{{ route('orders#destory', $data->orderId) }}">
+            <span class="text-green-500 font-medium text-md cursor-pointer hover:underline">cancel order</span>
+        </a>
 
 
     </td>

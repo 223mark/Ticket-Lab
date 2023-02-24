@@ -7,9 +7,10 @@
             <h4 class=" text-green-500 font-semibold  text-center underline text-2xl dark:text-darkTheme">Operators</h4>
         </div>
 
-        <div class="flex flex-wrap flex-col md:flex-row  gap-2 ">
-            
+        <div class="flex flex-wrap flex-col md:flex-row  gap-3 md:justify-between ">
+            <!-- operatora card -->
             <OperatorCard/>
+            <!-- operator card end -->
         </div>
    
         <!-- <div class="flex justify-center mt-20">
@@ -20,7 +21,6 @@
 </template>
 <script setup>
 //component imports
-import LoadingCard from '../../components/LoadingCard.vue'
 import OperatorCard from '../../components/OperatorCard.vue'
 
 

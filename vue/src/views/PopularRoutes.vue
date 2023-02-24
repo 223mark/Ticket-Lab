@@ -64,7 +64,7 @@ const routeInfo = [
 <style scoped>
 
 #left-hero {
-    background-image: url('../../public/img/location/innlay.jpg');
+    background-image: url('../../public/img/location/bagan.png');
     background-size: cover;
     background-repeat: no-repeat;
 

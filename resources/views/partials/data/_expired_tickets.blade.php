@@ -35,7 +35,9 @@
     </td>
 
     <td class="px-6 py-4 whitespace-nowrap">
-        <x-table-field-option>delete</x-table-field-option>
+        <a href="{{ route('orders#destory', $data->orderId) }}">
+            <x-table-field-option>delete</x-table-field-option>
+        </a>
     </td>
 
 </tr>

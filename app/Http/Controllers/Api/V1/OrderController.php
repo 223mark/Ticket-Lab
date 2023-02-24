@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use Carbon\Carbon;
+use App\Models\Order;
+use App\Mail\OrderMail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\V1\StoreOrderRequest;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Resources\V1\OrderResource;
-use App\Models\Order;
-use Carbon\Carbon;
+use App\Http\Requests\V1\StoreOrderRequest;
 
 class OrderController extends Controller
 {
@@ -54,6 +56,7 @@ class OrderController extends Controller
         ];
         // logger($orderData);
 
+        //Mail::to('fake@mail.com')->send(new OrderMail());
         return new OrderResource(Order::create($orderData));
     }
 
@@ -65,7 +68,6 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**

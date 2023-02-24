@@ -26,12 +26,23 @@
 
         </div>
 
-        <div class="flex items-center justify-start w-full space-x-4 mt-2">
-            <x-button name="Update" type="submit" />
-            <a href="{{ route('profile#passwordChangePage') }}">
-                <x-button name="Change Password" type="button" />
+        <div
+            class="flex flex-col justify-center w-full space-x-4 space-y-2 mt-2  md:flex-row md:items-center md:justify-start md:space-y-0">
+            <div class="">
+                <x-button name="Update" type="submit" class="w-full" />
+            </div>
 
-            </a>
+            <div class="">
+                <a href="{{ route('profile#passwordChangePage') }}">
+                    <x-button name="Change Password" type="button" />
+
+                </a>
+            </div>
+            <div class="">
+                <a href="{{ route('profile#adminList') }}">
+                    <x-button name="slot" type="button">Admin Lists</x-button>
+                </a>
+            </div>
 
         </div>
 

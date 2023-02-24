@@ -10,6 +10,7 @@
             <h2 class="text-xl font-semibold mb-4 dark:text-darkIndigo">Customer Information</h2>
             <!-- customer form -->
             <form @submit.prevent="addOrder">
+                <!-- customer name -->
                 <div class="space-y-2 mb-4">
                     <label for="name" class="text-md text-green-500 font-medium ">Name</label>
                     <input type="text" v-model="formData.customerName" id="name"
@@ -17,7 +18,8 @@
                         placeholder="Please Enter Your Name">
                     <span class="text-red-500 font-medium mt-4 text-sm" v-for="error in v$.customerName.$errors" :key="error.$uid">{{ error.$message }}</span>
                 </div>
-                
+                <!-- customer name end -->
+                <!-- customer email -->
                 <div class="space-y-2 mb-4">
                     <label for="email" class="text-md text-green-500 font-medium ">Email</label>
                     <input type="email" v-model="formData.customerEmail" id="email"
@@ -27,10 +29,13 @@
                     {{ error.$message }}
                     </span>
                 </div>
-                
+                <!-- customer email end -->
+                <!-- customer nrc -->
                 <div class=" space-y-4 mb-4">
+                    
                     <label for="name" class="text-md text-green-500 font-medium ">NRC Number</label>
                     <div class="flex flex-col space-y-2 md:space-y-0 md:flex-row md:gap-2">
+                        <!-- nrc type -->
                         <div class=" md:w-1/4">
                             <select id="" v-model="formData.nrcType" class="w-full px-4 py-2 border-2 rounded border-gray-500">
                                 <option :value="n" v-for="(n,index) in nrc.nrcType" :key="index">{{ n }}</option>
@@ -39,6 +44,8 @@
                                 {{ error.$message }}
                             </span>
                         </div>
+                        <!-- nrc type end -->
+                        <!-- nrc township -->
                         <div class=" md:w-1/4">
                             <select name="payment" v-model="formData.nrcTownship" id="payment"
                                 class="w-full px-4  py-2 border-2 rounded border-gray-500">
@@ -48,6 +55,8 @@
                                 {{ error.$message }}
                             </span>
                         </div>
+                        <!-- nrc township end -->
+                        <!-- nrc citizen -->
                         <div class=" md:w-1/4">
                             <select name="nrcCtz" v-model="formData.nrcCtz" class=" px-4 py-2 w-full border-2 rounded border-gray-500">
                                 <option value="(Naing)">Naing</option>
@@ -57,6 +66,8 @@
                                 {{ error.$message }}
                             </span>
                         </div>
+                        <!-- nrc citizen end -->
+                        <!-- nrc number -->
                         <div class=" md:w-1/4">
                             <input type="number"  v-model="formData.nrcNo" id=""
                                 class="px-4 py-2 w-full border-2 rounded border-gray-500" placeholder="******">
@@ -64,9 +75,12 @@
                                     {{ error.$message }}
                                 </span>
                         </div>
+                        <!-- nrc number -->
                     </div>
                 
                 </div>
+                <!-- customer nrc end -->
+                <!-- payment method -->
                 <div class="space-y-4">
                     <label for="payment" class="text-md text-green-500 font-medium ">Please Choose Payment</label>
                     <select name="payment" v-model="formData.paymentMethod" id="payment"
@@ -77,11 +91,12 @@
                     error.$message }}</span>
                 
                 </div>
+                <!-- payment method end -->
+                <!-- order btn -->
                 <div class="mt-8">
-                
-                    <button class="px-8 py-1 text-white font-medium bg-green-500 w-full" type="submit">Order</button>
-                
+                      <button class="px-8 py-1 text-white font-medium bg-green-500 w-full" type="submit">Order</button>
                 </div>
+                <!-- order btn end -->
             </form>
             <!-- customer form end -->
             
@@ -95,12 +110,12 @@
 </template>
 <script setup>
 import BookingSummary from '../../components/BookingSummary.vue'
-
 import moment from 'moment'
 import { computed, ref } from 'vue';
 import { onMounted } from '@vue/runtime-core';
 import axiosClient from '../../axiosClient';
 import { useRoute } from 'vue-router';
+import { useRouter } from 'vue-router';
 import { watchEffect } from '@vue/runtime-core';
 import { reactive } from '@vue/runtime-core';
 // import useVuelidate from '@vuelidate/core'
@@ -109,9 +124,10 @@ import useVuelidate from '@vuelidate/core'
 import {required, email, maxLength, minLength} from '@vuelidate/validators'
 
 const route = useRoute();
+const router = useRouter();
 //start customer nrc section
 const nrc = {
-    nrcTownship: ['KhaPhaNa', 'KaTaNa', 'KaMaYwut'],
+    nrcTownship: ['KhaPhaNa', 'KaTaNa', 'KaMaYwut','GaNa','SaTaNa','TaKaNa','PaNa'],
     nrcType: ['1/', '2/', '3/', '4/', '5/', '6/', '7/', '8/', '9/', '10/', '11/', '12/', '13/', '14/'],
 }
 const payment = ['Kpay', 'CBPay', 'WavePay', 'KBZ Banking', 'CB Banking'];
@@ -147,12 +163,15 @@ const rules = {
 //init vuelidate component
 const v$ = useVuelidate(rules, formData);
 
-
+//customer nrc
 const customerNrc = computed(() => {
     return `${formData.nrcType}${formData.nrcTownship}${formData.nrcCtz}${formData.nrcNo}`;
 });
+
+
 //adding order
 const addOrder = async () => {
+    
     const result = await v$.value.$validate();
     
     if (result) {
@@ -165,18 +184,22 @@ const addOrder = async () => {
             departureDate: moment(route.params.date).format('DD/MM/YYYY'),
             operatorId: operatorId.value,
         });
-
-        axiosClient.post('/orders', customerData.value).then(({ data }) => {
-            console.log(data, 'return')
-        }).catch((error) => {
-            console.log(error)
-        });
-        }
+        
+       
+         axiosClient.post('/orders', customerData.value).then(({ data }) => {
+             console.log(data, 'return')
+             localStorage.setItem('orderDetail', JSON.stringify(data.data));
+             localStorage.setItem('departureDate', JSON.stringify(moment(route.params.date).format('DD/MM/YYYY')));
+             router.push('/orders-history');
+         }).catch((error) => {
+             console.log(error)
+         });
+         }
     //alert(result)
    
        
     //  })
-    console.log(customerData.value)
+    
 
     
    

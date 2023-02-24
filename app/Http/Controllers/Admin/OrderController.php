@@ -36,6 +36,13 @@ class OrderController extends Controller
         return redirect()->route('orders#index')->with('deleteMessage', 'Order Canceled Successfully.');
     }
 
+    //expired order || tickets all destory 
+    public function destoryAllExpiredTickets()
+    {
+        Order::where('expired_status', 'expired')->delete();
+        return redirect()->rounte('orders#index')->with('deleteMessage', 'All expired tickets are delete');
+    }
+
 
     //ticket deatil page
     public function ticketDetail($id)

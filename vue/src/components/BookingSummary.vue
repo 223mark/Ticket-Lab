@@ -70,6 +70,10 @@
                     <p class="font-bold text-green-500 dark:text-darkTheme">{{ selectedTicket.price }}</p>
                 </div>
             </div>
+            <div class="flex justify-center">
+                <input type="checkbox" checked  >
+                <p class="text-slate-400 text-sm pl-2" >Seat Numbers can change for certain reasons. </p>
+            </div>
     
         </div>
         <div class="mt-5 flex justify-center items-center"  v-if="selectedTicket.ticketId != null">

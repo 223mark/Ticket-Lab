@@ -154,7 +154,7 @@ const selectedDate = ref(route.params.d);
 
 const fromWhere = ref(route.params.f);
 const toWhere = ref(route.params.t);
-const ticketTime = ['3:00 PM', '9:00 PM']
+const ticketTime = ['3:00 PM', '9:00 AM']
 const ticketClassArr = ['Normal', 'VIP', 'VVIP']
 
 //tickets 

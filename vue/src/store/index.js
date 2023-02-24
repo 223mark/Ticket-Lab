@@ -3,28 +3,24 @@ import axiosClient from '../axiosClient'
 
 const store = createStore({
     state: {
-        selectedDate: null,
-        location: {},
-
-
-
+        iconStatus: false
 
     },
     getters: {},
     mutations: {
-        // setLocation(state, data) {
-        //     state.location = data;
-        // }
-        setSelectedDate(state, selectedDate) {
-            state.selectedDate = selectedDate
-        },
+        setTrue(state, data) {
+            state.iconStatus = data;
+        }
+
     },
     actions: {
-
-
-
-
-
+        getLocalStorageData: ({ commit }) => {
+            if (localStorage.getItem('orderDetail') != null) {
+                let data = true;
+                console.log(data, 'from');
+                commit('setTrue', data);
+            }
+        }
 
 
 

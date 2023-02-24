@@ -13,7 +13,7 @@ class Routes extends Model
         // 'operator_id',
         'from_where',
         'to_where',
-        'class',
+        // 'class',
         'departure_time',
         'arrive_time'
     ];
@@ -29,8 +29,7 @@ class Routes extends Model
 
         if ($filters['searchText'] ?? false) {
             $query->where('from_where', 'like', '%' . request('searchText') . '%')
-                ->orWhere('to_where', 'like', '%' . request('searchText') . '%')
-                ->orWhere('class', 'like', '%' . request('searchText') . '%');
+                ->orWhere('to_where', 'like', '%' . request('searchText') . '%');
         }
     }
 }

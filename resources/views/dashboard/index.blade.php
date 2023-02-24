@@ -1,9 +1,9 @@
 <x-main-layout title="Dashboard">
 
     {{-- dashboard card --}}
-    <div class="flex flex-col md:flex-row justify-between gap-2 px-4">
+    <div class="flex flex-col md:flex-row justify-between gap-2 px-4 mb-4">
         {{-- today order --}}
-        <x-dashboard-card :data=$todayOrderCount>Today Order</x-dashboard-card>
+        <x-dashboard-card :data=$todayOrderCount>Today Orders</x-dashboard-card>
 
         {{-- total operator --}}
         <x-dashboard-card :data=$operatorCount>Operator Count</x-dashboard-card>

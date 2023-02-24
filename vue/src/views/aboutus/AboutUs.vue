@@ -30,7 +30,7 @@
 const information = [
     {
         icon:"fa-solid fa-map-location-dot",
-        text: 'No.245, U Tun Lin Road, Hledan, Yangon'
+        text: 'No.245, U Tun Lin Road, Hledan, Yangon/fakeinfo'
     },
     {
         icon: "fa-solid fa-envelope",
@@ -46,3 +46,4 @@ const information = [
     }
 ]
 </script>
+

@@ -2,9 +2,10 @@
     <a href="{{ route('orders#index') }}">
         <x-button name="Back" />
     </a>
-    <div class="my-4 ">
+    <div class="my-4 pl-4 md:pl-0">
         <h1 class="text-xl font-medium text-blue-600 tracking-normal">Setting Tickets To Define Expire</h1>
-        <p class="text-md font-normal text-slate-500 pt-4">Are you sure you want to set expired status to the tickets
+        <p class="text-md font-normal text-slate-500 pt-4">Are you sure you want to set expired status to all of the
+            tickets
             with this date
             <span class="text-blue-500 font-bold">{{ $date }}</span>
         </p>
@@ -13,9 +14,9 @@
     <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
         <div class="mb-4 flex items-center justify-between">
             <div>
-                <h3 class="text-xl font-bold text-gray-900 mb-2">Latest Orders</h3>
-                <span class="text-base font-normal text-gray-500">This is a list of latest
-                    orders</span>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">Date Related Orders</h3>
+                <span class="text-base font-normal text-gray-500">This are orders with related Date
+                </span>
             </div>
             <div class="flex-shrink-0">
                 <a href="{{ route('orders#setOrdersExpired', $date) }}"

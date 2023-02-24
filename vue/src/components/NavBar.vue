@@ -12,14 +12,23 @@
             
         </div>
         <div class="md:hidden flex justify-center items-center">
-            <div class="">
-                <button class="font-medium text-xl text-theme cursor-pointer dark:text-darkTheme" v-if="isDark"  @click="toggleDark()">
-                     <i class="fa-solid fa-sun"></i>
-                </button>
-                <button class="font-medium text-xl text-theme cursor-pointer dark:text-darkTheme" v-else  @click="toggleDark()">
-                    <i class="fa-solid fa-moon"></i>
-                 </button>
+            <div class="pr-4">
+                <!-- shopping bag icon -->
+                        <h4 class="text-xl font-semibold text-green-500 cursor-pointer" v-if="localStorageCheck">
+                         <router-link :to="{ name: 'app.orderHistory' }">
+                             <i class="fa-solid fa-bag-shopping"></i>
+                         </router-link>
+                        </h4>          
+                <!-- shopping bag icon end -->
             </div>
+            <div class="">
+                    <button class="font-medium text-xl text-green-500 cursor-pointer dark:text-darkTheme" v-if="isDark"  @click="toggleDark()">
+                         <i class="fa-solid fa-sun"></i>
+                    </button>
+                    <button class="font-medium text-xl text-green-500 cursor-pointer dark:text-darkTheme" v-else  @click="toggleDark()">
+                        <i class="fa-solid fa-moon"></i>
+                     </button>
+                </div>
             <button class="navbar-burger flex items-center text-green-600 dark:text-darkTheme p-3">
                 <svg class="block h-6 w-6 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                    
@@ -35,15 +44,23 @@
                         {{ item.name }}
                 </router-link>
                 <!-- nav items end -->
-
+                <!-- shopping bag icon -->
+                    <h4 class="text-xl font-semibold text-indigo-500 cursor-pointer" >
+                     <router-link :to="{name: 'app.orderHistory'}">
+                         <i class="fa-solid fa-bag-shopping"></i>
+                     </router-link>
+                    </h4>
+                    
+                <!-- shopping bag icon end -->
                 <!-- darkmood toggle  -->
-                     <button class="font-medium text-xl text-theme cursor-pointer dark:text-darkTheme" v-if="isDark"    @click="toggleDark()">
+                     <button class="font-medium text-2xl text-theme cursor-pointer dark:text-darkTheme" v-if="isDark"    @click="toggleDark()">
                          <i class="fa-solid fa-sun"></i>
                       </button>
-                    <button class="font-medium text-xl text-theme cursor-pointer dark:text-darkTheme" v-else  @click="toggleDark()">
+                    <button class="font-medium text-2xl text-theme cursor-pointer dark:text-darkTheme" v-else  @click="toggleDark()">
                         <i class="fa-solid fa-moon"></i>
                      </button>
                 <!-- darkmood toggle end -->
+                
             </div>
            
            
@@ -71,6 +88,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
                             </path>
                         </svg>
+                        
                     </button>
                 </div>
                 
@@ -87,7 +105,12 @@
     <!-- mobile menu end -->
 </template>
 <script setup>
-import { useDark, useToggle} from '@vueuse/core'
+import { computed } from '@vue/runtime-core';
+import { watchEffect } from '@vue/runtime-core';
+import { onMounted } from '@vue/runtime-core';
+import { useDark, useToggle } from '@vueuse/core'
+import { ref } from 'vue';
+import store from '../store';
 
 const isDark = useDark();
 //simple bolean switcher
@@ -99,5 +122,14 @@ const navigation = [
     
 
 ];
+
+const localStorageCheck = computed(()=>  store.state.iconStatus );
+
+onMounted(() => {
+   
+    store.dispatch('getLocalStorageData');
+    //console.log(localStorageCheck.value);
+    
+})
 
 </script>
